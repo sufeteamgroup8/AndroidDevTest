@@ -28,11 +28,12 @@ class ExampleUnitTest {
         //account建表
         var tableName = "`account`"
         createTableSQL = "$createstmt $tableName(" +
-                "account_id INT PRIMARY KEY NOT NULL," +// 账户id
+                "account_id INT PRIMARY KEY $AUTOINC," +// 账户id
                 "account_name CHAR(30) NOT NULL," +//账户名
                 "account_nickname VARCHAR(30)," + //账户昵称，界面显示的用户名称用这个
                 "account_passwd CHAR(255) NOT NULL," +//账户密码,TODO 存明文还是hash一次？
                 "account_sex INT NOT NULL DEFAULT 0," +//性别，0不明1男2女
+                "account_signature CHAR(200)," +
                 "account_credit INT NOT NULL DEFAULT 100," +// 信用分 暂定默认100
                 "account_coin_balance DOUBLE NOT NULL DEFAULT 0.00," +// 用户金币余额
                 "account_student_number CHAR(10) NOT NULL," +// 学\工号
@@ -43,7 +44,7 @@ class ExampleUnitTest {
         //订单order建表
         tableName = "`order`"
         createTableSQL = "$createstmt $tableName(" +
-                "order_id INT PRIMARY KEY NOT NULL," + //订单id
+                "order_id INT PRIMARY KEY NOT NULL $AUTOINC," + //订单id
                 "order_state INT NOT NULL DEFAULT 0," +//订单状态
                 "order_task_state INT DEFAULT 0," +//订单执行过程状态
                 "order_publisher INT NOT NULL," +//发布者id
@@ -55,7 +56,7 @@ class ExampleUnitTest {
         // 订单详情order_detail建表
         tableName = "`order_detail`"
         createTableSQL = "$createstmt $tableName(" +
-                "order_id INT NOT NULL," +//订单id
+                "order_id INT NOT NULL ," +//订单id
                 "order_version INT NOT NULL," +//详情版本号
                 "order_title VARCHAR(30)," +//标题
                 "order_details TEXT," +//正文
@@ -64,6 +65,7 @@ class ExampleUnitTest {
                 "order_pub_time DATETIME DEFAULT NOW()," + //发布时间
                 "order_deadline DATETIME," +//到期时间
                 "order_address INT," +//地址位置
+                "order_is_final TINYINT,"
                 "PRIMARY KEY (order_id,order_version)," +
                 "FOREIGN KEY (order_id) REFERENCES `order`(order_id)" +
                 ")"
@@ -146,5 +148,88 @@ class ExampleUnitTest {
                 "$FK (chat_receiver) $REF `account`(account_id)" +
                 ")"
         agent.execute(createTableSQL)
+
+        agent.execute("CREATE VIEW `order_full` \n" +
+                "AS \n" +
+                "select \n" +
+                "`temp`.`order_id` AS `order_id`,\n" +
+                "`temp`.`order_state` AS `order_state`,\n" +
+                "`temp`.`order_task_state` AS `order_task_state`,\n" +
+                "`temp`.`order_publisher` AS `order_publisher`,\n" +
+                "`temp`.`order_receiver` AS `order_receiver`,\n" +
+                "`temp`.`order_version` AS `order_version`,\n" +
+                "`temp`.`order_title` AS `order_title`,\n" +
+                "`temp`.`order_details` AS `order_details`,\n" +
+                "`temp`.`order_price` AS `order_price`,\n" +
+                "`temp`.`order_type` AS `order_type`,\n" +
+                "`temp`.`order_pub_time` AS `order_pub_time`,\n" +
+                "`temp`.`order_deadline` AS `order_deadline`,\n" +
+                "`temp`.`order_address` AS `order_address`,\n" +
+                "row_number() OVER(partition by `order_id` order by `order_pub_time` desc) AS `rn` \n" +
+                "from \n" +
+                "(select `order`.`order_id` AS `order_id`,\n" +
+                "`order`.`order_state` AS `order_state`,\n" +
+                "`order`.`order_task_state` AS `order_task_state`,\n" +
+                "`order`.`order_publisher` AS `order_publisher`,\n" +
+                "`order`.`order_receiver` AS `order_receiver`,\n" +
+                "`order_detail`.`order_version` AS `order_version`,\n" +
+                "`order_detail`.`order_title` AS `order_title`,\n" +
+                "`order_detail`.`order_details` AS `order_details`,\n" +
+                "`order_detail`.`order_price` AS `order_price`,\n" +
+                "`order_detail`.`order_type` AS `order_type`,\n" +
+                "`order_detail`.`order_pub_time` AS `order_pub_time`,\n" +
+                "`order_detail`.`order_deadline` AS `order_deadline`,\n" +
+                "`order_detail`.`order_address` AS `order_address`\n" +
+                " from `order_detail` left join `order` on(`order`.`order_id` = `order_detail`.`order_id`) order by `order_detail`.`order_pub_time` desc) `temp` group by `temp`.`order_id`;")
+
+        agent.execute("CREATE VIEW `order_complete` AS \n" +
+                "SELECT `full_order`.`order_id`,\n" +
+                "    `full_order`.`order_state`,\n" +
+                "    `full_order`.`order_task_state`,\n" +
+                "    `full_order`.`order_publisher`,\n" +
+                "    `full_order`.`order_receiver`,\n" +
+                "    `full_order`.`order_version`,\n" +
+                "    `full_order`.`order_title`,\n" +
+                "    `full_order`.`order_details`,\n" +
+                "    `full_order`.`order_price`,\n" +
+                "    `full_order`.`order_type`,\n" +
+                "    `full_order`.`order_pub_time`,\n" +
+                "    `full_order`.`order_deadline`,\n" +
+                "    `full_order`.`order_address`,\n" +
+                "\t`publisher`.`account_id` as `publisher_id`,\n" +
+                "    `publisher`.`account_name` as `publisher_name`,\n" +
+                "    `publisher`.`account_nickname` as `publisher_nickname`,\n" +
+                "    `publisher`.`account_passwd` as `publisher_passwd`,\n" +
+                "    `publisher`.`account_sex` as `publisher_sex`,\n" +
+                "    `publisher`.`account_signature` as `publisher_signature`,\n" +
+                "    `publisher`.`account_credit` as `publisher_credit`,\n" +
+                "    `publisher`.`account_coin_balance` as `publisher_coin_balance`,\n" +
+                "    `publisher`.`account_student_number` as `publisher_student_number`,\n" +
+                "    `publisher`.`account_phone` as `publisher_phone`,\n" +
+                "    `publisher`.`account_portrait` as `publisher_portrait`,\n" +
+                "     `receiver`.`account_id` as  `receiver_id`,\n" +
+                "         `receiver`.`account_name` as `receiver_name`,\n" +
+                "         `receiver`.`account_nickname` as `receiver_nickname`,\n" +
+                "         `receiver`.`account_passwd` as `receiver_passwd`,\n" +
+                "         `receiver`.`account_sex` as `receiver_sex`,\n" +
+                "         `receiver`.`account_signature` as `receiver_signature`,\n" +
+                "         `receiver`.`account_credit` as `receiver_credit`,\n" +
+                "         `receiver`.`account_coin_balance` as `receiver_coin_balance`,\n" +
+                "         `receiver`.`account_student_number` as `receiver_student_number`,\n" +
+                "         `receiver`.`account_phone` as `receiver_phone`,\n" +
+                "         `receiver`.`account_portrait` as `receiver_portrait`,\n" +
+                "\n" +
+                "FROM `full_order`\n" +
+                " LEFT JOIN `account` as `publisher` ON `full_order`.`order_publisher` = `publisher`.`account_id`\n" +
+                " LEFT JOIN `account` as `receiver` ON `full_order`.`order_publisher` =  `receiver`.`account_id`;\n" +
+                "\n")
+
+
+        agent.execute("INSERT INTO account (account_name,account_passwd,account_student_number)VALUES('aaa','aaa','11111111')")
+        agent.execute("INSERT INTO account (account_name,account_passwd,account_student_number)VALUES('bbb','bbb','22222222')")
+        agent.execute("INSERT INTO `order`(order_publisher)VALUES(1)")
+        agent.execute("INSERT INTO `order`(order_publisher)VALUES(2)")
+        agent.execute("INSERT INTO order_detail()")
+
     }
 }
