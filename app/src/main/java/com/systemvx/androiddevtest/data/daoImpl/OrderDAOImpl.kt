@@ -135,6 +135,11 @@ class OrderDAOImpl : BaseDAO<FullOrderData>(), IOrderDAO {
                 ))
     }
 
+    fun findOrder(settings:FullOrderData,ambigious:Boolean = true){
+
+        conn.createStatement().executeQuery("")//TODO
+    }
+
     override fun updateOrderTaskState(data: OrderData) {
         if (data.id == 0)
             throw Exception("无order id")
@@ -154,7 +159,6 @@ class OrderDAOImpl : BaseDAO<FullOrderData>(), IOrderDAO {
         pstmt.setInt(2, receiverID)
         pstmt.executeUpdate()
     }
-
 
     override fun updateOrderDetail(data: DetailData, orderID: Int) {
         createNewDetail(data, orderID)

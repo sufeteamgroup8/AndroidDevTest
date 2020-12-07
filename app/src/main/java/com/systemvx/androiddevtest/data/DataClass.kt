@@ -4,7 +4,7 @@ import android.graphics.Picture
 import java.util.*
 
 data class AccountData(
-        var name: String,
+        var name: String = "",
         var nickname: String? = null,
         var password: String? = null,
         var signature: String? = null,
@@ -70,6 +70,15 @@ data class CreditData(
         var source: String,
         var relatedOrder: OrderData? = null,
         var relatedAccount: AccountData
+)
+
+data class CoinData(
+        var id: Int? = null,
+        var amount: Double,
+        var time: Date,
+        var relatedOrder: OrderData? = null,
+        var sender: AccountData?,
+        var receiver: AccountData?
 )
 
 data class CommentData(
