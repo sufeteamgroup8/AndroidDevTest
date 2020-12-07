@@ -5,6 +5,8 @@ import com.systemvx.androiddevtest.data.DetailData
 import com.systemvx.androiddevtest.data.FullOrderData
 import com.systemvx.androiddevtest.data.OrderData
 import com.systemvx.androiddevtest.data.dao.IOrderDAO
+import java.sql.Types
+import java.text.SimpleDateFormat
 
 class OrderDAOImpl : BaseDAO<FullOrderData>(), IOrderDAO {
 
@@ -134,20 +136,53 @@ class OrderDAOImpl : BaseDAO<FullOrderData>(), IOrderDAO {
     }
 
     override fun updateOrderTaskState(data: OrderData) {
-        val sql="UPDATE `order` SET order_task_state = ? where order_id = ?"
+        if (data.id == 0)
+            throw Exception("无order id")
+        val sql = "UPDATE $tableOrder SET order_state = ? WHERE order_id = ?"
+        val pstmt = conn.prepareStatement(sql)
+        pstmt.setInt(1, data.taskState)
+        pstmt.setInt(2, data.id)
+        pstmt.executeUpdate()
     }
 
     override fun updateOrderReceiver(data: OrderData, receiverID: Int) {
-        TODO("Not yet implemented")
+        if (data.id == 0)
+            throw Exception("无order id")
+        val sql = "UPDATE $tableOrder SET order_state = ? WHERE order_id = ?"
+        val pstmt = conn.prepareStatement(sql)
+        pstmt.setInt(1, data.taskState)
+        pstmt.setInt(2, receiverID)
+        pstmt.executeUpdate()
     }
 
 
-    override fun updateOrderDetail(data: DetailData) {
-        TODO("Not yet implemented")
+    override fun updateOrderDetail(data: DetailData, orderID: Int) {
+        createNewDetail(data, orderID)
     }
 
     override fun createNewDetail(data: DetailData, orderID: Int) {
-        TODO("Not yet implemented")
+        val sql = "INSERT INTO $tableDetail(" +
+                "order_id" +
+                "order_version," +
+                "order_title," +
+                "order_details," +
+                "order_price," +
+                "order_type," +
+                "order_deadline," +
+                "order_address," +
+                "order_is_final)VALUES(" +
+                "?,?,?,?,?,?,?,?,?) "
+        val pstmt = conn.prepareStatement(sql)
+        pstmt.setInt(1,orderID)
+        pstmt.setInt(2,data.version!!)//TODO 版本号实现
+        pstmt.setObject(3,data.title)
+        pstmt.setObject(4,data.maintext)
+        pstmt.setObject(5,data.price)
+        pstmt.setInt(6,data.type)
+        pstmt.setObject(7,SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(data.endTime))
+        pstmt.setObject(8,data.address)
+        pstmt.setBoolean(9,data.isFinalVersion)
+        pstmt.executeUpdate()
     }
 
     companion object {

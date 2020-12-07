@@ -20,7 +20,7 @@ interface IOrderDAO {
 
     fun updateOrderReceiver(data: OrderData, receiverID: Int)
 
-    fun updateOrderDetail(data: DetailData)
+    fun updateOrderDetail(data: DetailData,orderID: Int)
 
     fun createNewDetail(data: DetailData, orderID: Int)
 
