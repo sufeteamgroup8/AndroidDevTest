@@ -32,20 +32,21 @@ data class OrderData(
         var orderState: Int = 0,
         var taskState: Int = 0,
         var publisher: AccountData,
-        var receiver: AccountData?
+        var receiver: AccountData?//这边老师说需要拍快照，需要添加一些细节
 )
 
 data class DetailData(
+        var OrderDetailID: Int ,//数据库自动序号
         var version: Int? = null,
         var title: String,
         var maintext: String,
         var price: Double,
         var type: Int,
         var pubTime: Date,
-        var endTime: Date,
+        //var endTime: Date,
         var address: Int,
         var addressStr: String,
-        var isFinalVersion: Boolean
+        var isFinalVersion: Boolean//给一个默认值，类型改成String会不会更方便
 )
 
 
