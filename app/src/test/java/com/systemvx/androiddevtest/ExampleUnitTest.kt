@@ -119,8 +119,10 @@ class ExampleUnitTest {
                 "credit_value INT NOT NULL DEFAULT 0," +
                 "credit_time DATETIME DEFAULT NOW()," +
                 "credit_source CHAR(10)," +
+                "account_id INT," +
                 "order_id INT," +
-                "$FK (order_id) $REF `order`(order_id)" +
+                "$FK (order_id) $REF `order`(order_id)," +
+                "$FK (account_id) $REF `account`(account_id)" +
                 ")"
         agent.execute(createTableSQL)
 
