@@ -1,6 +1,8 @@
 package com.systemvx.androiddevtest;
 
 import android.os.Bundle;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -10,21 +12,34 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    private String[] names = new String[]{"B神", "基神", "曹神"};
+    private String[] says = new String[]{"快递", "取餐", "快递"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(navView, navController);
-    }
 
+        List<Map<String, Object>> listitem = new ArrayList<Map<String, Object>>();
+        for (int i = 0; i < names.length; i++) {
+            Map<String, Object> showitem = new HashMap<String, Object>();
+            showitem.put("name", names[i]);
+            showitem.put("says", says[i]);
+            listitem.add(showitem);
+        }
+
+        //创建一个simpleAdapter
+        SimpleAdapter myAdapter = new SimpleAdapter(getApplicationContext(), listitem, R.layout.order, new String[]{"touxiang", "name", "says"}, new int[]{R.id.imgtou, R.id.name, R.id.says});
+        ListView listView = (ListView) findViewById(R.id.list_test);
+        listView.setAdapter(myAdapter);
+    }
 }
