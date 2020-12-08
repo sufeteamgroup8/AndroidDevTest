@@ -56,17 +56,17 @@ class ExampleUnitTest {
         // 订单详情order_detail建表
         tableName = "`order_detail`"
         createTableSQL = "$createstmt $tableName(" +
-                "order_id INT NOT NULL ," +//订单id
-                "order_version INT NOT NULL," +//详情版本号
-                "order_title VARCHAR(30)," +//标题
-                "order_details TEXT," +//正文
-                "order_price DOUBLE," +//悬赏价格
-                "order_type INT NOT NULL DEFAULT 0," +//任务类型
-                "order_pub_time DATETIME DEFAULT NOW()," + //发布时间
-                "order_deadline DATETIME," +//到期时间
-                "order_address INT," +//地址位置
-                "order_is_final TINYINT,"
-                "PRIMARY KEY (order_id,order_version)," +
+                "order_id INT NOT NULL,\n" +//订单id
+                "order_version INT NOT NULL,\n" +//详情版本号
+                "order_title VARCHAR(30),\n" +//标题
+                "order_details TEXT,\n" +//正文
+                "order_price DOUBLE,\n" +//悬赏价格
+                "order_type INT NOT NULL DEFAULT 0,\n" +//任务类型
+                "order_pub_time DATETIME DEFAULT NOW(),\n" + //发布时间
+                "order_deadline DATETIME,\n" +//到期时间
+                "order_address INT,\n" +//地址位置
+                "order_is_final TINYINT,\n" +
+                "PRIMARY KEY (order_id,order_version),\n" +
                 "FOREIGN KEY (order_id) REFERENCES `order`(order_id)" +
                 ")"
         print(createTableSQL)
@@ -74,14 +74,14 @@ class ExampleUnitTest {
         // 投诉complaint建表
         tableName = "`complaint`"
         createTableSQL = "$createstmt $tableName(" +
-                "complaint_id INT $PK $AUTOINC," +
-                "complaint_time DATETIME DEFAULT NOW()," +
-                "complaint_type INT," +
-                "complaint_detail TEXT," +
-                "complaint_state INT," +
-                "complaint_from INT," +
-                "complaint_to INT," +
-                "complaint_order INT," +
+                "complaint_id INT $PK $AUTOINC,\n" +
+                "complaint_time DATETIME DEFAULT NOW(),\n" +
+                "complaint_type INT,\n" +
+                "complaint_detail TEXT,\n" +
+                "complaint_state INT,\n" +
+                "complaint_from INT,\n" +
+                "complaint_to INT,\n" +
+                "complaint_order INT,\n" +
                 "$FK (complaint_order) $REF `order`(order_id)," +
                 "$FK (complaint_from) $REF `account`(account_id)," +
                 "$FK (complaint_to) $REF `account`(account_id)" +
@@ -180,22 +180,22 @@ class ExampleUnitTest {
                 "`order_detail`.`order_pub_time` AS `order_pub_time`,\n" +
                 "`order_detail`.`order_deadline` AS `order_deadline`,\n" +
                 "`order_detail`.`order_address` AS `order_address`\n" +
-                " from `order_detail` left join `order` on(`order`.`order_id` = `order_detail`.`order_id`) order by `order_detail`.`order_pub_time` desc) `temp` group by `temp`.`order_id`;")
+                " from `order_detail` left join `order` on `order`.`order_id` = `order_detail`.`order_id` order by `order_detail`.`order_pub_time` desc) `temp` group by `temp`.`order_id`;")
 
         agent.execute("CREATE VIEW `order_complete` AS \n" +
-                "SELECT `full_order`.`order_id`,\n" +
-                "    `full_order`.`order_state`,\n" +
-                "    `full_order`.`order_task_state`,\n" +
-                "    `full_order`.`order_publisher`,\n" +
-                "    `full_order`.`order_receiver`,\n" +
-                "    `full_order`.`order_version`,\n" +
-                "    `full_order`.`order_title`,\n" +
-                "    `full_order`.`order_details`,\n" +
-                "    `full_order`.`order_price`,\n" +
-                "    `full_order`.`order_type`,\n" +
-                "    `full_order`.`order_pub_time`,\n" +
-                "    `full_order`.`order_deadline`,\n" +
-                "    `full_order`.`order_address`,\n" +
+                "SELECT `order_full`.`order_id`,\n" +
+                "    `order_full`.`order_state`,\n" +
+                "    `order_full`.`order_task_state`,\n" +
+                "    `order_full`.`order_publisher`,\n" +
+                "    `order_full`.`order_receiver`,\n" +
+                "    `order_full`.`order_version`,\n" +
+                "    `order_full`.`order_title`,\n" +
+                "    `order_full`.`order_details`,\n" +
+                "    `order_full`.`order_price`,\n" +
+                "    `order_full`.`order_type`,\n" +
+                "    `order_full`.`order_pub_time`,\n" +
+                "    `order_full`.`order_deadline`,\n" +
+                "    `order_full`.`order_address`,\n" +
                 "\t`publisher`.`account_id` as `publisher_id`,\n" +
                 "    `publisher`.`account_name` as `publisher_name`,\n" +
                 "    `publisher`.`account_nickname` as `publisher_nickname`,\n" +
@@ -217,19 +217,12 @@ class ExampleUnitTest {
                 "         `receiver`.`account_coin_balance` as `receiver_coin_balance`,\n" +
                 "         `receiver`.`account_student_number` as `receiver_student_number`,\n" +
                 "         `receiver`.`account_phone` as `receiver_phone`,\n" +
-                "         `receiver`.`account_portrait` as `receiver_portrait`,\n" +
+                "         `receiver`.`account_portrait` as `receiver_portrait`\n" +
                 "\n" +
-                "FROM `full_order`\n" +
-                " LEFT JOIN `account` as `publisher` ON `full_order`.`order_publisher` = `publisher`.`account_id`\n" +
-                " LEFT JOIN `account` as `receiver` ON `full_order`.`order_publisher` =  `receiver`.`account_id`;\n" +
+                "FROM `order_full`\n" +
+                " LEFT JOIN `account` as `publisher` ON `order_full`.`order_publisher` = `publisher`.`account_id`\n" +
+                " LEFT JOIN `account` as `receiver` ON `order_full`.`order_receiver` =  `receiver`.`account_id`;\n" +
                 "\n")
-
-
-        agent.execute("INSERT INTO account (account_name,account_passwd,account_student_number)VALUES('aaa','aaa','11111111')")
-        agent.execute("INSERT INTO account (account_name,account_passwd,account_student_number)VALUES('bbb','bbb','22222222')")
-        agent.execute("INSERT INTO `order`(order_publisher)VALUES(1)")
-        agent.execute("INSERT INTO `order`(order_publisher)VALUES(2)")
-        agent.execute("INSERT INTO order_detail()")
 
     }
 }

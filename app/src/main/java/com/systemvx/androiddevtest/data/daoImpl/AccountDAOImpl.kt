@@ -8,15 +8,15 @@ import java.sql.Statement
 class AccountDAOImpl : BaseDAO<AccountData>(), IAccountDAO {
     val tableName = "`account`"
 
-    override fun createAccount(account: AccountData): Int {
-        if (account.name.isNullOrBlank() || account.password.isNullOrBlank())
+    override fun createAccount(name:String,password:String,stunedtNo:String): Int {
+        if (name.isNullOrBlank() || password.isNullOrBlank())
             throw Exception("name 或 password 属性不符要求")
         val pstmt = conn.prepareStatement(
                 "INSERT INTO $tableName" +
                         "(account_name,account_passwd,account_student_number)" +
                         "VALUES(?,?,?)")
-        pstmt.setString(1, account.name)
-        pstmt.setString(2, account.password)
+        pstmt.setString(1, name)
+        pstmt.setString(2, password)
         pstmt.setString(3, "2077123456")
         return pstmt.executeUpdate()
     }
@@ -25,11 +25,11 @@ class AccountDAOImpl : BaseDAO<AccountData>(), IAccountDAO {
         var isChanged = false
         var sql = "UPDATE $tableName SET "
         if (!account.password.isNullOrBlank()) {
-            sql += "account_passwd = ${account.password},"
+            sql += "account_passwd = '${account.password}',"
             isChanged = true
         }
         if (!account.nickname.isNullOrBlank()) {
-            sql += "account_nickname = ${account.nickname},"
+            sql += "account_nickname = '${account.nickname}',"
             isChanged = true
         }
         if (account.sex != null) {
@@ -37,11 +37,11 @@ class AccountDAOImpl : BaseDAO<AccountData>(), IAccountDAO {
             isChanged = true
         }
         if (!account.phone.isNullOrBlank()) {
-            sql += "account_phone = ${account.phone},"
+            sql += "account_phone = '${account.phone}',"
             isChanged = true
         }
         if (account.portrait != null) {
-            sql += "account_phone = ${account.portrait.toString()},"
+            sql += "account_portrait = ${account.portrait.toString()},"
             isChanged = true
         }
         if (account.coin != null) {
@@ -75,7 +75,7 @@ class AccountDAOImpl : BaseDAO<AccountData>(), IAccountDAO {
         TODO("Not yet implemented")
     }
 
-    override fun updateAccountConfidential(account: AccountData, newConfidential: Int) {
+    override fun updateAccountCredit(account: AccountData, newConfidential: Int) {
         updateAccount(AccountData(name = account.name, id = account.id, credit = newConfidential))
     }
 

@@ -9,6 +9,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class CoinDaoImpl : BaseDAO<CoinData>(), ICoinDAO {
+
     override fun makeUser2UserCoinTrans(transaction: CoinData) {
         val sql = "INSERT INTO `coin`(" +
                 "coin_amount," +

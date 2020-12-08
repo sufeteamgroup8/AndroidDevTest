@@ -9,14 +9,19 @@ import java.sql.SQLException
 open class BaseDAO<T> {
     lateinit var conn: Connection
 
-    init {
-        connectToDB()
+    constructor() {
+        connectToDB(hostAddress)
     }
 
-    private fun connectToDB(): Unit {
+    constructor(host: String) {
+        connectToDB(host = host)
+    }
+
+
+    private fun connectToDB(host: String): Unit {
         try {
             Class.forName(JDBC_Driver_name);
-            val url = "$JDBC_SQL_Prefix$host/$port/$currentSchema$Time_Zone"
+            val url = "$JDBC_SQL_Prefix$host:$port/$currentSchema$Time_Zone"
             conn = DriverManager.getConnection(url, user, passWord)
             if (debug) {
                 Log.d(TAG, "connectToDB($url)success.\n")
@@ -29,10 +34,10 @@ open class BaseDAO<T> {
 
     companion object {
         var debug = false
-        private const val host = "10.0.2.3"
+        private const val hostAddress = "127.0.0.1"
         private const val port = 3306
         private const val currentSchema = "modeling"
-        private const val user = "admin"
+        private const val user = "root"
         private const val passWord = "123456"
         private const val TAG = "SQLAgent"
         private const val JDBC_SQL_Prefix = "jdbc:mysql://"

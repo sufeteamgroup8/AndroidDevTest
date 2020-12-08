@@ -95,6 +95,9 @@ class SQLAgent {
         }
     }
 
+    fun getconn(): Connection {
+        return connection!!
+    }
     companion object {
         private const val TAG = "SQLAgent"
         private const val JDBC_SQL_Prefix = "jdbc:mysql://"

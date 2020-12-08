@@ -7,7 +7,7 @@ interface IAccountDAO {
      *  插入新用户
      *  id自动生成，已填id将无效
      */
-    fun createAccount(account: AccountData): Int
+    fun createAccount(name: String,password:String,studentNo:String): Int
 
     /**
      * 修改指定用户
@@ -23,9 +23,10 @@ interface IAccountDAO {
 
     fun updateAccountCoin(account: AccountData, newCoinValue: Double)
     fun updateAccountState(account: AccountData, newState: Int)
-    fun updateAccountConfidential(account: AccountData, newConfidential: Int)
+    fun updateAccountCredit(account: AccountData, newConfidential: Int)
 
     fun getAccountById(id: Int): AccountData
     fun getAccountByName(name: String): AccountData
     fun findAccounts(account: AccountData): List<AccountData>
+
 }
