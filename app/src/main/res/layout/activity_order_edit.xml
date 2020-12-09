@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="inputData"
+            type="com.systemvx.devapp.data.OrderEditData" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colo_bac"
+        tools:context=".DemoActivity">
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="取消"
+                android:textColor="@color/text_black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/button_submit"
+                android:gravity="center"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:text="发布"
+                android:textColor="@color/text_main"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:background="#DDDDDD"/>
+
+            <TextView
+                android:id="@+id/button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:paddingStart="15dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="15dp"
+                android:paddingBottom="5dp"
+                android:text="发布"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintVertical_bias="0.0">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="标题"
+                android:padding="10dp"
+                android:textColor="@color/text_main"
+                android:textColorHint="@color/text_main1"
+                android:textSize="16sp"
+                android:text="@={inputData.title}"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@null"
+                android:gravity="start|top"
+                android:hint="内容"
+                android:padding="10dp"
+                android:textColor="@color/text_main"
+                android:textColorHint="@color/text_main1"
+                android:textSize="16sp"
+                android:text="@={inputData.maintext}"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0">
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:drawableTop="@drawable/ic_add_black_48dp"-->
+<!--                android:drawablePadding="5dp"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="添加图片" />-->
+
+            <EditText
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="3教学楼" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+            app:layout_constraintVertical_bias="0.0">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+
+                    android:padding="5dp"
+                    android:text="价格"
+                    android:textColor="@color/text_main"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:padding="5dp"
+                    android:text="@={inputData.price}"
+                    android:textColor="@color/colo_money"
+                    android:textSize="16sp"
+                    android:inputType="number"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@color/color_link" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:padding="5dp"
+                    android:text="截止时间"
+                    android:textColor="@color/text_main"
+                    android:textSize="16sp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end|center_vertical"
+                    android:padding="5dp"
+                    android:text="@={inputData.deadline}"
+                    android:textColor="@color/text_main1"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
