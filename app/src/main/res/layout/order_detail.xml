@@ -15,7 +15,6 @@
         android:id="@+id/title"
         android:layout_width="98dp"
         android:layout_height="84dp"
-        android:layout_below="@id/viewPager"
         android:text="标题"
         android:textSize="22sp"
         tools:ignore="NotSibling" />

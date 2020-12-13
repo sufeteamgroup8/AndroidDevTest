@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colo_bac"
-    tools:context=".DemoActivity">
+    tools:context=".OrderPublishActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="取消"
+            android:id="@+id/orderCancel"
             android:textColor="@color/text_black"
             android:textSize="16sp" />
 
@@ -37,10 +38,11 @@
             android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/orderPublish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/shape_yellow"
+            android:background="@color/colo_yellow"
             android:paddingStart="15dp"
             android:paddingTop="5dp"
             android:paddingEnd="15dp"
@@ -54,15 +56,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/shape_white"
+        android:background="@color/colo_white"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout"
         app:layout_constraintVertical_bias="0.0">
 
         <EditText
+            android:id="@+id/orderTittle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -73,6 +76,7 @@
             android:textSize="16sp" />
 
         <EditText
+            android:id="@+id/orderContext"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@null"
@@ -89,7 +93,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/shape_white"
+        android:background="@color/colo_white"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +105,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/ic_add_black_48dp"
+            android:drawableTop="@drawable/ic_baseline_image_24"
             android:drawablePadding="5dp"
             android:padding="10dp"
             android:text="添加图片" />
@@ -117,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="@drawable/shape_white"
+        android:background="@color/colo_white"
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -136,13 +140,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_money" />
+                android:src="@drawable/ic_baseline_attach_money_24" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-
+                android:id="@+id/orderPrice"
                 android:padding="5dp"
                 android:text="价格"
                 android:textColor="@color/text_main"
@@ -151,7 +155,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_right_24dp"
                 android:gravity="end|center_vertical"
                 android:padding="5dp"
                 android:text="￥0.00"
@@ -174,12 +177,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_same" />
+                android:src="@drawable/ic_baseline_access_time_24" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:id="@+id/orderDDL"
                 android:padding="5dp"
                 android:text="截止时间"
                 android:textColor="@color/text_main"
@@ -188,7 +192,6 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_right_24dp"
                 android:gravity="end|center_vertical"
                 android:padding="5dp"
                 android:text="2020年1月1日 12:00"
@@ -211,12 +214,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/icon_more" />
+                android:src="@drawable/ic_baseline_save_24" />
+            />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableEnd="@drawable/ic_right_24dp"
                 android:gravity="center_vertical"
                 android:layout_marginStart="5dp"
                 android:padding="5dp"
