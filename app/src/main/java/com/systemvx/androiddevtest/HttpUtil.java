@@ -13,7 +13,14 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
-//import implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+
+import okhttp3.Call;
+import okhttp3.Cookie;
+import okhttp3.CookieJar;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class HttpUtil {
     public static final String BASE_URL="";
@@ -33,7 +40,7 @@ public class HttpUtil {
             return cookies ==null ? new ArrayList<>():cookies;
         }
     }).build();
-    public static String getRequest(String url) throws Exception
+    public static <Call> String getRequest(String url) throws Exception
     {
         FutureTask<String> task =new FutureTask<>(()->{
             DownloadManager.Request request=new Request.Builder()

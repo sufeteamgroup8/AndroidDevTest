@@ -7,4 +7,9 @@ import androidx.fragment.app.FragmentActivity;
 public class HomeListener implements View.OnClickListener {
     public HomeListener(FragmentActivity activity) {
     }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

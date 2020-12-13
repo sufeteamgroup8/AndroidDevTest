@@ -6,11 +6,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class test {
-    @Test
-    fun testDataclass() {
-        var data = AccountData(name = "apple",null,null, null,null,null,null)
-        print(data)
-    }
 
     @Test
     fun testDate(){
