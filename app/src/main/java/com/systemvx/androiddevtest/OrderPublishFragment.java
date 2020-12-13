@@ -82,7 +82,7 @@ public class OrderPublishFragment extends Fragment {
 
     private String addOrder(String Tittle, String Context, String Time, String Price) throws Exception {
         //Map封装
-        Map<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>();
         map.put("orderTittle", Tittle);
         map.put("orderContext", Context);
         map.put("orderTime", Time);

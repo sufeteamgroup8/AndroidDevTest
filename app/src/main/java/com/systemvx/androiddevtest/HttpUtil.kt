@@ -42,7 +42,7 @@ class HttpUtil {
     }
 
     fun postRequest(url: String,
-                    rawParams: Map<String?, String?>): String {
+                    rawParams: HashMap<String, String>): String {
         val task = FutureTask(Callable<String> {
             val builder = FormBody.Builder()
             rawParams.forEach { (name: String?, value: String?) -> builder.add(name!!, value!!) }
