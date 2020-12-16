@@ -3,11 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="inputData"
-            type="com.systemvx.devapp.data.OrderEditData" />
-    </data>
+    <data></data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -46,7 +42,7 @@
                 android:textColor="@color/text_main"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:background="#DDDDDD"/>
+                android:background="#DDDDDD" />
 
             <TextView
                 android:id="@+id/button_1"
@@ -82,7 +78,7 @@
                 android:textColor="@color/text_main"
                 android:textColorHint="@color/text_main1"
                 android:textSize="16sp"
-                android:text="@={inputData.title}"/>
+                android:text="" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -94,7 +90,7 @@
                 android:textColor="@color/text_main"
                 android:textColorHint="@color/text_main1"
                 android:textSize="16sp"
-                android:text="@={inputData.maintext}"/>
+                android:text="" />
         </LinearLayout>
 
         <LinearLayout
@@ -110,13 +106,13 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
             app:layout_constraintVertical_bias="0.0">
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:drawableTop="@drawable/ic_add_black_48dp"-->
-<!--                android:drawablePadding="5dp"-->
-<!--                android:padding="10dp"-->
-<!--                android:text="添加图片" />-->
+            <!--            <TextView-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:drawableTop="@drawable/ic_add_black_48dp"-->
+            <!--                android:drawablePadding="5dp"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:text="添加图片" />-->
 
             <EditText
                 android:layout_width="100dp"
@@ -160,10 +156,10 @@
                     android:layout_height="wrap_content"
                     android:gravity="end|center_vertical"
                     android:padding="5dp"
-                    android:text="@={inputData.price}"
+                    android:text=""
                     android:textColor="@color/colo_money"
                     android:textSize="16sp"
-                    android:inputType="number"/>
+                    android:inputType="number" />
             </LinearLayout>
 
             <View
@@ -191,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="end|center_vertical"
                     android:padding="5dp"
-                    android:text="@={inputData.deadline}"
+                    android:text=""
                     android:textColor="@color/text_main1"
                     android:textSize="16sp" />
             </LinearLayout>
