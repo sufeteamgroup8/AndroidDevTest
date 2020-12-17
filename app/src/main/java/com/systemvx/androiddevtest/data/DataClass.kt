@@ -12,7 +12,7 @@ data class User(
 data class OrderBriefing(
         val id: Int,
         val title: String,
-        val contextBriefing: String,
+        val briefing: String,
         val address: String,
         val deadline: Date,
         val type: String

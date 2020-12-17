@@ -20,10 +20,11 @@ class DashboardViewModel : ViewModel() {
         mText.value = "This is dashboard fragment"
     }
 
-    fun updateData(){
+    fun updateData() {
         val temp = ArrayList<OrderBriefing>()
         temp.add(OrderBriefing.randomGarbage())
-        mData.value=ArrayList()
+        temp.add(OrderBriefing.randomGarbage())
+        mData.value = temp
     }
 
 

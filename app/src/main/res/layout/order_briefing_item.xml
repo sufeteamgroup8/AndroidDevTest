@@ -16,7 +16,7 @@
             android:id="@+id/orderBriefing_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Test_title"
+            android:text="@{model.title,default = Test}"
             android:textSize="@dimen/text_large"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="test_briefing Lorem ipsum dolor sit amet, consectetuer "
+            android:text="@{model.briefing,default = Nobriefing}"
             android:textSize="@dimen/text_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/orderBriefing_title" />
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/text_margin"
-            android:text="address dummy"
+            android:text="@{model.address}"
             android:textSize="@dimen/text_medium"
             app:layout_constraintEnd_toStartOf="@id/orderBriefing_time"
             app:layout_constraintHorizontal_chainStyle="spread_inside"

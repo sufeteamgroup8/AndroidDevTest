@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
@@ -16,7 +17,7 @@ class DashboardFragment : Fragment() {
 
     //界面的绑定实体,包含所有界面元素的引用
     private lateinit var mBinding: FragmentDashboardBinding
-
+    private lateinit var mAdapter: OrderListAdapter
     //
     private lateinit var dashboardViewModel: DashboardViewModel
     override fun onCreateView(inflater: LayoutInflater,
@@ -25,14 +26,17 @@ class DashboardFragment : Fragment() {
 
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
+        dashboardViewModel.data.observe(this.requireActivity(), Observer {
+            mAdapter = OrderListAdapter(this.context,it)
+            mBinding.dashboardOrderContainer.adapter = mAdapter
+        })
 
+        dashboardViewModel.updateData()
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         mBinding.dashboardOrderContainer.layoutManager = LinearLayoutManager(this.context)
-        mBinding.dashboardOrderContainer.adapter = OrderListAdapter(this.context)
     }
 }

@@ -11,10 +11,8 @@ import com.systemvx.androiddevtest.data.OrderBriefing
 import com.systemvx.androiddevtest.databinding.OrderBriefingItemBinding
 
 
-class OrderListAdapter(val context: Context?) : RecyclerView.Adapter<OrderListAdapter.Companion.OrderBriefingViewHolder>() {
+class OrderListAdapter(val context: Context?, val items: List<OrderBriefing> = ArrayList()) : RecyclerView.Adapter<OrderListAdapter.Companion.OrderBriefingViewHolder>() {
 
-
-    private val items: List<OrderBriefing> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBriefingViewHolder {
         val binding: OrderBriefingItemBinding =
