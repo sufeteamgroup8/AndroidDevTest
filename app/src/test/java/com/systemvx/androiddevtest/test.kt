@@ -1,10 +1,10 @@
 package com.systemvx.androiddevtest
 
+import com.systemvx.androiddevtest.data.OrderBriefing
 import org.junit.Assert
 import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.HashMap
 
 class test {
 
@@ -22,6 +22,11 @@ class test {
         data["param1"] = "something"
         response = HttpUtil().postRequest("http://localhost:8080/testpost", data)
         Assert.assertEquals("restful success, data=something",response)
+    }
+    @Test
+    fun testOrderBriefing(){
+        val result = OrderBriefing.randomGarbage()
+        println(result)
     }
 
 

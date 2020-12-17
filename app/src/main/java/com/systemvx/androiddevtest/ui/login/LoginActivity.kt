@@ -1,6 +1,7 @@
 package com.systemvx.androiddevtest.ui.login
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.systemvx.androiddevtest.OrderPublishActivity
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.ActivityLoginBinding
 
@@ -100,6 +102,7 @@ class LoginActivity : AppCompatActivity() {
                 "$welcome$displayName",
                 Toast.LENGTH_LONG
         ).show()
+        startActivity(Intent(this,OrderPublishActivity::class.java))
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
