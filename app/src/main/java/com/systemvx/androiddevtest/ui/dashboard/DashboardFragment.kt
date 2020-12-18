@@ -27,10 +27,9 @@ class DashboardFragment : Fragment() {
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
 
         dashboardViewModel.data.observe(this.requireActivity(), Observer {
-            mAdapter = OrderListAdapter(this.context,it)
+            mAdapter = OrderListAdapter(this.context, it)
             mBinding.dashboardOrderContainer.adapter = mAdapter
         })
-
         dashboardViewModel.updateData()
         return mBinding.root
     }

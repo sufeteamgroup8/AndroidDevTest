@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="model"
-            type="com.systemvx.androiddevtest.data.OrderBriefing"/>
+
+        <variable
+            name="model"
+            type="com.systemvx.androiddevtest.data.OrderBriefing" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/text_margin"
-            android:text="$5.55"
+            android:text="@{model.priceStr}"
             android:textColor="@color/colo_red"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/orderBriefing_briefing"
@@ -71,7 +73,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/text_margin"
-            android:text="1970-00-01 23:00:00"
+            android:text="@{model.deadlineStr}"
             android:textSize="@dimen/text_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
