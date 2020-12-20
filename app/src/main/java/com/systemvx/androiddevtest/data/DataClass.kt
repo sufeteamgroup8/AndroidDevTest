@@ -24,7 +24,7 @@ data class OrderBriefing(
         get() = "￥${DecimalFormat("#.00").format(price)}"
 
     val deadlineStr: String
-        get() = SimpleDateFormat("M-dd HH:mm").format(deadline).toString()
+        get() = SimpleDateFormat("yy-M-dd HH:mm").format(deadline).toString()
 
     companion object {
         fun randomGarbage(): OrderBriefing {

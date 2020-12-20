@@ -18,6 +18,7 @@
     <color name="colo_yellow">#FEC62E</color>
     <color name="colo_red">#E53935</color>
     <color name="white_shadow">#33FFFFFF</color>
+    <color name="shadow_grey">#11000000</color>
 </resources>
 
 
