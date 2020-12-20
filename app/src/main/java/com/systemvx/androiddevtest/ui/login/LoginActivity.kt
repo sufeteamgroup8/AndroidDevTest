@@ -34,15 +34,20 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
                 .get(LoginViewModel::class.java)
 
+
         /*监听两个输入框的实时变化*/
         mBinding.username.afterTextChanged {
-            loginViewModel.changeLoginParams(it,null)
+            loginViewModel.changeLoginParams(it, null, null)
         }
         mBinding.password.afterTextChanged {
-            loginViewModel.changeLoginParams(null,it)
+            loginViewModel.changeLoginParams(null, it, null)
+        }
+        mBinding.studentNo.afterTextChanged {
+            loginViewModel.changeLoginParams(null, null, it)
         }
 
         mBinding.activity = this
+        mBinding.studentNo
         // 绑定观察,当@nameInput的data变化时,执行内部动作:
         loginViewModel.nameInput.observe(this@LoginActivity, Observer {
             // disable login button unless both username / password is valid
@@ -68,29 +73,63 @@ class LoginActivity : AppCompatActivity() {
             val loginResult = it ?: return@Observer
 
             mBinding.loading.visibility = View.GONE
-            if (loginResult.loginSuccess == false) {
-                showLoginFailed(R.string.login_failed)
+            when(loginResult.loginSuccess){
+                true ->{
+                    updateUiWithUser()
+                    setResult(Activity.RESULT_OK)
+                    //Complete and destroy login activity once successful
+                    finish()
+                }
+                false ->{
+                    showLoginFailed(R.string.login_failed)
+                }
+                null ->{}
             }
-            if (loginResult.loginSuccess == true) {
-                updateUiWithUser()
-                setResult(Activity.RESULT_OK)
-                //Complete and destroy login activity once successful
-                finish()
+            loginResult.registerSuccess?.let{
+                showRegisterStatus(loginResult.registerSuccess)
             }
 
         })
     }
 
+    private fun showRegisterStatus(registerSuccess: Boolean) {
+        when(registerSuccess){
+            true -> Toast.makeText(this,"成功提交申请",Toast.LENGTH_LONG).show()
+            false -> Toast.makeText(this,"提交失败",Toast.LENGTH_LONG).show()
+        }
+    }
+
     /*回调函数区*/
     fun login() {
         mBinding.loading.visibility = View.VISIBLE
-        loginViewModel.performLogin()
+        when (mBinding.studentNo.visibility) {
+            View.GONE -> {
+                loginViewModel.performLogin()
+            }
+            View.VISIBLE -> {
+                loginViewModel.register()
+                Toast.makeText(this,"Reg",Toast.LENGTH_LONG)
+            }
+        }
     }
 
     fun showData() {
+        when (mBinding.studentNo.visibility) {
+            View.GONE -> {
+                mBinding.studentNo.visibility = View.VISIBLE
+                mBinding.loginBtn.text = getString(R.string.action_reg)
+                mBinding.registerBtn.text = getString(R.string.back_to_login)
+            }
+            View.VISIBLE -> {
+                mBinding.studentNo.visibility = View.GONE
+                mBinding.loginBtn.text = getString(R.string.action_sign_in_short)
+                mBinding.registerBtn.text = getString(R.string.action_register)
+            }
+        }
         val inputText = "Name:${loginViewModel.nameInput.value},Passwd:${loginViewModel.passwdInput.value}"
         Toast.makeText(this, inputText, Toast.LENGTH_LONG).show()
     }
+
 
     /*内部函数区*/
     private fun updateUiWithUser() {
@@ -102,7 +141,7 @@ class LoginActivity : AppCompatActivity() {
                 "$welcome$displayName",
                 Toast.LENGTH_LONG
         ).show()
-        startActivity(Intent(this,OrderPublishActivity::class.java))
+        startActivity(Intent(this, OrderPublishActivity::class.java))
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
@@ -112,7 +151,7 @@ class LoginActivity : AppCompatActivity() {
     /**
      * Extension function to simplify setting an afterTextChanged action to EditText components.
      */
-    fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+    private fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
         this.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable?) {
                 afterTextChanged.invoke(editable.toString())

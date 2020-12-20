@@ -21,6 +21,8 @@ class DashboardViewModel : ViewModel() {
     }
 
     fun updateData() {
+        //TODO 接入查询业务
+        //目前随机生成点占位数据
         val temp = ArrayList<OrderBriefing>()
         temp.add(OrderBriefing.randomGarbage())
         temp.add(OrderBriefing.randomGarbage())
