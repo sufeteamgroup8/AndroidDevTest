@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.systemvx.androiddevtest.data.LoginRepository
+import com.systemvx.androiddevtest.data.Result
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -37,22 +38,28 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     fun isInputValid() = (isPasswordValid() && isUserNameValid())
 
     fun register() {
-        //TODO 接入真正的注册业务
-
-
-        _loginResult.value = LoginResult(null,true)
+        when (loginRepository.dataSource.register(_nameInput.value!!, _passwordInput.value!!, _stuNoInput.value!!)) {
+            is Result.Success -> _loginResult.postValue(LoginResult(null, true))
+            is Result.Error -> _loginResult.postValue(LoginResult(null, false))
+        }
     }
 
     fun changeLoginParams(name: String?, password: String?, stuNo: String?) {
-        name?.let { _nameInput.value = it }
-        password?.let { _passwordInput.value = it }
-        stuNo.let { _stuNoInput.value = it }
+        name?.also { _nameInput.value = it }
+        password?.also { _passwordInput.value = it }
+        stuNo?.also { _stuNoInput.value = it }
+    }
+
+    fun invokeLoginParams(name: String?, password: String?, stuNo: String?) {
+        name?.also { _nameInput.postValue(it) }
+        password?.also { _passwordInput.postValue(it) }
+        stuNo?.also { _stuNoInput.postValue(it) }
     }
 
     fun performLogin() {
         val result = loginRepository.login(_nameInput.value!!, _passwordInput.value!!)
 
-        _loginResult.value = LoginResult(result,null)
+        _loginResult.value = LoginResult(result, null)
     }
 
 

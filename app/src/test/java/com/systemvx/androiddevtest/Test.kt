@@ -6,7 +6,7 @@ import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.*
 
-class test {
+class Test {
 
     @Test
     fun testDate() {
@@ -27,6 +27,21 @@ class test {
     fun testOrderBriefing(){
         val result = OrderBriefing.randomGarbage()
         println(result)
+    }
+
+    @Test
+    fun testJSONReturn() {
+        try {
+            val data = HashMap<String, String>()
+            data["param1"] = "something"
+            val response = HttpUtil().postRequest("http://localhost:8080/testjson", data)
+            val json = JSON.parse(response) as JSONObject
+            val test = json.getString("error")
+            println(test)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw e
+        }
     }
 
 

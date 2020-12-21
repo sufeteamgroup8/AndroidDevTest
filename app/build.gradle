@@ -7,7 +7,9 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
-
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     defaultConfig {
         applicationId "com.systemvx.androiddevtest"
         minSdkVersion 24
@@ -18,7 +20,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
 
@@ -65,4 +67,5 @@ dependencies {
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
+    compile 'com.alibaba:fastjson:1.2.75'
 }

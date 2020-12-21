@@ -8,20 +8,20 @@ import java.util.concurrent.FutureTask
 
 class HttpUtil {
     companion object {
-        const val BASE_URL = ""
+        const val BASE_URL = "http://10.0.2.2:8080"
     }
 
 
     private val cookieStore: MutableMap<String, List<Cookie>> = HashMap()
     private val threadPool = Executors.newFixedThreadPool(30)
     private val okHttpClient: OkHttpClient = OkHttpClient.Builder().cookieJar(object : CookieJar {
-        override fun saveFromResponse(httpUrl: HttpUrl,
-                                      list: List<Cookie>) {
-            cookieStore[httpUrl.host] = list
+        override fun saveFromResponse(url: HttpUrl,
+                                      cookies: List<Cookie>) {
+            cookieStore[url.host] = cookies
         }
 
-        override fun loadForRequest(httpUrl: HttpUrl): List<Cookie> {
-            val cookies = cookieStore[httpUrl.host]
+        override fun loadForRequest(url: HttpUrl): List<Cookie> {
+            val cookies = cookieStore[url.host]
             return cookies ?: ArrayList()
         }
     }).build()
@@ -45,7 +45,7 @@ class HttpUtil {
                     rawParams: HashMap<String, String>): String {
         val task = FutureTask(Callable<String> {
             val builder = FormBody.Builder()
-            rawParams.forEach { (name: String?, value: String?) -> builder.add(name!!, value!!) }
+            rawParams.forEach { (name: String?, value: String?) -> builder.add(name, value) }
             val body: FormBody = builder.build()
             val request: Request = Request.Builder()
                     .url(url)
