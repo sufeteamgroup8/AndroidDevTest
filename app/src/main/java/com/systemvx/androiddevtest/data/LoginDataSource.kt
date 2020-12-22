@@ -18,8 +18,13 @@ class LoginDataSource {
                 //返回一个假用户
                 return try {
                     //模拟时延
-                    Thread.sleep(2 * 1000)
-                    val fakeUser = User(1, "alyce", "ALYCE", "Hello world by alice")
+                    Thread.sleep(3 * 1000)
+                    val fakeUser = User(9999, "alyce",
+                            "ALYCE",
+                            "Hello world by alice",
+                            700,
+                            123.5
+                    )
                     Result.Success(fakeUser)
                 } catch (e: Throwable) {
                     Result.Error(Exception("Error logging in", e))
@@ -31,23 +36,39 @@ class LoginDataSource {
                 data["name"] = username
                 data["passwd"] = password
                 // 查询,获取结果字符串并转化为json
-                val response = JSON.parse(HttpUtil().postRequest("${HttpUtil.BASE_URL}/account/login", data)) as JSONObject
+                try {
+                    val response = JSON.parse(HttpUtil().postRequest("${HttpUtil.BASE_URL}/account/login", data)) as JSONObject
+                    //拆包重组成前端显示用格式
+                    return when (response.getBoolean("success")) {
+                        true -> {
+                            val userJson = response.getJSONObject("payload")
 
-                //拆包重组成前端显示用格式
-                return when (response.getBoolean("success")) {
-                    true -> {
-                        val userJson = response.getJSONObject("payload")
-                        val user = User(
-                                userJson.getIntValue("id"),
-                                userJson.getString("name"),
-                                userJson.getString("nickname"),
-                                userJson.getString("signature")
-                        )
-                        Result.Success(user)
+                            var nickname = ""
+                            try {
+                                nickname = userJson.getString("nickname")
+                            } catch (e: Exception) {
+                            }
+                            var signature = ""
+                            try {
+                                signature = userJson.getString("signature")
+                            } catch (e: Exception) {
+                            }
+                            val user = User(
+                                    userJson.getIntValue("id"),
+                                    userJson.getString("name"),
+                                    nickname,
+                                    signature,
+                                    userJson.getIntValue("credit"),
+                                    userJson.getDouble("coin")
+                            )
+                            Result.Success(user)
+                        }
+                        false -> {
+                            Result.Error(Exception(response.getString("error")))
+                        }
                     }
-                    false -> {
-                        Result.Error(Exception(response.getString("error")))
-                    }
+                } catch (e: Exception) {
+                    return Result.Error(Exception("connection Error"))
                 }
             }
         }

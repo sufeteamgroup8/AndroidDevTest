@@ -57,10 +57,10 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     }
 
     fun performLogin() {
-        val result = loginRepository.login(_nameInput.value!!, _passwordInput.value!!)
+        val t = Thread(Runnable {
+            val result = loginRepository.login(_nameInput.value!!, _passwordInput.value!!)
 
-        _loginResult.value = LoginResult(result, null)
+            _loginResult.postValue(LoginResult(result, null))
+        }).start()
     }
-
-
 }

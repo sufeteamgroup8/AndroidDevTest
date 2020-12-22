@@ -7,13 +7,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.systemvx.androiddevtest.OrderPublishActivity
+import com.systemvx.androiddevtest.MainActivity
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.ActivityLoginBinding
 
@@ -42,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
         mBinding.password.afterTextChanged {
             loginViewModel.changeLoginParams(null, it, null)
         }
-        mBinding.studentNo.afterTextChanged {
+        mBinding.textInputStudentNo.afterTextChanged {
             loginViewModel.changeLoginParams(null, null, it)
         }
 
@@ -101,27 +102,27 @@ class LoginActivity : AppCompatActivity() {
 
     /*回调函数区*/
     fun login() {
-        mBinding.loading.visibility = View.VISIBLE
-        when (mBinding.studentNo.visibility) {
+        mBinding.loading.visibility = ProgressBar.VISIBLE
+        when (mBinding.textInputStudentNo.visibility) {
             View.GONE -> {
                 loginViewModel.performLogin()
             }
             View.VISIBLE -> {
                 loginViewModel.register()
-                Toast.makeText(this,"Reg",Toast.LENGTH_LONG)
+                Toast.makeText(this, "Reg", Toast.LENGTH_LONG)
             }
         }
     }
 
     fun showData() {
-        when (mBinding.studentNo.visibility) {
+        when (mBinding.textInputStudentNo.visibility) {
             View.GONE -> {
-                mBinding.studentNo.visibility = View.VISIBLE
+                mBinding.textInputStudentNo.visibility = View.VISIBLE
                 mBinding.loginBtn.text = getString(R.string.action_reg)
                 mBinding.registerBtn.text = getString(R.string.back_to_login)
             }
             View.VISIBLE -> {
-                mBinding.studentNo.visibility = View.GONE
+                mBinding.textInputStudentNo.visibility = View.GONE
                 mBinding.loginBtn.text = getString(R.string.action_sign_in_short)
                 mBinding.registerBtn.text = getString(R.string.action_register)
             }
@@ -141,11 +142,11 @@ class LoginActivity : AppCompatActivity() {
                 "$welcome$displayName",
                 Toast.LENGTH_LONG
         ).show()
-        startActivity(Intent(this, OrderPublishActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, errorString, Toast.LENGTH_SHORT).show()
     }
 
     /**

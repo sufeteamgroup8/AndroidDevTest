@@ -31,8 +31,8 @@
 
     <fragment
         android:id="@+id/navigation_my"
-        android:name="com.systemvx.androiddevtest.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.systemvx.androiddevtest.ui.personalcenter.PersonalCenterFragment"
+        android:label="@string/title_myCenter"
         tools:layout="@layout/fragment_notifications" />
 
 </navigation>

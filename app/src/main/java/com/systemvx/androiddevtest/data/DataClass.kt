@@ -6,9 +6,11 @@ import java.util.*
 
 data class User(
         val id: Int,
-        val name: String = "",
-        val nickname: String = "",
-        val signature: String = "",
+        val name: String? = "",
+        val nickname: String? = "",
+        val signature: String? = "",
+        val credit: Int = 0,
+        val coin: Double = 0.0
 )
 
 data class OrderBriefing(
@@ -21,10 +23,10 @@ data class OrderBriefing(
         val type: String
 ) {
     val priceStr: String
-        get() = "￥${DecimalFormat("#.00").format(price)}"
+        get() = "￥${DecimalFormat("0.00").format(price)}"
 
     val deadlineStr: String
-        get() = SimpleDateFormat("yy-M-dd HH:mm").format(deadline).toString()
+        get() = SimpleDateFormat("yy-M-dd HH:mm", Locale.CHINA).format(deadline).toString()
 
     companion object {
         fun randomGarbage(): OrderBriefing {

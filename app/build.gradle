@@ -67,5 +67,5 @@ dependencies {
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
-    compile 'com.alibaba:fastjson:1.2.75'
+    implementation "com.alibaba:fastjson:1.2.75"
 }

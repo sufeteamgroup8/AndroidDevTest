@@ -9,13 +9,15 @@ package com.systemvx.androiddevtest.data
 
 class LoginRepository(val dataSource: LoginDataSource) {
 
-    // in-memory cache of the User object
-    //对外部只读,不可修改
-    var user: User? = null
-        private set
+    companion object {
+        // in-memory cache of the User object
+        //对外部只读,不可修改
+        var user: User? = null
+            private set
 
-    val isLoggedIn: Boolean
-        get() = user != null
+        val isLoggedIn: Boolean
+            get() = user != null
+    }
 
     init {
         // If user credentials will be cached in local storage, it is recommended it be encrypted
@@ -33,7 +35,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
         val result = dataSource.login(username, password)
 
         return if (result is Result.Success) {
-            this.user = result.data
+            user = result.data
             true
         } else {
             false
@@ -43,5 +45,6 @@ class LoginRepository(val dataSource: LoginDataSource) {
     fun encryptPassword(password: String): String {
         return password
     }
+
 
 }

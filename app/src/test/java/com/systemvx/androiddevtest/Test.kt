@@ -1,5 +1,7 @@
 package com.systemvx.androiddevtest
 
+import com.alibaba.fastjson.JSON
+import com.alibaba.fastjson.JSONObject
 import com.systemvx.androiddevtest.data.OrderBriefing
 import org.junit.Assert
 import org.junit.Test
@@ -17,14 +19,12 @@ class Test {
     @Test
     fun testHttpGET() {
         var response = HttpUtil().getRequest("http://localhost:8080/testget?param1=something")
-        Assert.assertEquals("restful success, data=something",response)
-        val data = HashMap<String,String>()
-        data["param1"] = "something"
-        response = HttpUtil().postRequest("http://localhost:8080/testpost", data)
-        Assert.assertEquals("restful success, data=something",response)
+        Assert.assertEquals("restful success, data=something", response)
+
     }
+
     @Test
-    fun testOrderBriefing(){
+    fun testOrderBriefing() {
         val result = OrderBriefing.randomGarbage()
         println(result)
     }

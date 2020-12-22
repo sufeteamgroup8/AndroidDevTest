@@ -23,4 +23,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="prompt_studentNo">学号</string>
     <string name="action_reg">Register</string>
+    <string name="title_myCenter">PersonalCenter</string>
+    <string name="coin_hint">金币:</string>
 </resources>
