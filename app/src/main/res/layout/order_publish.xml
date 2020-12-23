@@ -110,11 +110,11 @@
             android:padding="10dp"
             android:text="添加图片" />
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="交货地: 天津 津南区" />
+            android:hint="交货地: 天津 津南区" />
     </LinearLayout>
 
     <LinearLayout
@@ -152,12 +152,12 @@
                 android:textColor="@color/text_main"
                 android:textSize="16sp" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end|center_vertical"
                 android:padding="5dp"
-                android:text="￥0.00"
+                android:hint="￥0.00"
                 android:textColor="@color/colo_money"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -189,12 +189,12 @@
                 android:textColor="@color/text_main"
                 android:textSize="16sp" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="end|center_vertical"
                 android:padding="5dp"
-                android:text="2020年1月1日 12:00"
+                android:hint="2020年1月1日 12:00"
                 android:textColor="@color/text_main1"
                 android:textSize="16sp" />
         </LinearLayout>
