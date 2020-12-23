@@ -36,8 +36,12 @@
             android:id="@+id/login_head_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"
-            app:layout_constraintBottom_toBottomOf="@id/username"
+            android:maxWidth="200dp"
+            android:maxHeight="200dp"
+            android:minWidth="100dp"
+            android:minHeight="100dp"
+            android:src="@mipmap/logo_main"
+            app:layout_constraintBottom_toTopOf="@id/username"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -122,8 +126,8 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@id/login_btn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/login_btn"
-            app:layout_constraintHorizontal_bias=".3"/>
+            app:layout_constraintHorizontal_bias=".3"
+            app:layout_constraintStart_toEndOf="@id/login_btn" />
 
         <ProgressBar
             android:id="@+id/loading"

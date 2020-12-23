@@ -14,7 +14,7 @@
         android:theme="@style/Theme.AndroidDevTest">
         <activity android:name=".ui.search.SearchOptionsActivity"></activity>
         <activity android:name=".ui.orderdetail.OrderDetailActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

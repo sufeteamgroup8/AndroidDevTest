@@ -15,37 +15,26 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/searchBar_background"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
             android:background="@color/colo_blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.cardview.widget.CardView
+            <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/style_round_corner_edt_bg"
+                android:backgroundTint="@color/white_shadow"
+                android:drawableStart="@drawable/ic_search"
+                android:drawableTint="@color/white"
+                android:padding="8dp"
                 android:layout_marginStart="@dimen/text_margin"
                 android:layout_marginEnd="@dimen/text_margin"
-                android:backgroundTint="@color/white_shadow"
-                app:cardCornerRadius="25dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/imageButton"
-                app:layout_constraintStart_toEndOf="@+id/head_icon"
-                app:layout_constraintTop_toTopOf="parent">
-
-
-                <EditText
-                    android:id="@+id/editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:hint="搜索..."
-                    android:minHeight="40sp" />
-
-
-            </androidx.cardview.widget.CardView>
+                app:layout_constraintStart_toEndOf="@id/head_icon"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/imageButton"
+                app:layout_constraintBottom_toBottomOf="parent" />
 
 
             <ImageButton

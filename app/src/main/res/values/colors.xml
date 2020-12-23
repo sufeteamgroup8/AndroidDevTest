@@ -21,6 +21,7 @@
     <color name="shadow_grey">#11000000</color>
     <color name="shadow_darkGrey">#44000000</color>
     <color name="color_gold">#FBC02D</color>
+    <color name="transparent">#00000000</color>
 </resources>
 
 
