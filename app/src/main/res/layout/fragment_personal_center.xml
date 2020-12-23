@@ -166,6 +166,7 @@
                     app:constraint_referenced_ids="coin_card" />
 
                 <LinearLayout
+                    android:onClick="@{viewModel."
                     android:id="@+id/btn_001"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -187,7 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="4dp"
-                        android:text="1111111"
+                        android:text="我的信用"
                         android:textSize="@dimen/text_medium" />
                 </LinearLayout>
 
