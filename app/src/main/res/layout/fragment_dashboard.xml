@@ -24,7 +24,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/style_round_corner_edt_bg"
+                android:background="@drawable/style_round_corner_bg"
                 android:backgroundTint="@color/white_shadow"
                 android:drawableStart="@drawable/ic_search"
                 android:drawableTint="@color/white"

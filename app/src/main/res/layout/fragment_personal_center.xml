@@ -100,7 +100,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:background="@drawable/style_round_corner_edt_bg"
+                    android:background="@drawable/style_round_corner_bg"
                     android:backgroundTint="@color/shadow_grey"
                     android:paddingTop="4dp"
                     android:paddingBottom="4dp"
