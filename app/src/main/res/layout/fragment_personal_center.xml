@@ -7,13 +7,13 @@
 
         <variable
             name="viewModel"
-            type="com.systemvx.androiddevtest.ui.personalcenter.PersonalCenterViewModel" />
+            type="com.systemvx.androiddevtest.ui.main.personalcenter.PersonalCenterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.personalcenter.PersonalCenterFragment">
+        tools:context=".ui.main.personalcenter.PersonalCenterFragment">
 
         <ImageView
             android:id="@+id/user_portrait_view"

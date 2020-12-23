@@ -1,4 +1,4 @@
-package com.systemvx.androiddevtest.ui.personalcenter
+package com.systemvx.androiddevtest.ui.main.personalcenter
 
 import android.content.Context
 import com.systemvx.androiddevtest.R

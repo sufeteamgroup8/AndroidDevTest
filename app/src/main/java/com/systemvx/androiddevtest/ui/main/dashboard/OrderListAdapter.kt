@@ -1,4 +1,4 @@
-package com.systemvx.androiddevtest.ui.dashboard
+package com.systemvx.androiddevtest.ui.main.dashboard
 
 import android.content.Context
 import android.content.Intent

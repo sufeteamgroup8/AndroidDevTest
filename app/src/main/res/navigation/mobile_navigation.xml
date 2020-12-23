@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.systemvx.androiddevtest.ui.dashboard.DashboardFragment"
+        android:name="com.systemvx.androiddevtest.ui.main.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.systemvx.androiddevtest.ui.home.HomeFragment"
+        android:name="com.systemvx.androiddevtest.ui.main.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.systemvx.androiddevtest.ui.notifications.NotificationsFragment"
+        android:name="com.systemvx.androiddevtest.ui.main.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_add_new"
-        android:name="com.systemvx.androiddevtest.ui.addorder.NewJump"
+        android:name="com.systemvx.androiddevtest.ui.main.addorder.NewJump"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 
     <fragment
         android:id="@+id/navigation_my"
-        android:name="com.systemvx.androiddevtest.ui.personalcenter.PersonalCenterFragment"
+        android:name="com.systemvx.androiddevtest.ui.main.personalcenter.PersonalCenterFragment"
         android:label="@string/title_myCenter"
         tools:layout="@layout/fragment_notifications" />
 

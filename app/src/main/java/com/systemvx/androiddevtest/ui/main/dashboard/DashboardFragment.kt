@@ -1,4 +1,4 @@
-package com.systemvx.androiddevtest.ui.dashboard
+package com.systemvx.androiddevtest.ui.main.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater

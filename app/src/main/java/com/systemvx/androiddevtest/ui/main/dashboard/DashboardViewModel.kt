@@ -1,4 +1,4 @@
-package com.systemvx.androiddevtest.ui.dashboard
+package com.systemvx.androiddevtest.ui.main.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

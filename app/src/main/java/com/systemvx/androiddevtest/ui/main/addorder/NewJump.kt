@@ -1,4 +1,4 @@
-package com.systemvx.androiddevtest.ui.addorder
+package com.systemvx.androiddevtest.ui.main.addorder
 
 import android.content.Intent
 import android.os.Bundle

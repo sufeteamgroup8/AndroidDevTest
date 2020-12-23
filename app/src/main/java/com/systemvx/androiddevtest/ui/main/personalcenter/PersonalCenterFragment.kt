@@ -1,4 +1,4 @@
-package com.systemvx.androiddevtest.ui.personalcenter
+package com.systemvx.androiddevtest.ui.main.personalcenter
 
 import android.os.Bundle
 import android.view.LayoutInflater

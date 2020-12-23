@@ -14,9 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.systemvx.androiddevtest.MainActivity
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.ActivityLoginBinding
+import com.systemvx.androiddevtest.ui.main.MainActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
                 .get(LoginViewModel::class.java)
 
 
-        /*监听两个输入框的实时变化*/
+        /*监听输入框的实时变化*/
         mBinding.username.afterTextChanged {
             loginViewModel.changeLoginParams(it, null, null)
         }
