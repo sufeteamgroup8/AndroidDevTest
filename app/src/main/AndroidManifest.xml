@@ -12,19 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDevTest">
-        <activity android:name=".ui.search.SearchActivity"></activity>
-        <activity android:name=".ui.orderdetail.OrderDetailActivity"></activity>
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.search.SearchActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.orderdetail.OrderDetailActivity" />
+        <activity android:name=".ui.main.MainActivity">
+
+        </activity>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-        <activity android:name=".OrderPublishActivity"></activity>
+            android:label="@string/title_activity_login" />
+        <activity android:name=".OrderPublishActivity" />
     </application>
 
 </manifest>

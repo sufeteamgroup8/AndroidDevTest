@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.systemvx.androiddevtest.data.OrderBriefing
+import com.systemvx.androiddevtest.data.OrderDataSource
+import com.systemvx.androiddevtest.data.Result
 
 class DashboardViewModel : ViewModel() {
     private val mText: MutableLiveData<String?> = MutableLiveData()
@@ -21,12 +23,12 @@ class DashboardViewModel : ViewModel() {
     }
 
     fun updateData() {
-        //TODO 接入查询业务
-        //目前随机生成点占位数据
-        val temp = ArrayList<OrderBriefing>()
-        temp.add(OrderBriefing.randomGarbage())
-        temp.add(OrderBriefing.randomGarbage())
-        mData.value = temp
+        val result = OrderDataSource().searchOrder(null, null, null, null)
+        if (result is Result.Success) {
+            mData.value = result.data
+        }
+
+
     }
 
 

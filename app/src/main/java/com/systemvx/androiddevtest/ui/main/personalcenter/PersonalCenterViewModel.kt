@@ -1,11 +1,12 @@
 package com.systemvx.androiddevtest.ui.main.personalcenter
 
 import android.content.Context
+import androidx.lifecycle.ViewModel
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.LoginRepository
 import java.text.DecimalFormat
 
-class PersonalCenterViewModel(val context: Context) {
+class PersonalCenterViewModel(val context: Context) : ViewModel() {
     companion object {
         const val CREDIT_LOW_BOUNDARY = 670
         const val CREDIT_HIGH_BOUNDARY = 800
