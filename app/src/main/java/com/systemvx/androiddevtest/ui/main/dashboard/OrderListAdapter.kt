@@ -15,14 +15,11 @@ import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity
 
 class OrderListAdapter(
         val context: Context?,
-        private val items: List<OrderBriefing> = ArrayList(), listener: OrderBriefingListener? = null,
+        private val items: List<OrderBriefing> = ArrayList(),
+        listener: OrderBriefingListener? = null,
 ) :
         RecyclerView.Adapter<OrderListAdapter.Companion.OrderBriefingViewHolder>() {
-    private val mListener: OrderBriefingListener
-
-    init {
-        mListener = listener ?: OrderBriefingListener()
-    }
+    private val mListener: OrderBriefingListener = listener ?: OrderBriefingListener()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBriefingViewHolder {
@@ -35,10 +32,12 @@ class OrderListAdapter(
     }
 
     override fun onBindViewHolder(holder: OrderBriefingViewHolder, position: Int) {
-        holder.mBinding.model = items[position]
-        holder.mBinding.root.tag = items[position].id
-        holder.mBinding.root.setOnClickListener(mListener)
-        holder.mBinding.executePendingBindings()
+        with(holder.mBinding) {
+            model = items[position]
+            root.tag = model.id
+            root.setOnClickListener(mListener)
+            executePendingBindings()
+        }
     }
 
     override fun getItemCount(): Int {

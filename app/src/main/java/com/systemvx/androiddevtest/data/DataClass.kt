@@ -10,7 +10,7 @@ data class User(
         val nickname: String? = "",
         val signature: String? = "",
         val credit: Int = 0,
-        val coin: Double = 0.0
+        val coin: Double = 0.0,
 )
 
 data class OrderBriefing(
@@ -20,7 +20,7 @@ data class OrderBriefing(
         val briefing: String,
         val address: String,
         val deadline: Date,
-        val type: String
+        val type: String,
 ) {
     val priceStr: String
         get() = "￥${DecimalFormat("0.00").format(price)}"
@@ -51,3 +51,19 @@ data class OrderBriefing(
         }
     }
 }
+
+interface Chat {
+    data class ChatMessage(
+            val senderNickName: String,
+            val messageText: String,
+            val sendTime: Date,
+            val isSend: Boolean,
+            val senderPortrait: Image? = null,
+            val additionalInfo: String? = null,
+    ) : Chat
+
+    data class ChatTimeNote(
+            val timeStr: String,
+    ) : Chat
+}
+
