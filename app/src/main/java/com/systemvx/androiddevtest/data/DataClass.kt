@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.data
 
+import android.media.Image
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -52,8 +53,8 @@ data class OrderBriefing(
     }
 }
 
-interface Chat {
-    data class ChatMessage(
+interface ChatShowCase {
+    data class Message(
             val senderNickName: String,
             val messageText: String,
             val sendTime: Date,

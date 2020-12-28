@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.FragmentOrderPublishBinding
+import com.systemvx.androiddevtest.utils.HttpUtil
 import org.json.JSONArray
 import java.util.*
 

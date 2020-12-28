@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<Chat.ChatMessage>) :
+class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCase.Message>) :
         RecyclerView.Adapter<ChatMessageAdapter.Companion.ChatMessageViewHolder>() {
 
     private var displayList: ArrayList<Chat> = ArrayList()
@@ -40,7 +40,7 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<Chat.ChatM
     }
 
 
-    private fun compareRecordTime(soonerMessage: Chat.ChatMessage, laterMessage: Chat.ChatMessage): Boolean {
+    private fun compareRecordTime(soonerMessage: ChatShowCase.Message, laterMessage: ChatShowCase.Message): Boolean {
         val interval = 1000 * 60 * 60 * 4//ms-s-min-hour-6hours
         return (laterMessage.sendTime.time - soonerMessage.sendTime.time) > interval
     }
@@ -48,9 +48,9 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<Chat.ChatM
 
     override fun getItemViewType(position: Int): Int {
         return when (displayList[position].javaClass) {
-            Chat.ChatTimeNote::class.java -> TIME_INDICATOR
-            Chat.ChatMessage::class.java -> {
-                val temp = displayList[position] as Chat.ChatMessage
+            ChatShowCase.TimeNote::class.java -> TIME_INDICATOR
+            ChatShowCase.Message::class.java -> {
+                val temp = displayList[position] as ChatShowCase.Message
                 if (temp.isSend) {
                     MESSAGE_TEXT_SEND
                 } else {
@@ -92,7 +92,7 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<Chat.ChatM
         when (holder.type) {
             MESSAGE_TEXT_RECEIVE -> {
                 val binding: ItemChatMessageTextReceiveBinding = DataBindingUtil.getBinding(holder.itemView)!!
-                with(displayList[position] as Chat.ChatMessage) {
+                with(displayList[position] as ChatShowCase.Message) {
                     binding.name = senderNickName
                     binding.text = messageText
                 }
@@ -100,7 +100,7 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<Chat.ChatM
             }
             MESSAGE_TEXT_SEND -> {
                 val binding: ItemChatMessageTextSendBinding = DataBindingUtil.getBinding(holder.itemView)!!
-                with(displayList[position] as Chat.ChatMessage) {
+                with(displayList[position] as ChatShowCase.Message) {
                     binding.name = senderNickName
                     binding.text = messageText
                 }

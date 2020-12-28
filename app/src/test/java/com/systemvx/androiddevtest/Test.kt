@@ -3,6 +3,7 @@ package com.systemvx.androiddevtest
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
 import com.systemvx.androiddevtest.data.OrderBriefing
+import com.systemvx.androiddevtest.utils.HttpUtil
 import org.junit.Assert
 import org.junit.Test
 import java.text.SimpleDateFormat

@@ -8,6 +8,8 @@ import android.widget.RatingBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.systemvx.androiddevtest.utils.HttpUtil;
+
 import java.util.HashMap;
 
 

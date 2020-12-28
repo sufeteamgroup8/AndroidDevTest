@@ -2,8 +2,8 @@ package com.systemvx.androiddevtest.data
 
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
-import com.systemvx.androiddevtest.HttpUtil
 import com.systemvx.androiddevtest.ProjectSettings
+import com.systemvx.androiddevtest.utils.HttpUtil
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.

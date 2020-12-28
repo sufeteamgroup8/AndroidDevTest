@@ -61,7 +61,7 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    fun showSearchResult() {
+    private fun showSearchResult() {
         val action = supportFragmentManager.beginTransaction()
         //尚未进行搜索
         if (supportFragmentManager.findFragmentByTag("search_result") == null) {
