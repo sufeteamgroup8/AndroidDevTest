@@ -34,7 +34,7 @@ class OrderListAdapter(
     override fun onBindViewHolder(holder: OrderBriefingViewHolder, position: Int) {
         with(holder.mBinding) {
             model = items[position]
-            root.tag = model.id
+            root.tag = items[position].id
             root.setOnClickListener(mListener)
             executePendingBindings()
         }

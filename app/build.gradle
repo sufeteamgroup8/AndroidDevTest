@@ -68,4 +68,5 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     implementation("com.squareup.okhttp3:logging-interceptor")
     implementation "com.alibaba:fastjson:1.2.75"
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.20")
 }
