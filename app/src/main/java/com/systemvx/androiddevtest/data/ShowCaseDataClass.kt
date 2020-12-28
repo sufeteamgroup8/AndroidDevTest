@@ -5,7 +5,7 @@ import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
-data class User(
+data class UserStorage(
         val id: Int,
         val name: String? = "",
         val nickname: String? = "",
@@ -61,10 +61,10 @@ interface ChatShowCase {
             val isSend: Boolean,
             val senderPortrait: Image? = null,
             val additionalInfo: String? = null,
-    ) : Chat
+    ) : ChatShowCase
 
-    data class ChatTimeNote(
+    data class TimeNote(
             val timeStr: String,
-    ) : Chat
+    ) : ChatShowCase
 }
 

@@ -11,7 +11,7 @@ import com.systemvx.androiddevtest.utils.HttpUtil
 class LoginDataSource {
 
 
-    fun login(username: String, password: String): Result<User> {
+    fun login(username: String, password: String): Result<UserStorage> {
         when (ProjectSettings.netWorkDebug) {
             // TODO: handle loggedInUser authentication
             true -> {
@@ -19,7 +19,7 @@ class LoginDataSource {
                 return try {
                     //模拟时延
                     Thread.sleep(3 * 1000)
-                    val fakeUser = User(9999, "alyce",
+                    val fakeUser = UserStorage(9999, "alyce",
                             "ALYCE",
                             "Hello world by alice",
                             700,
@@ -53,7 +53,7 @@ class LoginDataSource {
                                 signature = userJson.getString("signature")
                             } catch (e: Exception) {
                             }
-                            val user = User(
+                            val user = UserStorage(
                                     userJson.getIntValue("id"),
                                     userJson.getString("name"),
                                     nickname,

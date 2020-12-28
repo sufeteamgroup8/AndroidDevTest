@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.Chat
+import com.systemvx.androiddevtest.data.ChatShowCase
 import com.systemvx.androiddevtest.databinding.ItemChatMessageTextReceiveBinding
 import com.systemvx.androiddevtest.databinding.ItemChatMessageTextSendBinding
 import com.systemvx.androiddevtest.databinding.ItemChatTimestampBinding
@@ -18,7 +18,7 @@ import kotlin.collections.ArrayList
 class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCase.Message>) :
         RecyclerView.Adapter<ChatMessageAdapter.Companion.ChatMessageViewHolder>() {
 
-    private var displayList: ArrayList<Chat> = ArrayList()
+    private var displayList: ArrayList<ChatShowCase> = ArrayList()
 
     //准备显示内容
     init {
@@ -28,7 +28,7 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
                 //两条消息间间隔过长,
                 //则加入时间戳
                 if (compareRecordTime(chatRecords[i], chatRecords[i + 1]))
-                    displayList.add(Chat.ChatTimeNote(
+                    displayList.add(ChatShowCase.TimeNote(
                             SimpleDateFormat("MM-d hh-mm", Locale.CHINA).format(chatRecords[i + 1].sendTime))
                     )
                 //加入消息本体
@@ -107,7 +107,7 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
             }
             TIME_INDICATOR -> {
                 val binding: ItemChatTimestampBinding = DataBindingUtil.getBinding(holder.itemView)!!
-                with(displayList[position] as Chat.ChatTimeNote) {
+                with(displayList[position] as ChatShowCase.TimeNote) {
                     binding.timeStr = timeStr
                 }
             }

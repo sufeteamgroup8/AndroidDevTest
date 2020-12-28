@@ -12,7 +12,7 @@ class LoginRepository(val dataSource: LoginDataSource) {
     companion object {
         // in-memory cache of the User object
         //对外部只读,不可修改
-        var user: User? = null
+        var user: UserStorage? = null
             private set
 
         val isLoggedIn: Boolean
