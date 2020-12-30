@@ -22,7 +22,7 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
 
     //准备显示内容
     init {
-        if (displayList.isNotEmpty()) {
+        if (chatRecords.isNotEmpty()) {
             displayList.add(chatRecords[0])
             for (i in 0 until chatRecords.size - 1) {
                 //两条消息间间隔过长,
@@ -35,8 +35,6 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
                 displayList.add(chatRecords[i + 1])
             }
         }
-
-
     }
 
 
@@ -73,14 +71,14 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
             MESSAGE_TEXT_SEND -> {
                 val binding: ItemChatMessageTextSendBinding = DataBindingUtil.inflate(
                         LayoutInflater.from(context),
-                        R.layout.item_chat_message_text_receive,
+                        R.layout.item_chat_message_text_send,
                         parent, false)
                 return ChatMessageViewHolder(binding.root, viewType)
             }
             TIME_INDICATOR -> {
                 val binding: ItemChatTimestampBinding = DataBindingUtil.inflate(
                         LayoutInflater.from(context),
-                        R.layout.item_chat_message_text_receive,
+                        R.layout.item_chat_timestamp,
                         parent, false)
                 return ChatMessageViewHolder(binding.root, viewType)
             }
@@ -116,7 +114,16 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return this.displayList.size
+    }
+
+    fun addMessage(message: ChatShowCase.Message) {
+        if (compareRecordTime(displayList.last() as ChatShowCase.Message, message)) {
+            displayList.add(ChatShowCase.TimeNote(
+                    SimpleDateFormat("MM-d hh-mm", Locale.CHINA).format(message.sendTime)))
+        }
+        displayList.add(message)
+        notifyDataSetChanged()
     }
 
     companion object {

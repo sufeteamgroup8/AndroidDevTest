@@ -1,22 +1,28 @@
 package com.systemvx.androiddevtest.ui.chat
 
 import androidx.lifecycle.MutableLiveData
+import com.systemvx.androiddevtest.ProjectSettings
 import com.systemvx.androiddevtest.data.ChatDataRepository
 import com.systemvx.androiddevtest.data.ChatShowCase
+import com.systemvx.androiddevtest.data.Result
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ChatViewModel {
 
+    var chatterID = 0
+
+    var chatterNickname: MutableLiveData<String> = MutableLiveData("")
 
     /**
      * 聊天记录列表:顺序应为从旧到新
      */
-    val chatHistory: MutableLiveData<ArrayList<ChatShowCase.Message>> = MutableLiveData()
+    var chatHistory = ArrayList<ChatShowCase.Message>()
 
     /**
      * 网络请求结果
      */
-    val dataResult: MutableLiveData<Result<Any>> = MutableLiveData()
+    var dataResult: MutableLiveData<Result<Any>> = MutableLiveData()
 
 
     /**
@@ -26,12 +32,24 @@ class ChatViewModel {
      * @param lookUpDays 查询X天内的记录 (0则表示所有记录)
      */
     fun findChatData(chatterID: Int, lookUpDays: Int) {
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DAY_OF_MONTH, -lookUpDays)
-        calendar.set(Calendar.SECOND, 0)
-        calendar.set(Calendar.HOUR_OF_DAY, 0)
-        val timeLeftBound: Date = calendar.time
-        ChatDataRepository.findChatData(chatterID, timeLeftBound)
+        val result = if (ProjectSettings.netWorkDebug) {
+            ChatDataRepository.findChatDataRand()
+        } else {
+            if (lookUpDays == 0) {
+                ChatDataRepository.findChatData(chatterID, null)
+            } else {
+                val calendar = Calendar.getInstance()
+                calendar.add(Calendar.DAY_OF_MONTH, -lookUpDays)
+                calendar.set(Calendar.SECOND, 0)
+                calendar.set(Calendar.HOUR_OF_DAY, 0)
+                val timeLeftBound: Date = calendar.time
+                ChatDataRepository.findChatData(chatterID, timeLeftBound)
+            }
+        }
+        if (result is Result.Success) {
+            chatHistory = result.data
+        }
+        dataResult.postValue(result)
     }
 
     /**

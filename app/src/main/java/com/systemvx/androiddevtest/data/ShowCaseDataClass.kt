@@ -1,6 +1,7 @@
 package com.systemvx.androiddevtest.data
 
 import android.media.Image
+import com.systemvx.androiddevtest.utils.UtilStaticFunc.Companion.randomString
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -40,15 +41,6 @@ data class OrderBriefing(
                     Date(rand.nextLong()),
                     randomString(5)
             )
-        }
-
-        private fun randomString(length: Int): String {
-            var result = ""
-            val rand = Random()
-            for (index in 1..length) {
-                result += (rand.nextInt(26) + 97).toChar()
-            }
-            return result
         }
     }
 }
