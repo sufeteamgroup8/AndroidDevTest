@@ -15,7 +15,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin"
+        android:layout_marginBottom="@dimen/text_margin">
 
         <ImageView
             android:id="@+id/chat_portrait"
@@ -43,6 +45,7 @@
             android:layout_marginEnd="@dimen/half_margin"
             android:layout_marginTop="@dimen/half_margin"
             android:background="@drawable/style_round_corner_bg"
+            android:backgroundTint="@color/shadow_grey"
             android:maxWidth="200dp"
             android:minHeight="36dp"
             android:padding="@dimen/half_margin"

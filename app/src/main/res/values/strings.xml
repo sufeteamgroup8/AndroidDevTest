@@ -25,4 +25,5 @@
     <string name="action_reg">Register</string>
     <string name="title_myCenter">PersonalCenter</string>
     <string name="coin_hint">金币:</string>
+    <string name="hint_talk_something">聊点啥呗</string>
 </resources>

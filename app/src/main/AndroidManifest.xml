@@ -12,13 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDevTest">
-        <activity android:name=".ui.chat.ChatActivity"></activity>
-        <activity android:name=".ui.search.SearchActivity">
+        <activity android:name=".ui.chat.ChatActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.search.SearchActivity">
+
         </activity>
         <activity android:name=".ui.orderdetail.OrderDetailActivity" />
         <activity android:name=".ui.main.MainActivity"></activity>
