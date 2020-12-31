@@ -1,14 +1,18 @@
 package com.systemvx.androiddevtest
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.FragmentOrderPublishBinding
+import com.systemvx.androiddevtest.ui.main.MainActivity
+import com.systemvx.androiddevtest.ui.search.SearchActivity
 import com.systemvx.androiddevtest.utils.HttpUtil
 import org.json.JSONArray
 import java.util.*
@@ -27,7 +31,11 @@ class OrderPublishFragment : Fragment() {
         } catch (el: Exception) {
             el.printStackTrace()
         }
-        mBinding.orderCancel.setOnClickListener(HomeListener(activity))
+        mBinding.orderCancel.setOnClickListener( View.OnClickListener()
+        {
+            val intent = Intent(OrderPublishFragment.this,MainActivity.class)
+            ContextCompat.startActivity(intent)
+        })
         mBinding.orderPublish.setOnClickListener { view: View? ->
             if (validate()) {
                 val Tittle = mBinding.orderTittle.text.toString()
