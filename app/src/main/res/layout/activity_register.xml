@@ -6,13 +6,22 @@
     android:orientation="vertical"
     android:background="">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:layout_gravity="center"
+    <RelativeLayout
+        android:id="@+id/pathselect_title"
+        android:layout_width="fill_parent"
+        android:layout_height="46dip"
         android:background="@color/colo_yellow"
-        android:text="注册"
-        android:textSize="40dp" />
+        android:gravity="center_vertical"
+        android:padding="0.0px" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:style="@style/A1_Font"
+            android:layout_centerInParent="true"
+            android:text="注册"
+            android:textSize="35dp" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -22,20 +31,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户名"
-            android:textSize="30dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="50dp"
-            android:layout_marginLeft="30dp"/>
+            android:text="@string/username"
+            android:textSize="20sp" />
 
         <EditText
             android:id="@+id/input_identity_text"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="50dp"
-            android:layout_marginLeft="5dp"
-            android:textSize="30dp"
+            android:hint="@string/unseeable"
             android:maxLines="1"
-            android:hint="******"/>
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -46,18 +55,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="密码"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"/>
+            android:text="@string/key"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"/>
 
         <EditText
             android:id="@+id/password_edit"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textSize="30dp"
+            android:layout_marginStart="5dp"
+            android:textSize="20sp"
             android:maxLines="1"
-            android:hint="******"/>
+            android:hint="@string/unseeable"/>
     </LinearLayout>
 
     <LinearLayout
@@ -68,18 +77,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="确认密码"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"/>
+            android:text="@string/pardon_key"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"/>
 
         <EditText
             android:id="@+id/password_edit_1"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textSize="30dp"
+            android:layout_marginStart="5dp"
+            android:textSize="20sp"
             android:maxLines="1"
-            android:hint="******"/>
+            android:hint="@string/unseeable"/>
     </LinearLayout>
 
     <LinearLayout
@@ -90,18 +99,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="邮箱"
-            android:textSize="30dp"
-            android:layout_marginLeft="30dp"/>
+            android:text="@string/email"
+            android:textSize="20sp"
+            android:layout_marginStart="30dp"/>
 
         <EditText
             android:id="@+id/email_edit"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textSize="30dp"
+            android:layout_marginStart="5dp"
+            android:textSize="20sp"
             android:maxLines="1"
-            android:hint="******"/>
+            android:hint="@string/unseeable"/>
     </LinearLayout>
 
     <LinearLayout
@@ -112,11 +121,11 @@
             android:id="@+id/register_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40dp"
+            android:textSize="30sp"
             android:background="@color/colo_yellow"
-            android:layout_marginLeft="150dp"
+            android:layout_marginStart="150dp"
             android:layout_marginTop="20dp"
-            android:text="注册"
+            android:text="@string/register"
             />
 
     </LinearLayout>

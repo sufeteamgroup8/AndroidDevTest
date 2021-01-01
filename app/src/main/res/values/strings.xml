@@ -35,4 +35,31 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="cancel">取消</string>
+    <string name="publish">发布</string>
+    <string name="tittle">标题</string>
+    <string name="context">内容</string>
+    <string name="import_image">添加图片</string>
+    <string name="adress_example">交货地: 天津 津南区</string>
+    <string name="price">价格</string>
+    <string name="price_example">￥0.00</string>
+    <string name="ddl">截止时间</string>
+    <string name="ddl_example">2020年1月1日 12:00</string>
+    <string name="draft_saved">保存草稿</string>
+    <string name="com_num">评分</string>
+    <string name="com_ctx">评价</string>
+    <string name="commit">提 交</string>
+    <string name="say_sth">说点什么吧……</string>
+    <string name="username">用户名</string>
+    <string name="unseeable">******</string>
+    <string name="key">密码</string>
+    <string name="pardon_key">确认密码</string>
+    <string name="email">邮箱</string>
+    <string name="register">注册</string>
+    <string name="complaint">投诉</string>
+    <string name="complaint_reason_kind">投诉原因类别</string>
+    <string name="overrun">未按时交付</string>
+    <string name="object_damage">物品损伤</string>
+    <string name="unpaid">未支付酬劳</string>
+    <string name="other">其他</string>
 </resources>

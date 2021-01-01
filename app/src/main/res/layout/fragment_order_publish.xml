@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="5dp"
-            android:text="取消"
+            android:text="@string/cancel"
             android:textColor="@color/text_black"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@id/order_title"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:padding="5dp"
-            android:text="发布"
+            android:text="@string/publish"
             android:textColor="@color/text_main"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -47,7 +47,7 @@
             android:paddingTop="5dp"
             android:paddingEnd="15dp"
             android:paddingBottom="5dp"
-            android:text="发布"
+            android:text="@string/publish"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/order_title"
@@ -71,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
-                android:hint="标题"
+                android:hint="@string/tittle"
                 android:padding="10dp"
                 android:textColor="@color/text_main"
                 android:textColorHint="@color/text_main1"
@@ -83,7 +83,7 @@
                 android:layout_height="120dp"
                 android:background="@null"
                 android:gravity="start|top"
-                android:hint="内容"
+                android:hint="@string/context"
                 android:padding="10dp"
                 android:textColor="@color/text_main"
                 android:textColorHint="@color/text_main1"
@@ -107,16 +107,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_baseline_image_24"
                 android:drawablePadding="5dp"
                 android:padding="10dp"
-                android:text="添加图片" />
+                android:text="@string/import_image"
+                app:drawableTopCompat="@drawable/ic_baseline_image_24" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="交货地: 天津 津南区" />
+                android:text="@string/adress_example" />
         </LinearLayout>
 
         <LinearLayout
@@ -150,7 +150,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:padding="5dp"
-                    android:text="价格"
+                    android:text="@string/price"
                     android:textColor="@color/text_main"
                     android:textSize="16sp" />
 
@@ -159,14 +159,14 @@
                     android:layout_height="wrap_content"
                     android:gravity="end|center_vertical"
                     android:padding="5dp"
-                    android:text="￥0.00"
+                    android:text="@string/price_example"
                     android:textColor="@color/colo_money"
                     android:textSize="16sp" />
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="2px"
+                android:layout_height="2dp"
                 android:background="@color/color_link" />
 
             <LinearLayout
@@ -187,7 +187,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:padding="5dp"
-                    android:text="截止时间"
+                    android:text="@string/ddl"
                     android:textColor="@color/text_main"
                     android:textSize="16sp" />
 
@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="end|center_vertical"
                     android:padding="5dp"
-                    android:text="2020年1月1日 12:00"
+                    android:text="@string/ddl_example"
                     android:textColor="@color/text_main1"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -224,7 +224,7 @@
                     android:layout_marginStart="5dp"
                     android:gravity="center_vertical"
                     android:padding="5dp"
-                    android:text="保存草稿"
+                    android:text="@string/draft_saved"
                     android:textColor="@color/text_main"
                     android:textSize="16sp" />
             </LinearLayout>
