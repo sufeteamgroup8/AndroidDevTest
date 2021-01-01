@@ -23,6 +23,7 @@
     <color name="color_gold">#FBC02D</color>
     <color name="transparent">#00000000</color>
     <color name="color_display_text">#000000</color>
+    <color name="semi_transparent">#80FFFFFF</color>
 </resources>
 
 

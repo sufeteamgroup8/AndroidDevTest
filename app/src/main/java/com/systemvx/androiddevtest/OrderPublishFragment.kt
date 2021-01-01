@@ -16,6 +16,7 @@ import com.systemvx.androiddevtest.ui.search.SearchActivity
 import com.systemvx.androiddevtest.utils.HttpUtil
 import org.json.JSONArray
 import java.util.*
+import kotlin.jvm.Throws
 
 class OrderPublishFragment : Fragment() {
     //定义文本框
@@ -90,9 +91,5 @@ class OrderPublishFragment : Fragment() {
         return HttpUtil().postRequest(url, map)
     }
 
-    internal object DialogUtil {
-        fun showDialog(c: Context?, s: String?, b: Boolean?) {
-            //TODO (do nothing yet)
-        }
-    }
+
 }
