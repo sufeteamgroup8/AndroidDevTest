@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.systemvx.androiddevtest.data.LoginRepository
@@ -34,8 +35,8 @@ class OrderPublishFragment : Fragment() {
         }
         mBinding.orderCancel.setOnClickListener( View.OnClickListener()
         {
-            val intent = Intent(OrderPublishFragment.this,MainActivity.class)
-            ContextCompat.startActivity(intent)
+            val intent = Intent(this.context, MainActivity::class.java)
+            this.requireContext().startActivity(intent)
         })
         mBinding.orderPublish.setOnClickListener { view: View? ->
             if (validate()) {
