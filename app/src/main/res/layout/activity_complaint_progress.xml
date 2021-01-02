@@ -6,9 +6,8 @@
     android:background="#F0F0F0"
     android:orientation="vertical">
 
-    <include layout="@layout/include_title" />
 
-    <android.support.v4.widget.NestedScrollView
+    <android.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -28,7 +27,7 @@
                     android:layout_height="70dp"
                     android:layout_gravity="center_vertical"
                     android:scaleType="fitXY"
-                    android:src="@mipmap/img" />
+                    android:src="@mipmap/ic_launcher" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -49,7 +48,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="物流状态:  "
+                            android:text="处理状态:  "
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
@@ -57,7 +56,7 @@
                             android:id="@+id/tv_logistics_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="已签收"
+                            android:text="已完成"
                             android:textColor="#D73838"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -71,7 +70,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="快递公司:  "
+                            android:text="处理人员:  "
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
@@ -79,7 +78,7 @@
                             android:id="@+id/tv_deliver_company"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="圆通快递"
+                            android:text="小白"
                             android:textColor="#333333"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -93,7 +92,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="运单编号:  "
+                            android:text="订单编号:  "
                             android:textColor="#999999"
                             android:textSize="14sp" />
 
@@ -137,5 +136,5 @@
                 android:layout_marginTop="8dp"
                 android:background="#ffffff" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </android.core.widget.NestedScrollView>
 </LinearLayout>
