@@ -35,7 +35,7 @@ public class OrderCommentActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activiti_order_evaluate);
+        setContentView(R.layout.activiti_order_comment);
         init();
     }
 
