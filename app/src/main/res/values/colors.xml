@@ -24,6 +24,11 @@
     <color name="transparent">#00000000</color>
     <color name="color_display_text">#000000</color>
     <color name="semi_transparent">#80FFFFFF</color>
+    <color name="nodeColor">#cccccc</color>
+    <color name="nodeTextColor">#00bcb4</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>
 
 

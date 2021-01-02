@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">AndroidDevTest</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -62,4 +62,8 @@
     <string name="object_damage">物品损伤</string>
     <string name="unpaid">未支付酬劳</string>
     <string name="other">其他</string>
+    <string name="title_activity_order_management">OrderManagementActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
 </resources>

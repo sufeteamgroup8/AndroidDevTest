@@ -12,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDevTest">
-        <activity android:name=".ui.complaint.complaintProgressActivity"></activity>
+        <activity
+            android:name=".ui.OrderManagementActivity"
+            android:label="@string/title_activity_order_management"
+            android:theme="@style/Theme.AndroidDevTest.NoActionBar"></activity>
+        <activity android:name=".ui.complaint.view.NodeProgress" />
         <activity
             android:name=".ui.complaint.complaintActivity"
             android:label="@string/title_activity_complaint"
