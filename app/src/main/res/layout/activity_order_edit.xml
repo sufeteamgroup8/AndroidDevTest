@@ -33,16 +33,16 @@
 
             <TextView
                 android:id="@+id/button_submit"
-                android:gravity="center"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:background="#DDDDDD"
+                android:gravity="center"
                 android:padding="5dp"
                 android:text="发布"
                 android:textColor="@color/text_main"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:background="#DDDDDD" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/button_1"
@@ -75,10 +75,10 @@
                 android:background="@null"
                 android:hint="标题"
                 android:padding="10dp"
+                android:text=""
                 android:textColor="@color/text_main"
                 android:textColorHint="@color/text_main1"
-                android:textSize="16sp"
-                android:text="" />
+                android:textSize="16sp" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -87,10 +87,10 @@
                 android:gravity="start|top"
                 android:hint="内容"
                 android:padding="10dp"
+                android:text=""
                 android:textColor="@color/text_main"
                 android:textColorHint="@color/text_main1"
-                android:textSize="16sp"
-                android:text="" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -155,11 +155,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end|center_vertical"
+                    android:inputType="number"
                     android:padding="5dp"
                     android:text=""
                     android:textColor="@color/colo_money"
-                    android:textSize="16sp"
-                    android:inputType="number" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <View
