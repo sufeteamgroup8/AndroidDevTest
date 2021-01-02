@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.complaint.complaintActivity">
 
@@ -10,23 +11,38 @@
         android:id="@+id/pathselect_title"
         android:layout_width="fill_parent"
         android:layout_height="46dip"
-        android:background="@color/colo_yellow"
         android:gravity="center_vertical"
+        android:background="@color/colo_yellow"
         android:padding="0.0px" >
 
-        <TextView
-            android:id="@+id/main_title_name"
-            style="@style/A1_Font"
-            android:text="@string/complaint"
+        <Button
+            android:id="@+id/complaintCancel"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/cancel"
+            android:textColor="@color/text_black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/page_title"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/page_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:paddingLeft="96.0dip"
-            android:paddingRight="96.0dip"
-            android:singleLine="true"
-            />
+            android:padding="5dp"
+            android:text="@string/complaint"
+            android:textColor="@color/text_main"
+
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/complaintCancel"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
     </RelativeLayout>
 
     <TextView

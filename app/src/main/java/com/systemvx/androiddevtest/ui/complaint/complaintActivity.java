@@ -2,6 +2,7 @@ package com.systemvx.androiddevtest.ui.complaint;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.systemvx.androiddevtest.R;
+import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity;
 import com.systemvx.androiddevtest.utils.HttpUtil;
 
 import java.util.HashMap;
@@ -34,6 +36,11 @@ public class complaintActivity extends Activity {
         mFeedBackEditText =  findViewById(R.id.feed_back_edit);
         Button mSendFeedBackButton = findViewById(R.id.feed_back_btn);
         radiogroup = findViewById(R.id.radio_group);
+        Button mCancelButton=findViewById(R.id.complaintCancel);
+        mCancelButton.setOnClickListener(v -> {
+            Intent intent =new Intent(complaintActivity.this, OrderDetailActivity.class);
+            startActivity(intent);
+        });
 
 
         mSendFeedBackButton.setOnClickListener(v -> {

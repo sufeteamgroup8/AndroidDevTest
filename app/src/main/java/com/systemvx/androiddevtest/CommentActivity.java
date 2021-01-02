@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,6 +9,8 @@ import android.widget.RatingBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.systemvx.androiddevtest.ui.complaint.complaintActivity;
+import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity;
 import com.systemvx.androiddevtest.utils.HttpUtil;
 
 import java.util.HashMap;
@@ -21,9 +24,14 @@ public class CommentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment);
-        editText=findViewById(R.id.editTextTextPersonName);
+        editText=findViewById(R.id.comment_ctx);
         ratingBar=findViewById(R.id.ratingBar);
-        button=findViewById(R.id.button);
+        Button mCancelButton=findViewById(R.id.commentCancel);
+        mCancelButton.setOnClickListener(v -> {
+            Intent intent =new Intent(CommentActivity.this, OrderDetailActivity.class);
+            startActivity(intent);
+        });
+        button=findViewById(R.id.commit_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +39,7 @@ public class CommentActivity extends AppCompatActivity {
                 Float num= ratingBar.getRating();
                 String comment_num=num.toString();
                 try {
-                    String result=addComment(comment,comment_num);
+                    addComment(comment,comment_num);
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -42,13 +50,13 @@ public class CommentActivity extends AppCompatActivity {
 
 
     }
-    private String addComment(String comment, String comment_num) throws Exception {
+    private void addComment(String comment, String comment_num)  {
         //Map封装
         HashMap<String, String> map = new HashMap<>();
         map.put("comment", comment);
         map.put("comment_num", comment_num);
         String url = HttpUtil.BASE_URL + "comment";
-        return new HttpUtil().postRequest(url, map);
+        new HttpUtil().postRequest(url, map);
     }
 
 }
