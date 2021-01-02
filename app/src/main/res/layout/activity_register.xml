@@ -3,8 +3,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/pathselect_title"
@@ -12,12 +11,12 @@
         android:layout_height="46dip"
         android:background="@color/colo_yellow"
         android:gravity="center_vertical"
-        android:padding="0.0px" >
+        android:padding="0.0px">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:style="@style/A1_Font"
             android:layout_centerInParent="true"
             android:text="注册"
             android:textSize="35dp" />
