@@ -11,14 +11,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
-import com.systemvx.androiddevtest.adapter.OrderAddImageAdapter;
+import com.systemvx.androiddevtest.ui.complaint.OrderAddImageAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class OrderCommentActivity extends AppCompatActivity implements View.OnCl
 
     private EditText edEvaluate;
     private RatingBar rbStar;
-    private Handler mHandler = new Handler();
+    private final Handler mHandler = new Handler();
     private RecyclerView rvImage;
     private OrderAddImageAdapter addImageAdapter;
     private List<String> list;
