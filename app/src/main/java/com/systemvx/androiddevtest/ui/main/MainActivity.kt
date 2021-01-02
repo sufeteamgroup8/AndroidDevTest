@@ -7,6 +7,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.data.LoginDataSource
+import com.systemvx.androiddevtest.data.LoginRepository
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,5 +26,9 @@ class MainActivity : AppCompatActivity() {
                 .build()
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavigationUI.setupWithNavController(navView, navController)
+
+        if (!LoginRepository.isLoggedIn) {
+            LoginRepository(LoginDataSource()).login("", "")
+        }
     }
 }

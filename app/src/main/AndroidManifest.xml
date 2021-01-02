@@ -16,17 +16,17 @@
             android:name=".ui.complaint.complaintActivity"
             android:label="@string/title_activity_complaint"
             android:theme="@style/Theme.AndroidDevTest.NoActionBar" />
-        <activity android:name=".ui.chat.ChatActivity"></activity>
-        <activity android:name=".ui.search.SearchActivity" />
-        <activity android:name=".ui.orderdetail.OrderDetailActivity" />
-        <activity android:name=".ui.main.MainActivity" />
-        <activity android:name=".CommentActivity">
+        <activity android:name=".ui.chat.ChatActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.orderdetail.OrderDetailActivity" />
+        <activity android:name=".ui.main.MainActivity" />
+        <activity
             android:name=".ui.login.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".OrderPublishActivity" />
