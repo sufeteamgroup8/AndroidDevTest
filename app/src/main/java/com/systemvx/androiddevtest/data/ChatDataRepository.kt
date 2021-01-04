@@ -86,6 +86,39 @@ class ChatDataRepository {
             }
             return Result.Success(messages)
         }
+
+        fun findChatters(accountID: Int): Result<ArrayList<ChatterInfo>> {
+            val params = HashMap<String, String>()
+            params["hostID"] = LoginRepository.user?.id.toString()
+            try {
+                val response = JSON.parseObject(HttpUtil().postRequest("/chat/find", params))
+                if (response.getBoolean("success")) {
+                    //TODO 打包数据
+                    val list = ArrayList<ChatShowCase.Message>()
+                    val dataPack = response.getJSONArray("payload")
+                    for (dataItem in dataPack) {
+                        val temp = JSON.parseObject(dataItem.toString(), Chat::class.java)
+                    }
+                    TODO()
+                } else {
+                    return Result.Error(CustomRestfulError(response.getString("error")))
+                }
+            } catch (e: Exception) {
+                return Result.Error(CustomRestfulError())
+            }
+        }
+
+        fun findChattersFake(): Result<ArrayList<ChatterInfo>> {
+            val data = ArrayList<ChatterInfo>()
+            for (i in 1..10) {
+                data.add(ChatterInfo(
+                        Random().nextInt(40),
+                        UtilStaticFunc.randomString(10),
+                        Random().nextBoolean()
+                ))
+            }
+            return Result.Success(data)
+        }
     }
 
 
