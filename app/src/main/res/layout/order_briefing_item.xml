@@ -81,6 +81,16 @@
             app:layout_constraintStart_toEndOf="@+id/orderBriefing_address"
             app:layout_constraintTop_toBottomOf="@id/line" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/actionButtonHolder"
+            app:layout_constraintTop_toBottomOf="@id/orderBriefing_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
