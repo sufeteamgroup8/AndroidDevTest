@@ -14,12 +14,19 @@ import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity
 
 
 class OrderListAdapter(
-        val context: Context?,
-        private val items: List<OrderBriefing> = ArrayList(),
+        val context: Context,
         listener: OrderBriefingListener? = null,
 ) :
         RecyclerView.Adapter<OrderListAdapter.Companion.OrderBriefingViewHolder>() {
+
+    private val items: ArrayList<OrderBriefing> = ArrayList()
     private val mListener: OrderBriefingListener = listener ?: OrderBriefingListener()
+
+    fun updateData(data: ArrayList<OrderBriefing>) {
+        this.items.clear()
+        this.items.addAll(data)
+        notifyDataSetChanged()
+    }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBriefingViewHolder {

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_theme_bg"
+    android:fitsSystemWindows="true">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="#f8f8f8">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:orientation="horizontal">
+
+                    <!--头像-->
+                    <ImageView
+                        android:id="@+id/headImg"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="24dp" />
+
+                    <TextView
+                        android:id="@+id/tv_username_mine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="12dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="柚子     20201207"
+                        android:textColor="#333333"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+
+            <RelativeLayout
+                android:id="@+id/rela_pwd_reset"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/colorwhite">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="允许他人查看我的历史订单"
+                    android:textColor="#333333"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="25dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="#f2f2f2" />
+
+            </RelativeLayout>
+            <RelativeLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/colorwhite">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="消息免打扰"
+                    android:textColor="#333333"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="25dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="20dp"
+                    android:background="#f2f2f2" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/rela_logout"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:background="@color/colorwhite">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:text="关于校园万事屋"
+                    android:textColor="#333333"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="25dp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</RelativeLayout>

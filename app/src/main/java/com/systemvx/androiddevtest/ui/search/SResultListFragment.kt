@@ -27,19 +27,18 @@ class SResultListFragment(private val optionViewModel: SOptionViewModel) : Fragm
     ): View? {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_s_result_list, container, false)
 
+        val mAdapter = OrderListAdapter(this.requireContext())
+        with(mBinding.list) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
+            }
+            adapter = mAdapter
+        }
         optionViewModel.searchResult.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
             when (it) {
                 true -> {
-                    // Set the adapter
-                    with(mBinding.list) {
-                        layoutManager = when {
-                            columnCount <= 1 -> LinearLayoutManager(context)
-                            else -> GridLayoutManager(context, columnCount)
-                        }
-                        adapter = OrderListAdapter(this.context, optionViewModel.resultList)
-                    }
-                }
-                else -> {
+                    mAdapter.updateData(optionViewModel.resultList)
                 }
             }
         })

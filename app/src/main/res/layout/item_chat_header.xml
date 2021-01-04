@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--用于表示与一个用户的会话-->
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/style_round_corner_bg"
+        android:backgroundTint="@color/white_shadow">
+
+        <ImageView
+            android:layout_margin="@dimen/text_margin"
+            android:id="@+id/hat_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxHeight="60dp"
+            android:padding="@dimen/half_margin"
+            android:src="@drawable/ic_zhanghao"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/chat_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/hat_portrait"
+            app:layout_constraintTop_toTopOf="@id/hat_portrait"
+            android:textSize="@dimen/text_medium"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginTop="@dimen/half_margin"
+            android:text="nickname" />
+
+        <TextView
+            android:id="@+id/red_dot"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="@id/hat_portrait"
+            app:layout_constraintBottom_toTopOf="@id/hat_portrait"
+            app:layout_constraintStart_toEndOf="@id/hat_portrait"
+            app:layout_constraintEnd_toEndOf="@id/hat_portrait"
+            android:background="@color/colo_red"
+            android:text="1"
+            android:gravity="center"
+            app:layout_constraintVertical_bias="0.9"
+            app:layout_constraintHorizontal_bias="0.9"
+            android:textColor="@color/white" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

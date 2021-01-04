@@ -68,7 +68,7 @@ class ChatActivity : AppCompatActivity() {
                     true
             )
             (mBinding.chatShowBox.adapter as ChatMessageAdapter).addMessage(message)
-            mBinding.chatShowBox.smoothScrollToPosition((mBinding.chatShowBox.adapter as ChatMessageAdapter).itemCount)
+            mBinding.chatShowBox.smoothScrollToPosition(0)
 
         }
     }

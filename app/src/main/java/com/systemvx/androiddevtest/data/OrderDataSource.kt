@@ -48,7 +48,8 @@ class OrderDataSource {
                                         price = temp.getDoubleValue("price"),
                                         deadline = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).parse(temp.getString("deadline")),
                                         address = this.getAddressStr(temp.getIntValue("address")),
-                                        type = this.getTypeStr(temp.getIntValue("type"))
+                                        type = this.getTypeStr(temp.getIntValue("type")),
+                                        state = temp.getIntValue("state")
                                 )
                                 result.add(cl)
                             }
@@ -65,6 +66,52 @@ class OrderDataSource {
         }
     }
 
+
+    fun getOrderByPublisher(accountID: Int): Result<ArrayList<OrderBriefing>> {
+        when (ProjectSettings.netWorkDebug) {
+            true -> {
+                //目前随机生成点占位数据
+                val temp = ArrayList<OrderBriefing>()
+                for (i in 1..20) {
+                    temp.add(OrderBriefing.randomGarbage())
+                }
+                return Result.Success(temp)
+            }
+            false -> {
+                val params = HashMap<String, String>()
+                params["id"] = accountID.toString()
+                try {
+                    val response = JSON.parse(HttpUtil().postRequest("TODO()", params)) as JSONObject
+                    return when (response.getBoolean("success")) {
+                        true -> {
+                            val result = ArrayList<OrderBriefing>()
+                            val listJson = response.getJSONArray("payload")
+                            for (order in listJson) {
+                                val temp = order as JSONObject
+                                val cl = OrderBriefing(
+                                        id = temp.getIntValue("id"),
+                                        title = temp.getString("title"),
+                                        briefing = temp.getString("maintext").substring(0, 40),
+                                        price = temp.getDoubleValue("price"),
+                                        deadline = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).parse(temp.getString("deadline")),
+                                        address = this.getAddressStr(temp.getIntValue("address")),
+                                        type = this.getTypeStr(temp.getIntValue("type")),
+                                        state = temp.getIntValue("state")
+                                )
+                                result.add(cl)
+                            }
+                            Result.Success(result)
+                        }
+                        false -> {
+                            Result.Error(Exception(response.getString("error")))
+                        }
+                    }
+                } catch (e: Exception) {
+                    return Result.Error(Exception("internal error"))
+                }
+            }
+        }
+    }
     private fun getTypeStr(typeCode: Int): String {
         TODO()
     }
