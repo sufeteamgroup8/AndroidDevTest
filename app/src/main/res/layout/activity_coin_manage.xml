@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_theme_bg"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <EditText
+                android:id="@+id/inputMobile"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@null"
+                android:hint="金币余额: 50"
+                android:inputType="textAutoCorrect"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+            <Button
+                android:id="@+id/pay_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="12dp"
+
+                android:layout_marginRight="12dp"
+                android:background="#3853e8"
+                android:gravity="center"
+                android:text="充值提现"
+                android:textColor="#ffffff"
+                android:textSize="14sp" />
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="支付订单  -5     2020-12-23-13：01"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="支付订单  -3     2020-12-10-14：23"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="接单收入  +3     2020-12-13-15：25"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="支付订单  -5     2020-11-22-13：19"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="接单收入  +5     2020-11-23-09：21"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="支付订单  -4     2020-11-20-15：13"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="接单收入  +7     2020-11-12-10：01"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="支付订单  -6     2020-11-11-17：31"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="接单收入  +10     2020-10-25-09：21"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="接单收入  +7     2020-10-23-16：10"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="支付订单  -5     2020-09-06-13：51"
+                android:inputType="number"
+                android:maxLength="50"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
