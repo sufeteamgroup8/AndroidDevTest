@@ -10,7 +10,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class ChatDataRepository {
+class ChatDataSource {
 
 
     companion object {
@@ -50,13 +50,13 @@ class ChatDataRepository {
         fun findChatDataRand(): Result<ArrayList<ChatShowCase.Message>> {
             val messages = ArrayList<ChatShowCase.Message>()
             //固定部分
-            val Sender = "sender alyce"
+            val sender = "sender alyce"
             //发送时间的随机生成器
             val rand = Random(11111)
-            //从10天前开始
+            //从2天前开始
             val calendar = Calendar.getInstance(Locale.CHINA)
             calendar.add(Calendar.DAY_OF_MONTH, -2)
-            messages.add(ChatShowCase.Message(Sender, UtilStaticFunc.randomString(40), calendar.time, false))
+            messages.add(ChatShowCase.Message(null, sender, UtilStaticFunc.randomString(40), calendar.time, false))
             for (i in 2..10) {
                 //随机过去n分钟 (0-6小时内)
                 calendar.add(-Calendar.MINUTE, rand.nextInt(360) - 1)
@@ -64,7 +64,8 @@ class ChatDataRepository {
                 if (rand.nextBoolean()) {
                     //发来的信息
                     messages.add(ChatShowCase.Message(
-                            Sender,
+                            null,
+                            sender,
                             UtilStaticFunc.randomString(40),
                             calendar.time,
                             false
@@ -72,6 +73,7 @@ class ChatDataRepository {
                 } else {
                     //自己发送的信息
                     messages.add(ChatShowCase.Message(
+                            null,
                             LoginRepository.user!!.nickname ?: "",
                             UtilStaticFunc.randomString(40),
                             calendar.time,
@@ -118,6 +120,29 @@ class ChatDataRepository {
                 ))
             }
             return Result.Success(data)
+        }
+
+        /**
+         * @throws Exception
+         */
+        fun sendMessage(id: Int, chatterID: Int, message: String) {
+            val params = HashMap<String, String>()
+            params["senderID"] = id.toString()
+            params["receiverID"] = chatterID.toString()
+            params["message"] = message
+            HttpUtil().postRequest("/Chats/new", params)
+        }
+
+
+        fun setToRead(messages: ArrayList<ChatShowCase.Message>) {
+            for (message in messages) {
+                if (message.id != null) {
+                    val params = HashMap<String, String>()
+                    params["chatID"] = message.id.toString()
+                    params["isRead"] = true.toString()
+                    HttpUtil().postRequest("/Chats/isRead", params)
+                }
+            }
         }
     }
 

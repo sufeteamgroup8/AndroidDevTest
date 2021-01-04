@@ -7,10 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.ChatShowCase
-import com.systemvx.androiddevtest.data.LoginDataSource
-import com.systemvx.androiddevtest.data.LoginRepository
-import com.systemvx.androiddevtest.data.Result
+import com.systemvx.androiddevtest.data.*
 import com.systemvx.androiddevtest.databinding.ActivityChatBinding
 import java.util.*
 
@@ -58,10 +55,17 @@ class ChatActivity : AppCompatActivity() {
         model.findChatData(model.chatterID)
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        ChatDataSource.setToRead(model.chatHistory)
+    }
+
 
     fun sendMessage() {
         if (!mBinding.textSend.text.toString().isNullOrBlank()) {
             val message = ChatShowCase.Message(
+                    null,
                     LoginRepository.user!!.nickname!!,
                     mBinding.textSend.text.toString(),
                     Date(),
@@ -69,7 +73,11 @@ class ChatActivity : AppCompatActivity() {
             )
             (mBinding.chatShowBox.adapter as ChatMessageAdapter).addMessage(message)
             mBinding.chatShowBox.smoothScrollToPosition(0)
-
+            try {
+                ChatDataSource.sendMessage(LoginRepository.user!!.id, model.chatterID, mBinding.textSend.text.toString())
+            } catch (e: Exception) {
+                TODO()
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ package com.systemvx.androiddevtest.ui.chat
 
 import androidx.lifecycle.MutableLiveData
 import com.systemvx.androiddevtest.ProjectSettings
-import com.systemvx.androiddevtest.data.ChatDataRepository
+import com.systemvx.androiddevtest.data.ChatDataSource
 import com.systemvx.androiddevtest.data.ChatShowCase
 import com.systemvx.androiddevtest.data.Result
 import java.util.*
@@ -33,17 +33,17 @@ class ChatViewModel {
      */
     fun findChatData(chatterID: Int, lookUpDays: Int) {
         val result = if (ProjectSettings.netWorkDebug) {
-            ChatDataRepository.findChatDataRand()
+            ChatDataSource.findChatDataRand()
         } else {
             if (lookUpDays == 0) {
-                ChatDataRepository.findChatData(chatterID, null)
+                ChatDataSource.findChatData(chatterID, null)
             } else {
                 val calendar = Calendar.getInstance()
                 calendar.add(Calendar.DAY_OF_MONTH, -lookUpDays)
                 calendar.set(Calendar.SECOND, 0)
                 calendar.set(Calendar.HOUR_OF_DAY, 0)
                 val timeLeftBound: Date = calendar.time
-                ChatDataRepository.findChatData(chatterID, timeLeftBound)
+                ChatDataSource.findChatData(chatterID, timeLeftBound)
             }
         }
         if (result is Result.Success) {
