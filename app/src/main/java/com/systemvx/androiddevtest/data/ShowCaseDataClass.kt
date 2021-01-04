@@ -23,6 +23,7 @@ data class OrderBriefing(
         val address: String,
         val deadline: Date,
         val type: String,
+        val state: Int,
 ) {
     val priceStr: String
         get() = "￥${DecimalFormat("0.00").format(price)}"
@@ -39,7 +40,8 @@ data class OrderBriefing(
                     randomString(50),
                     randomString(5),
                     Date(rand.nextLong()),
-                    randomString(5)
+                    randomString(5),
+                    rand.nextInt(4) + 1
             )
         }
     }
