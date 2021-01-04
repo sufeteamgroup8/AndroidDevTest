@@ -62,3 +62,11 @@ interface ChatShowCase {
     ) : ChatShowCase
 }
 
+data class ChatterInfo(
+        val id: Int,
+        val nickname: String,
+        val unRead: Boolean = false,
+        val lastMessage: String = "",
+)
+
+data class OrderTypeBean(var text: String, var isCheck: Boolean)
