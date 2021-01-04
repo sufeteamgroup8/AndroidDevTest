@@ -23,6 +23,7 @@ data class OrderBriefing(
         val address: String,
         val deadline: Date,
         val type: String,
+        val state: Int,
 ) {
     val priceStr: String
         get() = "￥${DecimalFormat("0.00").format(price)}"
@@ -39,7 +40,8 @@ data class OrderBriefing(
                     randomString(50),
                     randomString(5),
                     Date(rand.nextLong()),
-                    randomString(5)
+                    randomString(5),
+                    rand.nextInt(4) + 1
             )
         }
     }
@@ -60,3 +62,11 @@ interface ChatShowCase {
     ) : ChatShowCase
 }
 
+data class ChatterInfo(
+        val id: Int,
+        val nickname: String,
+        val unRead: Boolean = false,
+        val lastMessage: String = "",
+)
+
+data class OrderTypeBean(var text: String, var isCheck: Boolean)
