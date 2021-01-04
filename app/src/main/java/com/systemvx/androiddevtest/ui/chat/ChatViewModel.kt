@@ -15,7 +15,7 @@ class ChatViewModel {
     var chatterNickname: MutableLiveData<String> = MutableLiveData("")
 
     /**
-     * 聊天记录列表:顺序应为从旧到新
+     * 聊天记录列表:顺序应为从新到旧
      */
     var chatHistory = ArrayList<ChatShowCase.Message>()
 

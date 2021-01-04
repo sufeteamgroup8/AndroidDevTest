@@ -55,11 +55,11 @@ class ChatDataRepository {
             val rand = Random(11111)
             //从10天前开始
             val calendar = Calendar.getInstance(Locale.CHINA)
-            calendar.add(Calendar.DAY_OF_MONTH, -10)
+            calendar.add(Calendar.DAY_OF_MONTH, -2)
             messages.add(ChatShowCase.Message(Sender, UtilStaticFunc.randomString(40), calendar.time, false))
             for (i in 2..10) {
                 //随机过去n分钟 (0-6小时内)
-                calendar.add(Calendar.MINUTE, rand.nextInt(360) + 1)
+                calendar.add(-Calendar.MINUTE, rand.nextInt(360) - 1)
                 //决定是谁发的信息
                 if (rand.nextBoolean()) {
                     //发来的信息
@@ -81,7 +81,7 @@ class ChatDataRepository {
 
                 if (i == 5) {
                     //空白间隙
-                    calendar.add(Calendar.DAY_OF_MONTH, 3)
+                    calendar.add(Calendar.DAY_OF_MONTH, -4)
                 }
             }
             return Result.Success(messages)

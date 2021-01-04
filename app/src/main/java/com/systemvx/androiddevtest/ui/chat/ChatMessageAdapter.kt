@@ -15,34 +15,49 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCase.Message>) :
+class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCase.Message>? = null) :
         RecyclerView.Adapter<ChatMessageAdapter.Companion.ChatMessageViewHolder>() {
 
     private var displayList: ArrayList<ChatShowCase> = ArrayList()
 
     //准备显示内容
     init {
-        if (chatRecords.isNotEmpty()) {
-            displayList.add(chatRecords[0])
-            for (i in 0 until chatRecords.size - 1) {
-                //两条消息间间隔过长,
-                //则加入时间戳
-                if (compareRecordTime(chatRecords[i], chatRecords[i + 1]))
-                    displayList.add(ChatShowCase.TimeNote(
-                            SimpleDateFormat("MM-d hh-mm", Locale.CHINA).format(chatRecords[i + 1].sendTime))
-                    )
-                //加入消息本体
-                displayList.add(chatRecords[i + 1])
-            }
+        if (chatRecords != null) {
+            updateData(chatRecords)
         }
     }
 
 
-    private fun compareRecordTime(soonerMessage: ChatShowCase.Message, laterMessage: ChatShowCase.Message): Boolean {
-        val interval = 1000 * 60 * 60 * 4//ms-s-min-hour-6hours
-        return (laterMessage.sendTime.time - soonerMessage.sendTime.time) > interval
+    fun updateData(chatRecords: ArrayList<ChatShowCase.Message>) {
+        if (chatRecords.isNotEmpty()) {
+            var timePivot = Date()
+            for (i in 0 until chatRecords.size) {
+                //两条消息间间隔过长,
+                //则加入时间戳
+                displayList.add(chatRecords[i])
+                if (compareRecordTime(chatRecords[i].sendTime, timePivot))
+                    displayList.add(ChatShowCase.TimeNote(
+                            SimpleDateFormat("MM-d hh-mm", Locale.CHINA).format(chatRecords[i].sendTime))
+                    )
+                timePivot = chatRecords[i].sendTime
+            }
+        }
+        notifyDataSetChanged()
     }
 
+    private fun compareRecordTime(soonerMessage: Date, laterMessage: Date): Boolean {
+        val interval = 1000 * 60 * 60 * 4//ms-s-min-hour-4hours
+        return (laterMessage.time - soonerMessage.time) > interval
+    }
+
+    fun addMessage(message: ChatShowCase.Message) {
+        if (compareRecordTime((displayList[0] as ChatShowCase.Message).sendTime, message.sendTime)) {
+            displayList.add(0, ChatShowCase.TimeNote(
+                    SimpleDateFormat("MM-d hh-mm", Locale.CHINA).format(message.sendTime)))
+        }
+        displayList.add(0, message)
+        notifyDataSetChanged()
+    }
 
     override fun getItemViewType(position: Int): Int {
         return when (displayList[position].javaClass) {
@@ -86,6 +101,7 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
         }
     }
 
+
     override fun onBindViewHolder(holder: ChatMessageViewHolder, position: Int) {
         when (holder.type) {
             MESSAGE_TEXT_RECEIVE -> {
@@ -117,14 +133,6 @@ class ChatMessageAdapter(val context: Context, chatRecords: ArrayList<ChatShowCa
         return this.displayList.size
     }
 
-    fun addMessage(message: ChatShowCase.Message) {
-        if (compareRecordTime(displayList.last() as ChatShowCase.Message, message)) {
-            displayList.add(ChatShowCase.TimeNote(
-                    SimpleDateFormat("MM-d hh-mm", Locale.CHINA).format(message.sendTime)))
-        }
-        displayList.add(message)
-        notifyDataSetChanged()
-    }
 
     companion object {
 
