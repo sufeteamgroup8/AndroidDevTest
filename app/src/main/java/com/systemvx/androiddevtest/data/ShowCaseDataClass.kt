@@ -49,6 +49,7 @@ data class OrderBriefing(
 
 interface ChatShowCase {
     data class Message(
+            val id: Int? = null,
             val senderNickName: String,
             val messageText: String,
             val sendTime: Date,
@@ -70,3 +71,20 @@ data class ChatterInfo(
 )
 
 data class OrderTypeBean(var text: String, var isCheck: Boolean)
+
+data class FullOrderData(
+        val id: Int,
+        val title: String,
+        val price: Double,
+        val mainText: String,
+        val addressID: Int,
+        val deadLine: Date?,
+        val state: Int,
+        val taskState: Int,
+        val publisherID: Int,
+        val receiverID: Int?,
+        val completeTime: Date?,
+        val receivedTime: Date?,
+        val publisherPhone: String?,
+        val receiverPhone: String?,
+)
