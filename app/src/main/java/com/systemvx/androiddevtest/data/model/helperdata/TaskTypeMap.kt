@@ -5,6 +5,6 @@ package com.systemvx.androiddevtest.data.model.helperdata
  *
  */
 data class TaskTypeMap(
-        val id: Int?,
-        val text: String?,
+        val id: Int,
+        val text: String,
 )

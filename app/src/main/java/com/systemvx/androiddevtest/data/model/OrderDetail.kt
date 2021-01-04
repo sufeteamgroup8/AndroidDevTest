@@ -8,7 +8,7 @@ data class OrderDetail(
 
         val order: Orders,
 
-        val missionType: TaskTypeMap = TaskTypeMap(null, null),
+        val missionType: TaskTypeMap = TaskTypeMap(-1, ""),
         val isFinal: Boolean = false,
         val version: Int?,
         val title: String?,
