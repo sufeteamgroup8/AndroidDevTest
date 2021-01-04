@@ -4,17 +4,16 @@ import com.systemvx.androiddevtest.data.model.helperdata.TaskTypeMap
 import java.sql.Date
 
 data class OrderDetail(
-        val id: Int? = null,
+        val id: Int,
 
         val order: Orders,
 
         val missionType: TaskTypeMap = TaskTypeMap(-1, ""),
         val isFinal: Boolean = false,
-        val version: Int?,
-        val title: String?,
-        val price: Double? = null,
-        val address: Int?,
-        val mainText: String?,
+        val title: String,
+        val price: Double,
+        val address: Int,
+        val mainText: String,
 
         val pubTime: Date? = null,
         val deadline: Date? = null,

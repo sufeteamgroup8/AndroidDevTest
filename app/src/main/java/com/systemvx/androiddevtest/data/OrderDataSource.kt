@@ -10,9 +10,6 @@ import kotlin.collections.ArrayList
 
 class OrderDataSource {
 
-    fun getAllOrderTypes(): HashMap<String, Int> {
-        TODO("Not implemented")
-    }
 
     fun searchOrder(searchStr: String?, priceMin: Double?, priceMax: Double?, timeBefore: Date?, hardMatch: Boolean = true): Result<ArrayList<OrderBriefing>> {
         when (ProjectSettings.netWorkDebug) {

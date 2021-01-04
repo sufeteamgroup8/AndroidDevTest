@@ -1,7 +1,7 @@
 package com.systemvx.androiddevtest.data.model
 
 data class Account(
-        val id: Int? = null,
+        val id: Int,
 
         val name: String = "",
         var password: String = "",

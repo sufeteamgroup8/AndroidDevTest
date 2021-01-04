@@ -74,6 +74,7 @@ data class OrderTypeBean(var text: String, var isCheck: Boolean)
 
 data class FullOrderData(
         val id: Int,
+        val detailID: Int,
         val title: String,
         val price: Double,
         val mainText: String,

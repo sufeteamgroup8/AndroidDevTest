@@ -4,7 +4,7 @@ import com.systemvx.androiddevtest.data.model.helperdata.OrderStateMap
 import java.sql.Date
 
 data class Orders(
-        val id: Int?,
+        val id: Int,
         val state: OrderStateMap = OrderStateMap(-1, ""),
         val taskState: Int = 0,
         val receiveTime: Date? = null,
