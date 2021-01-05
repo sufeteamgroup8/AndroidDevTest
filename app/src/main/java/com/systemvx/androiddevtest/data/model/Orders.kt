@@ -1,6 +1,7 @@
 package com.systemvx.androiddevtest.data.model
 
 import com.systemvx.androiddevtest.data.model.helperdata.OrderStateMap
+import java.io.Serializable
 import java.sql.Date
 
 data class Orders(
@@ -18,4 +19,4 @@ data class Orders(
         val publisherPhone: String? = null,
 
 
-        )
+        ) : Serializable

@@ -21,33 +21,25 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
+            <TextView
+                android:id="@+id/btn_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/style_round_corner_bg"
-                android:backgroundTint="@color/white_shadow"
-                android:drawableStart="@drawable/ic_search"
-                android:drawableTint="@color/white"
-                android:padding="8dp"
                 android:layout_marginStart="@dimen/text_margin"
                 android:layout_marginEnd="@dimen/text_margin"
-                app:layout_constraintStart_toEndOf="@id/head_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/imageButton"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/abc_vector_test"
+                android:background="@drawable/style_round_corner_bg"
+                android:backgroundTint="@color/white_shadow"
+                android:gravity="center_vertical"
+                android:padding="8dp"
+                android:text="搜索..."
+                android:textSize="@dimen/text_medium"
+                app:drawableStartCompat="@drawable/ic_search"
+                app:drawableTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/head_icon"
                 app:layout_constraintTop_toTopOf="parent" />
+
 
             <ImageView
                 android:id="@+id/head_icon"

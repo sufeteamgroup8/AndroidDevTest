@@ -33,6 +33,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="color_button">#3853e8</color>
     <color name="color_title_bar"> #3853e8</color>
+    <color name="green">#388E3C</color>
 </resources>
 
 

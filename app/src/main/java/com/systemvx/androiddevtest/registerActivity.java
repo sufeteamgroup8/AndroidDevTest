@@ -4,42 +4,45 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.systemvx.androiddevtest.utils.DialogUtil;
 import com.systemvx.androiddevtest.utils.HttpUtil;
+
 import java.util.HashMap;
 
-public class registerActivity extends Activity  {
+public class registerActivity extends Activity {
     private String username;
     private String pwd1;
     private String e_mail;
     private String pwd2;
-    protected void onCreate(Bundle savedInstanceState){
+
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         Button register = findViewById(R.id.register_button);
         EditText id = findViewById(R.id.input_identity_text);
-        username= id.getText().toString();
+        username = id.getText().toString();
         EditText pwd_1 = findViewById(R.id.password_edit);
-        pwd1= pwd_1.toString();
+        pwd1 = pwd_1.toString();
         EditText pwd_2 = findViewById(R.id.password_edit_1);
-        pwd2= pwd_2.toString();
+        pwd2 = pwd_2.toString();
         EditText email = findViewById(R.id.email_edit);
-        e_mail= email.getText().toString();
+        e_mail = email.getText().toString();
 
         register.setOnClickListener(v -> {
 
-            if(validate())
-            {
-                try {
-                    addUser(username,pwd1,e_mail);
+                    if (validate()) {
+                        try {
+                            addUser(username, pwd1, e_mail);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-            }
-        }
-    }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
 
-   );
+        );
 
     }
 
@@ -48,7 +51,7 @@ public class registerActivity extends Activity  {
         HashMap<String, String> map = new HashMap<>();
         map.put("User_id", id);
         map.put("User_key", pwd1);
-        map.put("User_email",e_mail);
+        map.put("User_email", e_mail);
         String url = HttpUtil.BASE_URL + "register";
         new HttpUtil().postRequest(url, map);
     }
@@ -72,6 +75,7 @@ public class registerActivity extends Activity  {
         }
         return true;
 
-    }}
+    }
+}
 
 

@@ -88,9 +88,9 @@
             android:background="#000000" />
     </LinearLayout>
 
-    <com.ui.orderManagement.view.CustomViewPager
+    <com.systemvx.androiddevtest.ui.orderManagement.view.CustomViewPager
         android:id="@+id/vp_order"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.ui.orderManagement.view.CustomViewPager>
+    </com.systemvx.androiddevtest.ui.orderManagement.view.CustomViewPager>
 </LinearLayout>

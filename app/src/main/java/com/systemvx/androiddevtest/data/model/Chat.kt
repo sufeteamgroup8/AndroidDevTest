@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.data.model
 
+import java.io.Serializable
 import java.sql.Date
 
 data class Chat(
@@ -11,4 +12,4 @@ data class Chat(
         var isRead: Boolean = false,
 
         val sendTime: Date? = null,
-)
+) : Serializable

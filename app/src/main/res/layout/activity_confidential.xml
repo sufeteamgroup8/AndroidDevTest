@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    >
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <EditText
+                android:id="@+id/inputMobile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="信用值"
+                android:inputType="textAutoCorrect"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="20sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +600"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  -600"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +1600"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +200"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +100"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +50"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +120"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +210"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +410"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +560"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="信用良好  +80"
+                android:inputType="number"
+                android:maxLength="11"
+                android:textColor="#43496A"
+                android:textColorHint="#bbbbbb"
+                android:textSize="14sp" />
+
+            <View
+                android:background = "#f2f2f2"
+                android:layout_height = "0.5dp"
+                android:layout_width = "match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

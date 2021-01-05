@@ -1,9 +1,12 @@
-package com.systemvx.androiddevtest;
+package com.systemvx.androiddevtest.utils;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+
+
+import com.systemvx.androiddevtest.orderClientActivity;
 
 public class DialogUtil {
     public static void showDialog(Context ctx, String msg, boolean goHome)
@@ -13,7 +16,7 @@ public class DialogUtil {
         if(goHome)
         {
             builder.setPositiveButton("确定",((dialog, which) -> {
-                Intent i=new Intent(ctx,orderClientActivity.class);
+                Intent i=new Intent(ctx, orderClientActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 ctx.startActivity(i);
             }));
@@ -32,5 +35,8 @@ public class DialogUtil {
                 .create()
                 .show();
     }
-}
+    public static void showDialog(Context ctx, String msg, Intent intent)
+    {
+        ctx.startActivity(intent);
+}}
 

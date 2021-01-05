@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.ui.main.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.FragmentDashboardBinding
+import com.systemvx.androiddevtest.ui.search.SearchActivity
 
 class DashboardFragment : Fragment() {
 
@@ -18,24 +20,31 @@ class DashboardFragment : Fragment() {
     private lateinit var mBinding: FragmentDashboardBinding
 
     //订单列表的显示适配器,负责生成并管理所有列表里的项
-    private val mAdapter = OrderListAdapter(requireContext())
+    private lateinit var mAdapter: OrderListAdapter
 
     //数据交互实体
     private lateinit var dashboardViewModel: DashboardViewModel
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         //获取布局
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
         //绑定数据类
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         //观测data的变动,data改变时执行:
+
+        mAdapter = OrderListAdapter(requireContext())
         dashboardViewModel.data.observe(this.requireActivity(), Observer {
             // 新的data注入
             mAdapter.updateData(it)
         })
         dashboardViewModel.updateData()
+
+        mBinding.btnSearch.setOnClickListener {
+            requireContext().startActivity(Intent(this.requireContext(), SearchActivity::class.java))
+        }
         return mBinding.root
     }
 

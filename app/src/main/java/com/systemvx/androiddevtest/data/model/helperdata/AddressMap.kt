@@ -1,5 +1,7 @@
 package com.systemvx.androiddevtest.data.model.helperdata
 
+import java.io.Serializable
+
 data class AddressMap(
         val id: Int,
         val text: String,
@@ -7,4 +9,4 @@ data class AddressMap(
         val rootAddress: AddressMap?,
 
 
-        )
+        ) : Serializable
