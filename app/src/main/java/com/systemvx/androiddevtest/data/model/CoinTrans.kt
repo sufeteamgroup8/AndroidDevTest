@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.data.model
 
+import java.io.Serializable
 import java.sql.Date
 
 data class CoinTrans(
@@ -12,4 +13,4 @@ data class CoinTrans(
         val transTime: Date?,
 
 
-        )
+        ) : Serializable
