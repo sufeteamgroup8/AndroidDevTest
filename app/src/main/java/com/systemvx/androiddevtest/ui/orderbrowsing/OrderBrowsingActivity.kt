@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.systemvx.androiddevtest.R
@@ -14,17 +15,19 @@ import com.systemvx.androiddevtest.databinding.ActivityOrderBrowsingBinding
 class OrderBrowsingActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityOrderBrowsingBinding
 
-    private val viewModel = OrderBrowsingViewModel()
+    private lateinit var viewModel: OrderBrowsingViewModel
 
     private val tabCounts = 5
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProvider(this).get(OrderBrowsingViewModel::class.java)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_order_browsing)
 
         mBinding.viewpager.adapter = object : FragmentStateAdapter(this) {
-            override fun getItemCount() = 5
+            override fun getItemCount() = tabCounts
 
             override fun createFragment(position: Int): Fragment {
                 return when (position) {

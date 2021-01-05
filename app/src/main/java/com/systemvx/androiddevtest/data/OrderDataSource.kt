@@ -7,6 +7,7 @@ import com.systemvx.androiddevtest.utils.HttpUtil
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class OrderDataSource {
 
@@ -111,6 +112,31 @@ class OrderDataSource {
     }
     private fun getTypeStr(typeCode: Int): String {
         TODO()
+    }
+     fun getOrderState(id:String):Result<ArrayList<OrderStateBean>>{
+        val params = HashMap<String, String>()
+        try {
+            val response = JSON.parse(HttpUtil().postRequest("TODO()", params)) as JSONObject
+            return when (response.getBoolean("success")){
+                true->{
+                    val result = ArrayList<OrderStateBean>()
+                    val listJson = response.getJSONArray("orderState")
+                    for (state in listJson){
+                       val tem = state as JSONObject
+                        val orderStateBean = OrderStateBean()
+                        orderStateBean.id = tem.getString("id")
+                        orderStateBean.orderstate = tem.getString("orderstate")
+                    }
+                    Result.Success(result)
+                }
+                false ->{
+                    Result.Error(Exception(response.getString("error")))
+                }
+            }
+        }catch (e:java.lang.Exception){
+            return Result.Error(Exception("internal error"))
+        }
+
     }
 
     private fun getAddressStr(addressCode: Int): String {

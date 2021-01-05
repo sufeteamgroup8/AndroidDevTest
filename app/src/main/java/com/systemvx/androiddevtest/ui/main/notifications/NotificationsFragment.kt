@@ -23,15 +23,19 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel = ViewModelProvider(this).get(NotificationsViewModel::class.java)
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_notifications, container, false)
 
+
+        val mAdapter = ChatBriefingAdapter(this.requireContext())
+        mBinding.chatBriefing.layoutManager = LinearLayoutManager(this.context)
+        mBinding.chatBriefing.adapter = mAdapter
+
+        notificationsViewModel.natResult.observe(viewLifecycleOwner, {
+            mAdapter.updateWithNewData(notificationsViewModel.data)
+        })
+
         if (LoginRepository.isLoggedIn) {
             mBinding.hintRequireLogin.visibility = View.GONE
             mBinding.chatBriefing.visibility = View.VISIBLE
-
-            mBinding.chatBriefing.layoutManager = LinearLayoutManager(this.context)
-            val mAdapter = ChatBriefingAdapter(this.requireContext())
-            mBinding.chatBriefing.adapter = mAdapter
-
-            mAdapter.updateWithNewData(notificationsViewModel.findChatter())
+            notificationsViewModel.findChatter()
         } else {
             mBinding.hintRequireLogin.visibility = View.VISIBLE
             mBinding.chatBriefing.visibility = View.GONE

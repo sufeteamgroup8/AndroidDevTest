@@ -59,7 +59,7 @@ class OrderListAdapter(
         class OrderBriefingListener : View.OnClickListener {
             override fun onClick(v: View?) {
                 val intent = Intent(v?.context, OrderDetailActivity::class.java)
-                intent.putExtra("order_id", v?.tag as Int)
+                intent.putExtra(OrderDetailActivity.ARG_ORDER_ID, v?.tag as Int)
                 v.context.startActivity(intent)
             }
         }

@@ -8,19 +8,13 @@ import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
 
 class DashboardViewModel : ViewModel() {
-    private val mText: MutableLiveData<String?> = MutableLiveData()
 
     private val mData: MutableLiveData<ArrayList<OrderBriefing>> = MutableLiveData()
 
-    val text: LiveData<String?>
-        get() = mText
 
     val data: LiveData<ArrayList<OrderBriefing>>
         get() = mData
 
-    init {
-        mText.value = "This is dashboard fragment"
-    }
 
     fun updateData() {
         val result = OrderDataSource().searchOrder(null, null, null, null)
