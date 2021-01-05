@@ -1,18 +1,20 @@
 package com.systemvx.androiddevtest.data
 
 import com.alibaba.fastjson.JSON
+import com.systemvx.androiddevtest.data.model.CoinTrans
 import com.systemvx.androiddevtest.utils.CustomRestfulError
 import com.systemvx.androiddevtest.utils.HttpUtil
 
 class coinDataSource {
-    fun viewCoin(UserId: Int): Result<Boolean> {
+    fun viewCoin(UserId: Int): Result<ArrayList<CoinTrans>> {
         val params = HashMap<String, String>()
 
         params["accountID"] = UserId.toString()
         return try {
             val result = JSON.parseObject(HttpUtil().postRequest("/Coin/View", params))
             if (result.getBoolean("success")) {
-                Result.Success(true)
+                val list =JSON.parseArray(result["payload"].toString(),CoinTrans::class.java) as ArrayList
+                Result.Success(list)
             } else {
                 Result.Error(CustomRestfulError(result.getString("error")))
             }

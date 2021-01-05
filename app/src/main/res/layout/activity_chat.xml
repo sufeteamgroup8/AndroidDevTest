@@ -19,7 +19,7 @@
             android:id="@+id/chat_header_wrapper"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colo_blue"
+            android:background="@color/colo_yellow"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
