@@ -61,7 +61,7 @@ class OrderBrowsingAdapter(private val mType: String, val context: Context, val 
                 LayoutInflater.from(context),
                 R.layout.order_briefing_item,
                 parent, false)
-        setupButtons(binding, viewType)
+        //setupButtons(binding, viewType)
         return OrderBrowsingVHolder(binding.root, viewType, binding)
 
     }
@@ -88,6 +88,7 @@ class OrderBrowsingAdapter(private val mType: String, val context: Context, val 
         val btn = Button(context)
         btn.tag = tag
         btn.text = text
+        btn.id
         btn.setOnClickListener(listener)
         return btn
     }

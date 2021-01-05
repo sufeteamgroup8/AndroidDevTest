@@ -1,6 +1,7 @@
 package com.systemvx.androiddevtest.data.model
 
 import com.systemvx.androiddevtest.data.model.helperdata.TaskTypeMap
+import java.io.Serializable
 import java.sql.Date
 
 data class OrderDetail(
@@ -15,6 +16,6 @@ data class OrderDetail(
         val address: Int,
         val mainText: String,
 
-        val pubTime: Date? = null,
-        val deadline: Date? = null,
-)
+        val pubTime: Date,
+        val deadline: Date,
+) : Serializable

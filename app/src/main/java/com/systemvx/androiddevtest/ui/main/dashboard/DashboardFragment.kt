@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.ui.main.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.FragmentDashboardBinding
+import com.systemvx.androiddevtest.ui.search.SearchActivity
 
 class DashboardFragment : Fragment() {
 
@@ -26,7 +28,7 @@ class DashboardFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         //获取布局
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_dashboard, container, false)
         //绑定数据类
@@ -39,6 +41,10 @@ class DashboardFragment : Fragment() {
             mAdapter.updateData(it)
         })
         dashboardViewModel.updateData()
+
+        mBinding.btnSearch.setOnClickListener {
+            requireContext().startActivity(Intent(this.requireContext(), SearchActivity::class.java))
+        }
         return mBinding.root
     }
 

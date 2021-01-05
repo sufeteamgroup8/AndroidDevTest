@@ -89,3 +89,12 @@ data class FullOrderData(
         val publisherPhone: String?,
         val receiverPhone: String?,
 )
+
+data class CreditShowCase(
+        val orderID: Int?,
+        val time: Date,
+        val reason: String,
+        val amount: Int,
+) {
+    fun getTimeStr(): String = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(time)
+}
