@@ -136,6 +136,7 @@
                     app:layout_constraintStart_toEndOf="@id/orderDetail_deadlineFull"
                     app:layout_constraintTop_toTopOf="@id/orderDetail_deadline_icon" />
 
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
@@ -149,6 +150,45 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="MissingConstraints">
+            <TextView
+                android:id="@+id/tv_order_type_button"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="123"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/color_button"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/tv_order_type_button1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="123"
+                android:gravity="center"
+                android:padding="12dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@color/color_button"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_16"
+
+                tools:ignore="MissingConstraints" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
