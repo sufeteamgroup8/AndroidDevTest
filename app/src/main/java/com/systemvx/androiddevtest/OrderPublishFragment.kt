@@ -6,25 +6,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.FragmentOrderPublishBinding
 import com.systemvx.androiddevtest.ui.main.MainActivity
 import com.systemvx.androiddevtest.utils.DialogUtil
-
 import com.systemvx.androiddevtest.utils.HttpUtil
 import org.json.JSONArray
 import java.util.*
-import kotlin.jvm.Throws
 
 class OrderPublishFragment : Fragment() {
     //定义文本框
     private lateinit var mBinding: FragmentOrderPublishBinding
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+            inflater: LayoutInflater,
+            container: ViewGroup?, savedInstanceState: Bundle?,
+    ): View? {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_publish, container, false)
         //获取界面文本框
         val url = HttpUtil.BASE_URL + "kinds"
@@ -34,7 +32,7 @@ class OrderPublishFragment : Fragment() {
         } catch (el: Exception) {
             el.printStackTrace()
         }
-        mBinding.orderCancel.setOnClickListener( View.OnClickListener()
+        mBinding.orderCancel.setOnClickListener(View.OnClickListener()
         {
             val intent = Intent(this.context, MainActivity::class.java)
             this.requireContext().startActivity(intent)

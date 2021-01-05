@@ -7,17 +7,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 public abstract class AbsFragmentActivity extends FragmentActivity {
-    public static final int ROOT_CONTAINER_ID=0x90001;
+    public static final int ROOT_CONTAINER_ID = 0x90001;
+
     protected abstract Fragment getFragment();
+
     @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LinearLayout layout= new LinearLayout(this);
+        LinearLayout layout = new LinearLayout(this);
         setContentView(layout);
         layout.setId(ROOT_CONTAINER_ID);
         getSupportFragmentManager().beginTransaction()
-                .replace(ROOT_CONTAINER_ID,getFragment())
+                .replace(ROOT_CONTAINER_ID, getFragment())
                 .commit();
     }
 }

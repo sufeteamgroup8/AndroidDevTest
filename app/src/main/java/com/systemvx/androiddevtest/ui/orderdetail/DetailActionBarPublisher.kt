@@ -4,61 +4,55 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.databinding.FragmentDetailActionBarBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment() {
+    private lateinit var mBind: FragmentDetailActionBarBinding
+
+    private lateinit var orderSetting: ArrayList<ButtonSetting>
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailActionBarPublisher.newInstance] factory method to
- * create an instance of this fragment.
- */
-class DetailActionBarPublisher : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(Companion.ARG_PARAM1)
-            param2 = it.getString(Companion.ARG_PARAM2)
-        }
+    fun init() {
+        orderSetting = ArrayList()
+        orderSetting.add(0, ButtonSetting(
+                "", View.INVISIBLE, "",
+                "", View.INVISIBLE, "",
+                "", View.INVISIBLE, ""))
+        orderSetting.add(1, ButtonSetting(
+                "修改", View.VISIBLE, "edit",
+                "", View.INVISIBLE, "",
+                "取消", View.VISIBLE, "cancel",
+        ))
+        orderSetting.add(2)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?,
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_action_bar_publisher, container, false)
+        mBind = DataBindingUtil.inflate(inflater,
+                R.layout.fragment_detail_action_bar,
+                container, false)
+
+
+        return mBind.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun setUpButtons() {
 
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailActionBarPublisher.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-                DetailActionBarPublisher().apply {
-                    arguments = Bundle().apply {
-                        putString(Companion.ARG_PARAM1, param1)
-                        putString(Companion.ARG_PARAM2, param2)
-                    }
+    inner class DetailActionListener : View.OnClickListener {
+        override fun onClick(v: View?) {
+            when (v) {
+                mBind.btnLeft {
+
                 }
-
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
+            }
+        }
     }
 }

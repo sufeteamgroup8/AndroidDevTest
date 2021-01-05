@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-
 import android.widget.Toast;
 
 import com.systemvx.androiddevtest.R;
@@ -38,7 +36,7 @@ public class complaintActivity extends Activity {
         radiogroup = findViewById(R.id.radio_group);
         Button mCancelButton=findViewById(R.id.complaintCancel);
         mCancelButton.setOnClickListener(v -> {
-            Intent intent =new Intent(complaintActivity.this, OrderDetailActivity.class);
+            Intent intent = new Intent(this, OrderDetailActivity.class);
             startActivity(intent);
         });
 
