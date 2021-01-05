@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON
 import com.systemvx.androiddevtest.utils.CustomRestfulError
 import com.systemvx.androiddevtest.utils.HttpUtil
 
-class complaintDataSource {
+class ComplaintDataSource {
 
-    fun sendComplaint(senderID: Int, receiverID: Int, orderID: Int, message: String, ): Result<Boolean> {
+    fun sendComplaint(senderID: Int, receiverID: Int, orderID: Int, message: String): Result<Boolean> {
         val params = HashMap<String, String>()
         params["senderID"] = senderID.toString()
         params["receiverID"] = receiverID.toString()

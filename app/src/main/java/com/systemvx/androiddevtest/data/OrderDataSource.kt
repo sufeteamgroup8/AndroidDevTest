@@ -1,8 +1,11 @@
 package com.systemvx.androiddevtest.data
 
+import android.util.Log
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
 import com.systemvx.androiddevtest.ProjectSettings
+import com.systemvx.androiddevtest.data.model.OrderDetail
+import com.systemvx.androiddevtest.utils.CustomRestfulError
 import com.systemvx.androiddevtest.utils.HttpUtil
 import java.text.SimpleDateFormat
 import java.util.*
@@ -110,30 +113,32 @@ class OrderDataSource {
             }
         }
     }
+
     private fun getTypeStr(typeCode: Int): String {
         TODO()
     }
-     fun getOrderState(id:String):Result<ArrayList<OrderStateBean>>{
+
+    fun getOrderState(id: String): Result<ArrayList<OrderStateBean>> {
         val params = HashMap<String, String>()
         try {
             val response = JSON.parse(HttpUtil().postRequest("TODO()", params)) as JSONObject
-            return when (response.getBoolean("success")){
-                true->{
+            return when (response.getBoolean("success")) {
+                true -> {
                     val result = ArrayList<OrderStateBean>()
                     val listJson = response.getJSONArray("orderState")
-                    for (state in listJson){
-                       val tem = state as JSONObject
+                    for (state in listJson) {
+                        val tem = state as JSONObject
                         val orderStateBean = OrderStateBean()
                         orderStateBean.id = tem.getString("id")
                         orderStateBean.orderstate = tem.getString("orderstate")
                     }
                     Result.Success(result)
                 }
-                false ->{
+                false -> {
                     Result.Error(Exception(response.getString("error")))
                 }
             }
-        }catch (e:java.lang.Exception){
+        } catch (e: java.lang.Exception) {
             return Result.Error(Exception("internal error"))
         }
 
@@ -141,5 +146,51 @@ class OrderDataSource {
 
     private fun getAddressStr(addressCode: Int): String {
         TODO("Not yet implemented")
+    }
+
+    fun withdrawOrder(orderID: Int): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    fun changeOrderToState(orderID: Int, state: Int): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    fun completeOrder(orderID: Int): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    fun pushForwardTask(orderID: Int): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    fun abortOrder(orderID: Int): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    fun acceptOrder(orderID: Int): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
+
+    fun getOrderFullData(orderID: Int): Result<OrderDetail> {
+        val params = HashMap<String, String>()
+        return try {
+            params["OrderID"] = orderID.toString()
+            val result = JSON.parseObject(HttpUtil().postRequest("/Orders/getDetail", params))
+            if (result.getBoolean("success")) {
+                val detail = JSON.parseObject(result["payload"].toString(), OrderDetail::class.java)
+                Result.Success(detail)
+            } else {
+                Result.Error(CustomRestfulError())
+            }
+
+        } catch (e: Exception) {
+            Log.d(TAG, "getOrderFullData: Error")
+            Result.Error(CustomRestfulError("parseError"))
+        }
+    }
+
+    companion object {
+        const val TAG = "OrderDataSource"
     }
 }

@@ -1,6 +1,5 @@
 package com.systemvx.androiddevtest.ui.orderdetail
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -44,6 +43,7 @@ class OrderDetailActivity : AppCompatActivity() {
             //cancelProgressBar
             netLoadProgress.dismiss()
         })
+
 
     }
 }

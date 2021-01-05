@@ -2,7 +2,7 @@ package com.systemvx.androiddevtest.ui.payment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.systemvx.androiddevtest.data.coinDataSource
+import com.systemvx.androiddevtest.data.CoinDataSource
 import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.data.model.CoinTrans
 
@@ -13,7 +13,7 @@ class CoinManageViewModel : ViewModel() {
 
     fun getCoinTrans(accountID: Int) {
         Thread {
-            when (val result = coinDataSource().viewCoin(accountID)) {
+            when (val result = CoinDataSource().viewCoin(accountID)) {
                 is Result.Success -> {
                     coinData = result.data
                     netResult.postValue(true)

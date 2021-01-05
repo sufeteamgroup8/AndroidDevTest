@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class complaintProgress extends AppCompatActivity {
+public class ComplaintProgress extends AppCompatActivity {
     List<LogisticsData> logisticsDatas;
 
     @Override
@@ -34,7 +34,7 @@ public class complaintProgress extends AppCompatActivity {
         logisticsDatas.add(new LogisticsData().setTime("2016-6-28 15:13:02").setContext("【北京鸿运良乡站】的【010058.269】正在派件"));
         logisticsDatas.add(new LogisticsData().setTime("2016-6-28 15:13:02").setContext("【北京鸿运良乡站】的【010058.269】正在派件"));
 
-        NodeProgressView nodeProgressView = (NodeProgressView) findViewById(R.id.npv_NodeProgressView);
+        NodeProgressView nodeProgressView = findViewById(R.id.npv_NodeProgressView);
         nodeProgressView.setNodeProgressAdapter(new NodeProgressAdapter() {
 
             @Override

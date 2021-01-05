@@ -17,12 +17,14 @@ import com.systemvx.androiddevtest.utils.HttpUtil;
 
 import java.util.HashMap;
 
-public class complaintActivity extends Activity {
+public class ComplaintActivity extends Activity {
+    public static final String ARG_ORDER_ID = "id";
+
     private EditText mFeedBackEditText;
     private RadioGroup radiogroup;
     private String text;
-    RadioButton radio1 =  findViewById(R.id.radiobutton1);
-    RadioButton radio2 =  findViewById(R.id.radiobutton2);
+    RadioButton radio1 = findViewById(R.id.radiobutton1);
+    RadioButton radio2 = findViewById(R.id.radiobutton2);
     RadioButton radio3 = findViewById(R.id.radiobutton3);
     RadioButton radio4 = findViewById(R.id.radiobutton4);
 

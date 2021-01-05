@@ -109,18 +109,6 @@
                         app:drawableTint="@color/colo_blue"
                         app:layout_constraintTop_toBottomOf="@id/orderDetail_publisher" />
 
-                <ImageView
-                    android:id="@+id/orderDetail_deadline_icon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_baseline_access_time_24"
-                    app:layout_constraintEnd_toEndOf="@id/orderDetail_address_icon"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/orderDetail_address_icon"
-                    app:tint="@color/colo_blue" />
 
                     <TextView
                         android:id="@+id/orderDetail_deadlineFull"
@@ -191,9 +179,8 @@
         </ScrollView>
 
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/orderDetail_action_container"
-            android:name="com.systemvx.androiddevtest.ui.orderdetail.DetailActionBarPublisher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
