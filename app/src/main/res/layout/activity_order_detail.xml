@@ -1,144 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.orderdetail.OrderDetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:id="@+id/topBar_bac"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.systemvx.androiddevtest.ui.orderdetail.OrderDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/topNavBar_size"
-        android:background="@color/colo_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        tools:context=".ui.orderdetail.OrderDetailActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/orderDetail_action_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topBar_bac">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <View
+            android:id="@+id/topBar_bac"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/topNavBar_size"
+            android:background="@color/colo_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/orderDetail_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="@dimen/text_margin"
-                android:paddingEnd="@dimen/text_margin"
-                android:text="@string/test_standard"
-                android:textSize="@dimen/text_huge"
-                app:layout_constraintEnd_toStartOf="@id/orderDetail_price"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/orderDetail_action_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topBar_bac">
 
-            <TextView
-                android:id="@+id/orderDetail_mainText"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/shadow_grey"
-                android:minHeight="100dp"
-                android:padding="@dimen/text_margin"
-                android:text="\n2\n\n4\n\n6\n\n8\n\n10\n\n12\n\n14\n\n16\n\n18\n\n20\n\n22\n\n24"
-                android:textSize="@dimen/text_medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/orderDetail_title" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/orderDetail_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/text_margin"
-                android:paddingRight="@dimen/text_margin"
-                android:text="￥5.55"
-                android:textColor="@color/colo_red"
-                android:textSize="@dimen/text_huge"
-                app:layout_constraintBottom_toBottomOf="@id/orderDetail_title"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/orderDetail_title"
-                app:layout_constraintTop_toTopOf="@id/orderDetail_title" />
+                <TextView
+                    android:id="@+id/orderDetail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/text_margin"
+                    android:paddingEnd="@dimen/text_margin"
+                    android:text="@{viewModel.orderdetail.title}"
+                    android:textSize="@dimen/text_huge"
+                    app:layout_constraintEnd_toStartOf="@id/orderDetail_price"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/orderDetail_address_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:padding="8dp"
-                android:src="@android:drawable/ic_dialog_map"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/orderDetail_mainText"
-                app:tint="@color/colo_blue" />
+                <TextView
+                    android:id="@+id/orderDetail_mainText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/shadow_grey"
+                    android:minHeight="100dp"
+                    android:padding="@dimen/text_margin"
+                    android:text="@{viewModel.mainTextStr}"
+                    android:textSize="@dimen/text_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/orderDetail_title" />
 
-            <TextView
-                android:id="@+id/orderDetail_addressFull"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="address"
-                android:textSize="@dimen/text_medium"
-                app:layout_constraintBottom_toBottomOf="@id/orderDetail_address_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/orderDetail_address_icon"
-                app:layout_constraintTop_toTopOf="@id/orderDetail_address_icon" />
+                <TextView
+                    android:id="@+id/orderDetail_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/text_margin"
+                    android:paddingRight="@dimen/text_margin"
+                    android:text="@{viewModel.priceStr}"
+                    android:textColor="@color/colo_red"
+                    android:textSize="@dimen/text_huge"
+                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/orderDetail_title"
+                    app:layout_constraintTop_toTopOf="@id/orderDetail_title" />
 
-            <ImageView
-                android:id="@+id/orderDetail_deadline_icon"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:padding="8dp"
-                android:src="@drawable/ic_baseline_access_time_24"
-                app:layout_constraintEnd_toEndOf="@id/orderDetail_address_icon"
-                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/orderDetail_address_icon"
-                app:tint="@color/colo_blue" />
+                <ImageView
+                    android:id="@+id/orderDetail_address_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:padding="8dp"
+                    android:src="@android:drawable/ic_dialog_map"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/orderDetail_mainText"
+                    app:tint="@color/colo_blue" />
 
-            <TextView
-                android:id="@+id/orderDetail_deadlineFull"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="deadline"
-                android:textSize="@dimen/text_medium"
-                app:layout_constraintBottom_toBottomOf="@id/orderDetail_deadline_icon"
-                app:layout_constraintEnd_toStartOf="@id/orderDetail_deadline_countDown"
-                app:layout_constraintStart_toEndOf="@id/orderDetail_deadline_icon"
-                app:layout_constraintTop_toTopOf="@id/orderDetail_deadline_icon" />
+                <TextView
+                    android:id="@+id/orderDetail_addressFull"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="address"
+                    android:textSize="@dimen/text_medium"
+                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_address_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/orderDetail_address_icon"
+                    app:layout_constraintTop_toTopOf="@id/orderDetail_address_icon" />
+
+                <ImageView
+                    android:id="@+id/orderDetail_deadline_icon"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    app:layout_constraintEnd_toEndOf="@id/orderDetail_address_icon"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/orderDetail_address_icon"
+                    app:tint="@color/colo_blue" />
+
+                <TextView
+                    android:id="@+id/orderDetail_deadlineFull"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.deadLineStr}"
+                    android:textSize="@dimen/text_medium"
+                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_deadline_icon"
+                    app:layout_constraintEnd_toStartOf="@id/orderDetail_deadline_countDown"
+                    app:layout_constraintStart_toEndOf="@id/orderDetail_deadline_icon"
+                    app:layout_constraintTop_toTopOf="@id/orderDetail_deadline_icon" />
 
 
-            <TextView
-                android:id="@+id/orderDetail_deadline_countDown"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/text_margin"
-                android:layout_marginEnd="@dimen/text_margin"
-                android:text="countdown"
-                android:textSize="@dimen/text_medium"
-                app:layout_constraintBottom_toBottomOf="@id/orderDetail_deadline_icon"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/orderDetail_deadlineFull"
-                app:layout_constraintTop_toTopOf="@id/orderDetail_deadline_icon" />
+                <TextView
+                    android:id="@+id/orderDetail_deadline_countDown"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/text_margin"
+                    android:layout_marginEnd="@dimen/text_margin"
+                    android:text="countdown"
+                    android:textSize="@dimen/text_medium"
+                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_deadline_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/orderDetail_deadlineFull"
+                    app:layout_constraintTop_toTopOf="@id/orderDetail_deadline_icon" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
-    <fragment
-        android:id="@+id/orderDetail_action_container"
-        android:name="com.systemvx.androiddevtest.ui.orderdetail.DetailActionBarPublisher"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <fragment
+            android:id="@+id/orderDetail_action_container"
+            android:name="com.systemvx.androiddevtest.ui.orderdetail.DetailActionBarPublisher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

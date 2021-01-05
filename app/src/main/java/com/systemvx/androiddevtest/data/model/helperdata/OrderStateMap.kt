@@ -5,6 +5,6 @@ package com.systemvx.androiddevtest.data.model.helperdata
  *
  */
 data class OrderStateMap(
-        val id: Int?,
-        val text: String?,
+        val id: Int,
+        val text: String,
 )

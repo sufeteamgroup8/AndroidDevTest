@@ -1,5 +1,7 @@
 package com.systemvx.androiddevtest.utils
 
+import android.content.Context
+import android.widget.Toast
 import java.util.*
 
 class UtilStaticFunc {
@@ -11,6 +13,10 @@ class UtilStaticFunc {
                 result += (rand.nextInt(26) + 97).toChar()
             }
             return result
+        }
+
+        fun netWorkErrorToast(context: Context) {
+            Toast.makeText(context, "无法获取网络数据.请检查网络连接", Toast.LENGTH_LONG).show()
         }
     }
 }
