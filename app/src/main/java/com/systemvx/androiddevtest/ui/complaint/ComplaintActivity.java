@@ -33,10 +33,10 @@ public class ComplaintActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
-        mFeedBackEditText =  findViewById(R.id.feed_back_edit);
+        mFeedBackEditText = findViewById(R.id.feed_back_edit);
         Button mSendFeedBackButton = findViewById(R.id.feed_back_btn);
         radiogroup = findViewById(R.id.radio_group);
-        Button mCancelButton=findViewById(R.id.complaintCancel);
+        Button mCancelButton = findViewById(R.id.complaintCancel);
         mCancelButton.setOnClickListener(v -> {
             Intent intent = new Intent(this, OrderDetailActivity.class);
             startActivity(intent);
@@ -44,48 +44,40 @@ public class ComplaintActivity extends Activity {
 
 
         mSendFeedBackButton.setOnClickListener(v -> {
-            String content = mFeedBackEditText.getText().toString();
+                    String content = mFeedBackEditText.getText().toString();
 
-            if (kindValidate()) {
-                if (!TextUtils.isEmpty(content)) {
-                    try {
-                        addComplaint(text,content);
+                    if (kindValidate()) {
+                        if (!TextUtils.isEmpty(content)) {
+                            try {
+                                addComplaint(text, content);
 
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Toast.makeText(getApplicationContext(), "请输入内容！",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(), "请输入内容！",
-                            Toast.LENGTH_SHORT).show();
                 }
-            }
-
-
-        }
-
         );
     }
 
     private boolean kindValidate() {
-        int selected=radiogroup.getCheckedRadioButtonId();
-        if(selected==R.id.radiobutton1)
-        {
-            text=radio1.getText().toString();
+        int selected = radiogroup.getCheckedRadioButtonId();
+        if (selected == R.id.radiobutton1) {
+            text = radio1.getText().toString();
             return true;
-        }
-        else if(selected==R.id.radiobutton2) {
-            text=radio2.getText().toString();
+        } else if (selected == R.id.radiobutton2) {
+            text = radio2.getText().toString();
             return true;
-        }
-        else if (selected==R.id.radiobutton3){
-            text=radio3.getText().toString();
+        } else if (selected == R.id.radiobutton3) {
+            text = radio3.getText().toString();
             return true;
-        }
-        else if (selected==R.id.radiobutton4){
-            text=radio4.getText().toString();
+        } else if (selected == R.id.radiobutton4) {
+            text = radio4.getText().toString();
             return true;
-        }
-        else {
+        } else {
 
             return false;
         }

@@ -10,7 +10,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     data class LoginResult(
             val loginSuccess: Boolean? = null,
-            val registerSuccess: Boolean? = null
+            val registerSuccess: Boolean? = null,
     )
 
     private var _nameInput = MutableLiveData<String>("")
@@ -38,10 +38,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     fun isInputValid() = (isPasswordValid() && isUserNameValid())
 
     fun register() {
-        when (loginRepository.dataSource.register(_nameInput.value!!, _passwordInput.value!!, _stuNoInput.value!!)) {
-            is Result.Success -> _loginResult.postValue(LoginResult(null, true))
-            is Result.Error -> _loginResult.postValue(LoginResult(null, false))
-        }
+        Thread {
+            when (loginRepository.dataSource.register(_nameInput.value!!, _passwordInput.value!!, _stuNoInput.value!!)) {
+                is Result.Success -> _loginResult.postValue(LoginResult(null, true))
+                is Result.Error -> _loginResult.postValue(LoginResult(null, false))
+            }
+        }.start()
     }
 
     fun changeLoginParams(name: String?, password: String?, stuNo: String?) {

@@ -7,7 +7,7 @@ package com.systemvx.androiddevtest.data
  * 该类用于在内存中保存登录状态信息以及账户基本详情
  */
 
-class LoginRepository(val dataSource: LoginDataSource) {
+class LoginRepository(val dataSource: AccountDataSource) {
 
     companion object {
         // in-memory cache of the User object
