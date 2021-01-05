@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/id_switch_tab_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+            <RadioGroup
+                android:id="@+id/rg_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/tv_order_all"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="全部订单"
+                    android:textColor="#ff0000"
+                    android:button="@null"
+                    android:padding="3dp"
+                    android:textSize="15dip" />
+                <RadioButton
+                    android:id="@+id/tv_order_pay"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="待支付"
+                    android:button="@null"
+                    android:padding="3dp"
+                    android:textColor="#777777"
+                    android:textSize="15dip" />
+                <RadioButton
+                    android:id="@+id/tv_order_send"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="待发货"
+                    android:button="@null"
+                    android:padding="3dp"
+                    android:textColor="#777777"
+                    android:textSize="15dip" />
+                <RadioButton
+                    android:id="@+id/tv_order_get"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="待收货"
+                    android:padding="3dp"
+                    android:button="@null"
+                    android:textColor="#777777"
+                    android:textSize="15dip" />
+                <RadioButton
+                    android:id="@+id/tv_order_service"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="售后服务"
+                    android:padding="3dp"
+                    android:button="@null"
+                    android:textColor="#777777"
+                    android:textSize="15dip" />
+            </RadioGroup>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/mTabLineIv"
+            android:layout_width="200dp"
+            android:layout_height="5dp"
+            android:contentDescription="tab"
+            android:background="@android:color/holo_blue_bright">
+        </ImageView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+    </LinearLayout>
+
+    <com.systemvx.androiddevtest.ui.orderManagement.view.CustomViewPager
+        android:id="@+id/vp_order"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.systemvx.androiddevtest.ui.orderManagement.view.CustomViewPager>
+</LinearLayout>

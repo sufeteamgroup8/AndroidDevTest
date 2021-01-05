@@ -24,13 +24,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/orderDetail_action_container"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/topBar_bac">
+            app:layout_constraintTop_toBottomOf="@id/topBar_bac"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -139,16 +142,16 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-
         <fragment
             android:id="@+id/orderDetail_action_container"
             android:name="com.systemvx.androiddevtest.ui.orderdetail.DetailActionBarPublisher"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:layout_height="100dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:context=".ui.orderdetail.orderDetailFragment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

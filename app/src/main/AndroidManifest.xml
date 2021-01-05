@@ -12,10 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDevTest">
-        <activity android:name=".InfoManageActivity"></activity>
-        <activity android:name=".PayAndWithdrawActivity" />
-        <activity android:name=".CoinManageActivity" />
-
+        <activity
+            android:name=".ui.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
         <activity
             android:name=".ui.orderManagement.OrderManagementActivity"
             android:label="@string/title_activity_order_management"
@@ -25,7 +24,7 @@
             android:name=".ui.complaint.complaintActivity"
             android:label="@string/title_activity_complaint"
             android:theme="@style/Theme.AndroidDevTest.NoActionBar" />
-        <activity android:name=".ui.chat.ChatActivity" />
+        <activity android:name=".ui.chat.ChatActivity"></activity>
         <activity android:name=".ui.search.SearchActivity" />
         <activity android:name=".ui.orderdetail.OrderDetailActivity" />
         <activity android:name=".ui.main.MainActivity" />

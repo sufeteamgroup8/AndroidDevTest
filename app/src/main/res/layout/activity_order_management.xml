@@ -18,7 +18,7 @@
                 android:id="@+id/iv_person_alllist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/alllist"
+
                 android:layout_marginTop="5dp"
                 android:layout_centerInParent="true"/>
             <TextView
@@ -41,7 +41,6 @@
                 android:id="@+id/iv_person_waitpay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/send"
                 android:layout_marginTop="5dp"
                 android:layout_centerInParent="true"/>
             <TextView
@@ -64,7 +63,7 @@
                 android:id="@+id/iv_person_sendto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/sendto"
+
                 android:layout_marginTop="5dp"
                 android:layout_centerInParent="true" />
             <TextView
@@ -86,7 +85,6 @@
                 android:id="@+id/iv_person_wait"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/wait"
                 android:layout_marginTop="5dp"
                 android:layout_centerInParent="true"/>
             <TextView
@@ -111,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="5dp"
-                android:src="@mipmap/aftermarket"/>
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
