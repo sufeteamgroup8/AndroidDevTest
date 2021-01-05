@@ -18,10 +18,11 @@ class DashboardFragment : Fragment() {
     private lateinit var mBinding: FragmentDashboardBinding
 
     //订单列表的显示适配器,负责生成并管理所有列表里的项
-    private val mAdapter = OrderListAdapter(requireContext())
+    private lateinit var mAdapter: OrderListAdapter
 
     //数据交互实体
     private lateinit var dashboardViewModel: DashboardViewModel
+
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?, savedInstanceState: Bundle?,
@@ -31,6 +32,8 @@ class DashboardFragment : Fragment() {
         //绑定数据类
         dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
         //观测data的变动,data改变时执行:
+
+        mAdapter = OrderListAdapter(requireContext())
         dashboardViewModel.data.observe(this.requireActivity(), Observer {
             // 新的data注入
             mAdapter.updateData(it)
