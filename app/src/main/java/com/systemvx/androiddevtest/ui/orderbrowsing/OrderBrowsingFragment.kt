@@ -35,7 +35,7 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         mAdapter = OrderBrowsingAdapter(fragType!!, this.requireContext(), this)
         val bind = DataBindingUtil.inflate<FragmentOrderBrowsingBinding>(inflater, R.layout.fragment_order_browsing, container, false)
         rv = bind.mainRv
@@ -51,7 +51,7 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
     }
 
     companion object {
-        private const val FRAG_TYPE = "title"
+        private const val FRAG_TYPE = "fragType"
 
         /**
          * Use this factory method to create a new instance of
@@ -71,7 +71,7 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
 
     override fun onClick(v: View?) {
         when (v?.tag) {
-
+            //TODO
         }
     }
 }
