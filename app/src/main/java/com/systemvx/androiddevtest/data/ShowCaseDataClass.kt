@@ -14,6 +14,15 @@ data class UserStorage(
         val credit: Int = 0,
         val coin: Double = 0.0,
 )
+data class paymentBriefing(
+
+        val price: Double,
+        val type: String,
+) {
+    val priceStr: String
+        get() = "￥${DecimalFormat("0.00").format(price)}"
+    }
+
 
 data class OrderBriefing(
         val id: Int,
