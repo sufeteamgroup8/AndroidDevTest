@@ -12,21 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidDevTest">
-        <activity android:name=".ui.complaint.complaintProgress">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".InfoManageActivity"></activity>
-        <activity android:name=".ui.payment.PayAndWithdrawActivity" />
-        <activity android:name=".ui.payment.CoinManageActivity" />
-
-        <activity android:name=".ui.orderbrowsing.OrderBrowsingActivity"></activity>
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"></activity>
+        <activity
+            android:name=".ui.orderManagement.OrderManagementActivity"
+            android:label="@string/title_activity_order_management"
+            android:theme="@style/Theme.AndroidDevTest.NoActionBar" />
         <activity android:name=".ui.complaint.view.NodeProgress" />
         <activity
             android:name=".ui.complaint.complaintActivity"
@@ -35,8 +27,13 @@
         <activity android:name=".ui.chat.ChatActivity"></activity>
         <activity android:name=".ui.search.SearchActivity" />
         <activity android:name=".ui.orderdetail.OrderDetailActivity" />
-        <activity android:name=".ui.main.MainActivity">
+        <activity android:name=".ui.main.MainActivity" />
+        <activity android:name=".CommentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".ui.login.LoginActivity"

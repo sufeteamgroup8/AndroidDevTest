@@ -15,194 +15,217 @@
             android:background="#f5f6f7"
             android:orientation="vertical">
 
-            <RelativeLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="@color/white">
 
-            <TextView
-                android:id="@+id/tv_back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="返回"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:padding="5dp"
-                android:layout_centerInParent="true"
-                android:text="订单评价"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="12dp"
-            android:background="@drawable/shape_bg">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="wrap_content"
-                    android:text="订单编号"
-                    android:textColor="#666"
-                    android:textSize="15sp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="2021010213247758"
-                    android:textColor="#222222"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="wrap_content"
-                    android:text="商品名称"
-                    android:textColor="#666"
-                    android:textSize="15sp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="娃哈哈（一箱）"
-                    android:textColor="#222222"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="wrap_content"
-                    android:text="派送人"
-                    android:textColor="#666"
-                    android:textSize="15sp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="熊大"
-                    android:textColor="#222222"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="0.3"
-                    android:layout_height="wrap_content"
-                    android:text="联系方式"
-                    android:textColor="#666"
-                    android:textSize="15sp"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="13522775864"
-                    android:textColor="#222222"
-                    android:textSize="15sp"/>
-            </LinearLayout>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:padding="12dp"
-            android:background="@drawable/shape_bg">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="文字评价"
-                android:textSize="15sp"
-                android:textColor="@color/black"/>
-            <EditText
-                android:id="@+id/ed_evaluate"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:hint="请输入评价"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:background="@null"
-                android:gravity="left|top"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/shape_bg"
-            android:padding="12dp"
-            android:layout_margin="10dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="上传照片"
-                android:textSize="15sp"
-                android:textColor="@color/black"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_image"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10dp"
-            android:padding="12dp"
-            android:background="@drawable/shape_bg">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="星级评价"
-            android:textSize="15sp"
-            android:textColor="@color/black"/>
-        <RatingBar
-            android:id="@+id/rb_Star"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:isIndicator="true"
-            android:maxHeight="50dp"
-            android:numStars="5"
-            android:rating="2"
-            android:stepSize="0.5"
+                    android:id="@+id/tv_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="返回"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
 
-            />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="订单评价"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@drawable/shape_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="订单编号"
+                        android:textColor="#666"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2021010213247758"
+                        android:textColor="#222222"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="商品名称"
+                        android:textColor="#666"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="娃哈哈（一箱）"
+                        android:textColor="#222222"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="派送人"
+                        android:textColor="#666"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="熊大"
+                        android:textColor="#222222"
+                        android:textSize="15sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:text="联系方式"
+                        android:textColor="#666"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="13522775864"
+                        android:textColor="#222222"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/shape_bg"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="文字评价"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/ed_evaluate"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@null"
+                    android:gravity="left|top"
+                    android:hint="请输入评价"
+                    android:padding="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/shape_bg"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="上传照片"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/shape_bg"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="星级评价"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <RatingBar
+                    android:id="@+id/rb_Star"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:isIndicator="true"
+                    android:maxHeight="50dp"
+                    android:numStars="5"
+                    android:rating="2"
+                    android:stepSize="0.5"
+
+                    />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/but_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/style_round_corner_bg"
+                android:text="提交评价"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
         </LinearLayout>
-        <Button
-            android:id="@+id/but_submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="提交评价"
-            android:textColor="@color/white"
-            android:layout_margin="20dp"
-            android:textSize="15sp"
-            android:background="@drawable/style_round_corner_bg"/>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>
