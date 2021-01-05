@@ -7,7 +7,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.*
+import com.systemvx.androiddevtest.data.ChatDataSource
+import com.systemvx.androiddevtest.data.ChatShowCase
+import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.ActivityChatBinding
 import java.util.*
 
@@ -29,12 +31,12 @@ class ChatActivity : AppCompatActivity() {
 
         model.dataResult.observe(this, Observer {
             when (it) {
-                is Result.Success -> {
+                true -> {
                     mBinding.chatShowBox.layoutManager = LinearLayoutManager(this)
                     mBinding.chatShowBox.adapter = ChatMessageAdapter(this, model.chatHistory)
 
                 }
-                is Result.Error -> {
+                false -> {
                     mBinding.errorText.visibility = View.VISIBLE
                 }
             }
@@ -48,21 +50,16 @@ class ChatActivity : AppCompatActivity() {
         mBinding.btnSend.setOnClickListener(View.OnClickListener { this.sendMessage() })
 
 
-        //测试用
-        LoginRepository(LoginDataSource()).login("", "")
-        model.chatterNickname.postValue("F.A.T.H.E.R")
-
         model.findChatData(model.chatterID)
     }
 
     override fun onResume() {
         super.onResume()
-
         ChatDataSource.setToRead(model.chatHistory)
     }
 
 
-    fun sendMessage() {
+    private fun sendMessage() {
         if (!mBinding.textSend.text.toString().isNullOrBlank()) {
             val message = ChatShowCase.Message(
                     null,
@@ -73,11 +70,7 @@ class ChatActivity : AppCompatActivity() {
             )
             (mBinding.chatShowBox.adapter as ChatMessageAdapter).addMessage(message)
             mBinding.chatShowBox.smoothScrollToPosition(0)
-            try {
-                ChatDataSource.sendMessage(LoginRepository.user!!.id, model.chatterID, mBinding.textSend.text.toString())
-            } catch (e: Exception) {
-                TODO()
-            }
+            model.sendMessage(mBinding.textSend.text.toString())
         }
     }
 }

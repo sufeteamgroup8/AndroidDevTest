@@ -125,12 +125,21 @@ class ChatDataSource {
         /**
          * @throws Exception
          */
-        fun sendMessage(id: Int, chatterID: Int, message: String) {
-            val params = HashMap<String, String>()
-            params["senderID"] = id.toString()
-            params["receiverID"] = chatterID.toString()
-            params["message"] = message
-            HttpUtil().postRequest("/Chats/new", params)
+        fun sendMessage(id: Int, chatterID: Int, message: String): Result<Boolean> {
+            try {
+                val params = HashMap<String, String>()
+                params["senderID"] = id.toString()
+                params["receiverID"] = chatterID.toString()
+                params["message"] = message
+                val result = JSON.parseObject(HttpUtil().postRequest("/Chats/new", params))
+                return if (result.getBoolean("success")) {
+                    Result.Success(true)
+                } else {
+                    Result.Error(Exception(result.getString("error")))
+                }
+            } catch (e: java.lang.Exception) {
+                return Result.Error(CustomRestfulError())
+            }
         }
 
 
