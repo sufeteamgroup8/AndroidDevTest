@@ -14,6 +14,18 @@ data class UserStorage(
         val credit: Int = 0,
         val coin: Double = 0.0,
 )
+data class paymentBriefing(
+
+        val price: Double,
+        val type: String,
+        val time:Date,
+) {
+    val priceStr: String
+        get() = "￥${DecimalFormat("0.00").format(price)}"
+    val timeStr: String
+        get() = SimpleDateFormat("yy-M-dd HH:mm", Locale.CHINA).format(time).toString()
+    }
+
 
 data class OrderBriefing(
         val id: Int,
