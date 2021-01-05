@@ -31,7 +31,7 @@
             android:background="@drawable/style_round_corner_bg"
             android:backgroundTint="@color/white_shadow"
             android:drawableStart="@drawable/ic_search"
-            android:hint="search:"
+            android:hint="搜索:"
             android:imeOptions="actionSearch"
             android:padding="6dp"
             android:singleLine="true"
