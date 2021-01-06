@@ -10,6 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.FragmentOrderPublishBinding
+import java.text.DecimalFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class OrderPublishActivity : AppCompatActivity() {
     private lateinit var mBinding: FragmentOrderPublishBinding
@@ -33,7 +36,7 @@ class OrderPublishActivity : AppCompatActivity() {
             this.finish()
         }
         mBinding.orderPublish.setOnClickListener {
-            viewModel.publishOrder()
+            pubOrder()
         }
         mBinding.saveDraftBtn.setOnClickListener {
             viewModel.publishDraft()
@@ -54,6 +57,15 @@ class OrderPublishActivity : AppCompatActivity() {
         viewModel.pubResult.observe(this, {
             when (it) {
                 true -> initSpinners()
+                false -> {
+                }
+                null -> {
+                }
+            }
+        })
+        viewModel.detailResult.observe(this, {
+            when (it) {
+                true -> injectExistingOrder()
                 false -> {
                 }
                 null -> {
@@ -109,6 +121,16 @@ class OrderPublishActivity : AppCompatActivity() {
 
     private fun injectExistingOrder() {
         TODO()
+    }
+
+    private fun pubOrder() {
+
+        viewModel.publishOrder(
+                title = mBinding.orderTitle.text.toString(),
+                mainText = mBinding.orderContext.text.toString(),
+                price = DecimalFormat("#.00").format(mBinding.priceEdt.text.toString().toDouble()).toDouble(),
+                deadline = Date(), //TODO()
+        )
     }
 
     companion object {

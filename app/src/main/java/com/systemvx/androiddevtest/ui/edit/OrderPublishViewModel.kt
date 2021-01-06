@@ -13,6 +13,9 @@ import java.util.*
 
 class OrderPublishViewModel(val orderID: Int) : ViewModel() {
 
+    var addressPos = -1
+
+    var typePos = -1
     lateinit var orderDetail: OrderDetail
 
     lateinit var addressMap: ArrayList<AddressMap>
@@ -46,23 +49,23 @@ class OrderPublishViewModel(val orderID: Int) : ViewModel() {
                 val result =
                         when (orderID) {
                             -1 -> OrderDataSource().newOrder(
-                                    LoginRepository.user!!.id,
+                                    publisherID = LoginRepository.user!!.id,
                                     title = title,
                                     mainText = mainText,
-                                    taskType = 0,
+                                    taskType = typeMAp[typePos].first,
                                     price = price,
                                     deadline = deadline,
-                                    addressID = 0,
+                                    addressID = addressMap[addressPos].id,
                                     state = 1
                             )
                             else -> OrderDataSource().rePubOrder(
-                                    orderID,
+                                    orderID = orderID,
                                     title = title,
                                     mainText = mainText,
-                                    taskType = 0,
+                                    taskType = typeMAp[typePos].first,
                                     price = price,
                                     deadline = deadline,
-                                    addressID = 0,
+                                    addressID = addressMap[addressPos].id,
                                     requireModify = true,
                             )
                         }
