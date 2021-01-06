@@ -28,8 +28,9 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 android:text="取消"
-                android:textColor="@color/text_black"
-                android:textSize="16sp" />
+                android:background="@color/colo_blue"
+                android:textColor="@color/colo_white"
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/button_submit"
@@ -39,10 +40,10 @@
                 android:layout_centerInParent="true"
                 android:padding="5dp"
                 android:text="发布"
-                android:textColor="@color/text_main"
-                android:textSize="18sp"
+                android:textColor="@color/colo_white"
+                android:textSize="20sp"
                 android:textStyle="bold"
-                android:background="#DDDDDD" />
+                android:background="@color/colo_blue" />
 
             <TextView
                 android:id="@+id/button_1"
@@ -54,7 +55,9 @@
                 android:paddingEnd="15dp"
                 android:paddingBottom="5dp"
                 android:text="发布"
-                android:textSize="14sp" />
+                android:textSize="15sp"
+                android:background="@color/colo_blue"
+                android:textColor="@color/colo_white"/>
         </RelativeLayout>
 
         <LinearLayout
@@ -148,7 +151,7 @@
 
                     android:padding="5dp"
                     android:text="价格"
-                    android:textColor="@color/text_main"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <EditText
@@ -179,7 +182,7 @@
                     android:layout_marginStart="5dp"
                     android:padding="5dp"
                     android:text="截止时间"
-                    android:textColor="@color/text_main"
+                    android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <EditText

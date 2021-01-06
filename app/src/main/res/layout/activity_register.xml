@@ -9,7 +9,7 @@
         android:id="@+id/pathselect_title"
         android:layout_width="fill_parent"
         android:layout_height="46dip"
-        android:background="@color/colo_yellow"
+        android:background="@color/colo_blue"
         android:gravity="center_vertical"
         android:padding="0.0px">
 
@@ -28,7 +28,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="50dp"
@@ -52,7 +52,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/key"
             android:textSize="20sp"
@@ -74,7 +74,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/pardon_key"
             android:textSize="20sp"
@@ -96,7 +96,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/email"
             android:textSize="20sp"
@@ -121,9 +121,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="30sp"
-            android:background="@color/colo_yellow"
+            android:background="@color/colo_blue"
             android:layout_marginStart="150dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:text="@string/register"
             />
 
