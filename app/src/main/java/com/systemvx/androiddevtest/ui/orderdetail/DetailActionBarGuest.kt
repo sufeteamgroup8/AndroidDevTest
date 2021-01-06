@@ -11,19 +11,14 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import com.systemvx.androiddevtest.OrderPublishActivity
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
+import com.systemvx.androiddevtest.data.model.OrderDetail
 import com.systemvx.androiddevtest.databinding.FragmentDetailActionBarBinding
-import com.systemvx.androiddevtest.ui.chat.ChatActivity
-import com.systemvx.androiddevtest.ui.comment.CommentSendActivity
-import com.systemvx.androiddevtest.ui.complaint.ComplaintActivity
-import com.systemvx.androiddevtest.ui.complaint.ComplaintProgress
-import java.io.Serializable
 
-class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment() {
+class DetailActionBarGuest(val viewModel: OrderDetailViewModel) : Fragment() {
     private lateinit var mBind: FragmentDetailActionBarBinding
 
     private lateinit var orderSetting: ArrayList<ButtonSetting>
@@ -36,28 +31,28 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
                 "", "",
                 "", ""))
         orderSetting.add(1, ButtonSetting(
-                "修改", "edit",
+                "接单", "accept",
                 "", "",
-                "取消", "cancel",
+                "", "",
         ))
         orderSetting.add(2, ButtonSetting(
-                "聊一聊", "chat",
-                "申诉", "report",
-                "确认完成", "complete"
+                "", "",
+                "", "",
+                "", ""
         ))
         orderSetting.add(3, ButtonSetting(
-                "评价", "comment",
-                "申诉", "report",
+                "", "",
+                "", "r",
                 "", ""
         ))
         orderSetting.add(4, ButtonSetting(
-                "查看评价", "review",
-                "申诉", "report",
+                "", "",
+                "", "",
                 "", ""
         ))
 
         orderSetting.add(5, ButtonSetting(
-                "查看申诉状态", "R_state",
+                "", "",
                 "", "",
                 "", ""
         ))
@@ -107,19 +102,12 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
         out.observe(this.viewLifecycleOwner, {
             if (it.success) {
                 when (it.tag) {
-                    "edit" -> {
-                        val intent = Intent(context, OrderPublishActivity::class.java)
+                    "accept" -> {
+                        val intent = Intent(context, OrderDetail::class.java)
                         intent.putExtra("", viewModel.orderdetail.value!!.order.id)
+                        Toast.makeText(context, "接单成功!", Toast.LENGTH_LONG).show()
                         startActivity(intent)
-                    }
-                    "cancel" -> {
-                        Toast.makeText(context, "订单取消成功", Toast.LENGTH_SHORT).show()
                         this.requireActivity().finish()
-                    }
-                    "complete" -> {
-                        val intent = Intent(context, CommentSendActivity::class.java)
-                        intent.putExtra(CommentSendActivity.ARG_ORDER_DATA, viewModel.orderdetail as Serializable)
-                        startActivity(intent)
                     }
                 }
             } else {
@@ -134,54 +122,16 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
         override fun onClick(v: View?) {
             val orderID = viewModel.orderdetail.value!!.order.id
             when (v!!.tag) {
-                "edit" -> requireEdit(orderID)
-                "cancel" -> endOrder(orderID)
-                "report" -> {
-                    val intent = Intent(context, ComplaintActivity::class.java)
-                    intent.putExtra(ComplaintActivity.ARG_ORDER_ID, orderID)
-                    context.startActivity(intent)
-                }
-                "chat" -> {
-                    val intent = Intent(context, ChatActivity::class.java)
-                    intent.putExtra(ChatActivity.ARG_CHATTER_ID, viewModel.orderdetail.value!!.order.receiver!!.id)
-                    context.startActivity(intent)
-                }
-                "complete" -> {
-                    completeOrder(orderID)
-                }
-                "comment" -> {
-                    val intent = Intent(context, CommentSendActivity::class.java)
-                    intent.putExtra(CommentSendActivity.ARG_ORDER_DATA, viewModel.orderdetail as Serializable)
-                    context.startActivity(intent)
-                }
-                "review" -> {
-                    TODO()
-                }
-                "R_state" -> {
-                    val intent = Intent(context, ComplaintProgress::class.java)
-                    intent.putExtra(CommentSendActivity.ARG_ORDER_DATA, viewModel.orderdetail as Serializable)
-                    context.startActivity(intent)//TODO
-                }
+                "accept" -> acceptOrder(orderID)
             }
         }
     }
 
-    fun completeOrder(orderID: Int) {
-        Thread {
-            val response = OrderDataSource().completeOrder(orderID, LoginRepository.user!!.id)
-            if (response is Result.Success<*>) {
-                out.postValue(OutSetting(true, "complete"))
-            } else {
-                out.postValue(OutSetting(false, ""))
-            }
-        }.start()
-    }
 
-
-    fun requireEdit(orderID: Int) {
+    fun acceptOrder(orderID: Int) {
         Thread {
-            val response = OrderDataSource().changeOrderToState(orderID, 0)
-            if (response is Result.Success<*>) {
+            val response = OrderDataSource().acceptOrder(orderID, LoginRepository.user!!.id)
+            if (response is Result.Success) {
                 out.postValue(OutSetting(true, "edit"))
             } else {
                 out.postValue(OutSetting(false, ""))
@@ -189,14 +139,4 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
         }.start()
     }
 
-    fun endOrder(orderID: Int) {
-        Thread {
-            val response = OrderDataSource().changeOrderToState(orderID, 6)
-            if (response is Result.Success<*>) {
-                out.postValue(OutSetting(true, "cancel"))
-            } else {
-                out.postValue(OutSetting(false, ""))
-            }
-        }.start()
-    }
 }

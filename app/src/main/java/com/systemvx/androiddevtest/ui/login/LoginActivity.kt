@@ -94,9 +94,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun showRegisterStatus(registerSuccess: Boolean) {
-        when(registerSuccess){
-            true -> Toast.makeText(this,"成功提交申请",Toast.LENGTH_LONG).show()
-            false -> Toast.makeText(this,"提交失败",Toast.LENGTH_LONG).show()
+        when (registerSuccess) {
+            true -> {
+                Toast.makeText(this, "注册成功,正在登录", Toast.LENGTH_LONG).show()
+                loginViewModel.performLogin()
+            }
+            false -> Toast.makeText(this, "提交失败", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -109,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
             }
             View.VISIBLE -> {
                 loginViewModel.register()
-                Toast.makeText(this, "Reg", Toast.LENGTH_LONG)
+                Toast.makeText(this, "Reg", Toast.LENGTH_LONG).show()
             }
         }
     }

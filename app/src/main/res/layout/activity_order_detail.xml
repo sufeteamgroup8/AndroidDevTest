@@ -32,163 +32,161 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/topBar_bac">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/orderDetail_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/text_margin"
-                    android:paddingEnd="@dimen/text_margin"
-                    android:text="@{viewModel.orderdetail.title}"
-                    android:textSize="@dimen/text_huge"
-                    app:layout_constraintEnd_toStartOf="@id/orderDetail_price"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/orderDetail_mainText"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/wrapper_basic_info_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/shadow_grey"
-                    android:minHeight="100dp"
-                    android:padding="@dimen/text_margin"
-                    android:text="@{viewModel.mainTextStr}"
-                    android:textSize="@dimen/text_medium"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/orderDetail_title" />
+                    android:layout_marginStart="@dimen/half_margin"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:layout_marginEnd="@dimen/half_margin"
+                    android:background="@drawable/style_round_corner_bg"
+                    android:backgroundTint="@color/shadow_grey"
+                    android:padding="@dimen/half_margin">
 
-                <TextView
-                    android:id="@+id/orderDetail_price"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="@dimen/text_margin"
+                        android:paddingEnd="@dimen/text_margin"
+                        android:text="@{viewModel.orderdetail.title}"
+                        android:textSize="@dimen/text_huge"
+                        app:layout_constraintEnd_toStartOf="@id/orderDetail_price"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/mainText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="100dp"
+                        android:padding="@dimen/text_margin"
+                        android:text="@{`\t`+viewModel.orderdetail.mainText}"
+                        android:textSize="@dimen/text_medium"
+                        app:layout_constraintStart_toStartOf="@id/title"
+                        app:layout_constraintTop_toBottomOf="@id/title" />
+
+                    <TextView
+                        android:id="@+id/orderDetail_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/half_margin"
+                        android:paddingLeft="@dimen/text_margin"
+                        android:paddingRight="@dimen/text_margin"
+                        android:text="@{viewModel.priceStr}"
+                        android:textColor="@color/colo_red"
+                        android:textSize="@dimen/text_huge"
+                        app:layout_constraintBottom_toBottomOf="@id/title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/title"
+                        app:layout_constraintTop_toTopOf="@id/title" />
+
+                    <TextView
+
+                        android:id="@+id/orderDetail_publisher"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{`发布人:`+viewModel.orderdetail.order.publisher.nickname}"
+                        android:textSize="@dimen/text_medium"
+                        app:drawableStartCompat="@drawable/ic_zhanghao"
+                        app:drawableTint="@color/colo_blue"
+                        app:layout_constraintTop_toBottomOf="@id/mainText" />
+
+                    <TextView
+
+                        android:id="@+id/orderDetail_addressFull"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{`地点:`+viewModel.addressFull}"
+                        android:textSize="@dimen/text_medium"
+                        app:drawableStartCompat="@android:drawable/ic_dialog_map"
+                        app:drawableTint="@color/colo_blue"
+                        app:layout_constraintTop_toBottomOf="@id/orderDetail_publisher" />
+
+
+                    <TextView
+                        android:id="@+id/orderDetail_deadlineFull"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{`截止时间:`+viewModel.getDateStr(`yy-MM-dd HH:mm`,viewModel.orderdetail.deadline)}"
+                        android:textSize="@dimen/text_medium"
+                        app:drawableStartCompat="@drawable/ic_baseline_access_time_24"
+                        app:drawableTint="@color/colo_blue"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/orderDetail_addressFull" />
+
+
+                    <TextView
+                        android:id="@+id/orderDetail_deadline_countDown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/text_margin"
+                        android:layout_marginEnd="@dimen/text_margin"
+                        android:text="@{viewModel.countDownTime}"
+                        android:textSize="@dimen/text_medium"
+                        app:layout_constraintBottom_toBottomOf="@id/orderDetail_deadlineFull"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/orderDetail_deadlineFull"
+                        app:layout_constraintTop_toTopOf="@id/orderDetail_deadlineFull" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/wrapper_received_section"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/text_margin"
-                    android:paddingRight="@dimen/text_margin"
-                    android:text="@{viewModel.priceStr}"
-                    android:textColor="@color/colo_red"
-                    android:textSize="@dimen/text_huge"
-                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_title"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/orderDetail_title"
-                    app:layout_constraintTop_toTopOf="@id/orderDetail_title" />
+                    android:layout_marginStart="@dimen/half_margin"
+                    android:layout_marginTop="@dimen/text_margin"
+                    android:layout_marginEnd="@dimen/half_margin"
+                    android:background="@drawable/style_round_corner_bg"
+                    android:backgroundTint="@color/shadow_grey"
+                    android:orientation="vertical"
+                    android:padding="@dimen/half_margin"
+                    android:visibility="@{viewModel.isOrderReceived()}">
 
-                <ImageView
-                    android:id="@+id/orderDetail_address_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:padding="8dp"
-                    android:src="@android:drawable/ic_dialog_map"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/orderDetail_mainText"
-                    app:tint="@color/colo_blue" />
+                    <TextView
+                        android:id="@+id/receiver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{`承接人:`+viewModel.orderdetail.order.receiver.nickname}" />
 
-                <TextView
-                    android:id="@+id/orderDetail_addressFull"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="address"
-                    android:textSize="@dimen/text_medium"
-                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_address_icon"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/orderDetail_address_icon"
-                    app:layout_constraintTop_toTopOf="@id/orderDetail_address_icon" />
+                    <TextView
+                        android:id="@+id/receive_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{`承接时间:`+viewModel.getDateStr(`yy-MM-dd HH:mm:ss`,viewModel.orderdetail.order.receiveTime)}" />
 
-                <ImageView
-                    android:id="@+id/orderDetail_deadline_icon"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
-                    android:padding="8dp"
-                    android:src="@drawable/ic_baseline_access_time_24"
-                    app:layout_constraintEnd_toEndOf="@id/orderDetail_address_icon"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/orderDetail_address_icon"
-                    app:tint="@color/colo_blue" />
+                    <TextView
+                        android:id="@+id/task_State"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{`委托进度:`+viewModel.orderdetail.order.taskState}">
 
-                <TextView
-                    android:id="@+id/orderDetail_deadlineFull"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.deadLineStr}"
-                    android:textSize="@dimen/text_medium"
-                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_deadline_icon"
-                    app:layout_constraintEnd_toStartOf="@id/orderDetail_deadline_countDown"
-                    app:layout_constraintStart_toEndOf="@id/orderDetail_deadline_icon"
-                    app:layout_constraintTop_toTopOf="@id/orderDetail_deadline_icon" />
+                    </TextView>
 
 
-                <TextView
-                    android:id="@+id/orderDetail_deadline_countDown"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/text_margin"
-                    android:layout_marginEnd="@dimen/text_margin"
-                    android:text="countdown"
-                    android:textSize="@dimen/text_medium"
-                    app:layout_constraintBottom_toBottomOf="@id/orderDetail_deadline_icon"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/orderDetail_deadlineFull"
-                    app:layout_constraintTop_toTopOf="@id/orderDetail_deadline_icon" />
+                </LinearLayout>
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </ScrollView>
 
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/orderDetail_action_container"
-            android:name="com.systemvx.androiddevtest.ui.orderdetail.DetailActionBarPublisher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:ignore="MissingConstraints">
-            <TextView
-                android:id="@+id/tv_order_type_button"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="123"
-                android:gravity="center"
-                android:padding="12dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@color/color_button"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_16"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:ignore="MissingConstraints" />
-            <TextView
-                android:id="@+id/tv_order_type_button1"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="123"
-                android:gravity="center"
-                android:padding="12dp"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@color/color_button"
-                android:textColor="@color/white"
-                android:textSize="@dimen/sp_16"
-
-                tools:ignore="MissingConstraints" />
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

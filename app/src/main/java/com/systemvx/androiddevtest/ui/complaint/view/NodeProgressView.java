@@ -15,12 +15,7 @@ import com.systemvx.androiddevtest.R;
 
 import java.util.List;
 
-/**
- * User: Daidingkang(ddk19941017@Gmail.com)
- * Date: 2016-06-28
- * Time: 09:43
- * FIXME
- */
+
 public class NodeProgressView extends View {
 
     float width;

@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.LoginDataSource
+import com.systemvx.androiddevtest.data.AccountDataSource
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.ActivityOrderBrowsingBinding
 
@@ -52,7 +52,7 @@ class OrderBrowsingActivity : AppCompatActivity() {
             }
         }.attach()
 
-        LoginRepository(LoginDataSource()).login(",", "")
+        LoginRepository(AccountDataSource()).login(",", "")
         viewModel.updateData()
     }
 }

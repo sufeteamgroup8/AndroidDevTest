@@ -3,17 +3,18 @@ package com.systemvx.androiddevtest.data
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
 import com.systemvx.androiddevtest.ProjectSettings
+import com.systemvx.androiddevtest.data.model.Account
+import com.systemvx.androiddevtest.data.model.BasicDataSource
 import com.systemvx.androiddevtest.utils.HttpUtil
 
 /**
  * Class that handles authentication w/ login credentials and retrieves user information.
  */
-class LoginDataSource {
+class AccountDataSource : BasicDataSource() {
 
 
     fun login(username: String, password: String): Result<UserStorage> {
         when (ProjectSettings.netWorkDebug) {
-            // TODO: handle loggedInUser authentication
             true -> {
                 //返回一个假用户
                 return try {
@@ -74,23 +75,34 @@ class LoginDataSource {
         }
     }
 
-    fun register(username: String, password: String, studentNo: String): Result<Boolean> {
-        when (ProjectSettings.netWorkDebug) {
+    fun register(username: String, password: String, studentNo: String): Result<String> {
+        return when (ProjectSettings.netWorkDebug) {
             true -> {
-                return Result.Success(true)
+                Result.Success("")
             }
             false -> {
                 val data = HashMap<String, String>()
                 data["name"] = username
                 data["passwd"] = password
                 data["studentNo"] = studentNo
-                val response = JSON.parse(HttpUtil().postRequest("${HttpUtil.BASE_URL}/account/register", data)) as JSONObject
-                return when (response.getBoolean("success")) {
-                    true -> Result.Success(true)
-                    false -> Result.Error(java.lang.Exception(response.getString("error")))
-                }
+                getDataSingle("/account/register", data, String::class.java)
             }
         }
+    }
+
+    fun updateInfo(accountID: Int, phoneNo: String?, nickname: String?, signature: String?): Result<String> {
+        val data = HashMap<String, String>()
+        data["accountID"] = accountID.toString()
+        data["phoneNo"] = phoneNo.toString()
+        data["nickname"] = nickname.toString()
+        data["signature"] = signature.toString()
+        return getDataSingle("/account/updateInfo", data, String::class.java)
+    }
+
+    fun getAccount(accountID: Int): Result<Account> {
+        val data = HashMap<String, String>()
+        data["accountID"] = accountID.toString()
+        return getDataSingle("/account/get", data, Account::class.java)
     }
 
     fun logout() {

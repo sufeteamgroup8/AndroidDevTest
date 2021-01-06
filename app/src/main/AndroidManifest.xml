@@ -22,7 +22,7 @@
             android:theme="@style/Theme.AndroidDevTest.NoActionBar" />
         <activity android:name=".ui.complaint.view.NodeProgress" />
         <activity
-            android:name=".ui.complaint.complaintActivity"
+            android:name=".ui.complaint.ComplaintActivity"
             android:label="@string/title_activity_complaint"
             android:theme="@style/Theme.AndroidDevTest.NoActionBar" />
         <activity android:name=".ui.chat.ChatActivity" />

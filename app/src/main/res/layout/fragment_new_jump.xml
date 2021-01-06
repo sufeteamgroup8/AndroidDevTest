@@ -6,15 +6,15 @@
     tools:context=".ui.main.addorder.NewJump">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
         android:id="@+id/tv_start"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:textSize="50sp"
         android:background="@color/color_button"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="+"
-        android:textColor="@color/white"/>
+        android:text="新建任务"
+        android:textColor="@color/white" />
 
 </RelativeLayout>

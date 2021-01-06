@@ -1,8 +1,10 @@
-package com.systemvx.androiddevtest;
+package com.systemvx.androiddevtest.ui.payment;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.systemvx.androiddevtest.R;
 
 public class PayAndWithdrawActivity extends AppCompatActivity {
 

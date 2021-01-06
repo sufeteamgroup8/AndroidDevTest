@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:padding="5dp"
             android:text="@string/cancel"
-            android:textColor="@color/text_black"
+            android:textColor="@color/colo_white"
             android:textSize="18sp"
             app:layout_constraintEnd_toStartOf="@id/page_title"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -37,7 +37,7 @@
             android:text="@string/complaint"
             android:textColor="@color/text_main"
 
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/complaintCancel"
             app:layout_constraintTop_toTopOf="parent" />
@@ -47,7 +47,7 @@
 
     <TextView
         android:id="@+id/complaint_kind"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:ellipsize="end"
