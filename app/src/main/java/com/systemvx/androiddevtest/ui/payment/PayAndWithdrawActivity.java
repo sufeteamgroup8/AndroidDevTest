@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.ui.payment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.systemvx.androiddevtest.R;
+import com.systemvx.androiddevtest.ui.setting.SettingActivity;
 
 public class PayAndWithdrawActivity extends AppCompatActivity implements View.OnClickListener {
     private Handler handler = new Handler();
@@ -20,6 +22,8 @@ public class PayAndWithdrawActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_pay_and_withdraw);
         findViewById(R.id.toLogin1).setOnClickListener(this);
         findViewById(R.id.toLogin2).setOnClickListener(this);
+        findViewById(R.id.setting).setOnClickListener(this);
+        findViewById(R.id.tv_back).setOnClickListener(this);
         pbBar = findViewById(R.id.pb_bar);
     }
 
@@ -32,7 +36,6 @@ public class PayAndWithdrawActivity extends AppCompatActivity implements View.On
                     ToastUtils.showShort("充值成功");
                     pbBar.setVisibility(View.GONE);
                 }, 1500);
-
                 break;
             case R.id.toLogin2:
                 pbBar.setVisibility(View.VISIBLE);
@@ -40,7 +43,12 @@ public class PayAndWithdrawActivity extends AppCompatActivity implements View.On
                     pbBar.setVisibility(View.GONE);
                     ToastUtils.showShort("提现成功");
                 }, 1500);
-
+                break;
+            case R.id.setting:
+                startActivity(new Intent(this, SettingActivity.class));
+                break;
+            case R.id.tv_back:
+                finish();
                 break;
         }
     }

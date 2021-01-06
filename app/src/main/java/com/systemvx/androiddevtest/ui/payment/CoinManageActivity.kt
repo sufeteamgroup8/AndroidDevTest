@@ -29,5 +29,6 @@ class CoinManageActivity : AppCompatActivity() {
             startActivity(intent)
             //跳转到充值提现页面
         }
+        mBinding.tvBack.setOnClickListener { finish() }
     }
 }

@@ -1,6 +1,7 @@
 package com.systemvx.androiddevtest.ui.orderbrowsing
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.OrderBriefing
 import com.systemvx.androiddevtest.databinding.OrderBriefingItemBinding
+import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity
 
 class OrderBrowsingAdapter(private val mType: String, val context: Context, val listener: View.OnClickListener) : RecyclerView.Adapter<OrderBrowsingAdapter.OrderBrowsingVHolder>() {
 
@@ -62,13 +64,15 @@ class OrderBrowsingAdapter(private val mType: String, val context: Context, val 
                 R.layout.order_briefing_item,
                 parent, false)
         //setupButtons(binding, viewType)
+        binding.root.setOnClickListener {
+            context.startActivity(Intent(context, OrderDetailActivity::class.java))
+        }
         return OrderBrowsingVHolder(binding.root, viewType, binding)
 
     }
 
     override fun onBindViewHolder(holder: OrderBrowsingVHolder, position: Int) {
         holder.binding.model = mDataList[position]
-
     }
 
     private fun setupButtons(binding: OrderBriefingItemBinding, viewType: Int) {

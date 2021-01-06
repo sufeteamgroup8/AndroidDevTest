@@ -62,6 +62,7 @@ class OrderDetailActivity : AppCompatActivity() {
             }
         })
 
+        mBinding.tvBack.setOnClickListener { finish() }
 
     }
 }

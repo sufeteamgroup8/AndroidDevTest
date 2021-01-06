@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -23,6 +24,7 @@ public class ComplaintActivity extends Activity {
     private EditText mFeedBackEditText;
     private RadioGroup radiogroup;
     private String text;
+    private Button feed_back_btn;
     RadioButton radio1 = findViewById(R.id.radiobutton1);
     RadioButton radio2 = findViewById(R.id.radiobutton2);
     RadioButton radio3 = findViewById(R.id.radiobutton3);
@@ -38,10 +40,12 @@ public class ComplaintActivity extends Activity {
         radiogroup = findViewById(R.id.radio_group);
         Button mCancelButton = findViewById(R.id.complaintCancel);
         mCancelButton.setOnClickListener(v -> {
-            Intent intent = new Intent(this, OrderDetailActivity.class);
-            startActivity(intent);
-        });
 
+            //
+//            Intent intent = new Intent(this, OrderDetailActivity.class);
+//            startActivity(intent);
+            finish();
+        });
 
         mSendFeedBackButton.setOnClickListener(v -> {
                     String content = mFeedBackEditText.getText().toString();
@@ -89,7 +93,9 @@ public class ComplaintActivity extends Activity {
         map.put("complaint_reason", text);
         map.put("complaint_content", content);
         String url = HttpUtil.BASE_URL + "complaint";
-        new HttpUtil().postRequest(url, map);
+        String s = new HttpUtil().postRequest(url, map);
+        Toast.makeText(this, "提交成功", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
 }

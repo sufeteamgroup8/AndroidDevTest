@@ -1,15 +1,17 @@
 package com.systemvx.androiddevtest.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.systemvx.androiddevtest.orderClientActivity;
 
 public class DialogUtil {
-    public static void showDialog(Context ctx, String msg, boolean goHome)
+    public static void showDialog(Activity ctx, String msg, boolean goHome)
     {
         AlertDialog.Builder builder=new AlertDialog.Builder(ctx)
                 .setMessage(msg).setCancelable(false);
