@@ -77,15 +77,16 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleCompatible
-    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
     //noinspection GradleCompatible
-    implementation  'com.android.support:design:27.1.1'
+    implementation 'com.google.android.material:material:1.0.0'
     //noinspection GradleCompatible
-    implementation  'com.android.support:support-v4:27.1.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     //封装了RecyclerView自带的Adapter
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
     //    选择本地照片
     implementation ("com.github.LuckSiege.PictureSelector:picture_library:v2.5.6")
 //展示图片
     implementation 'com.github.bumptech.glide:glide:4.5.0'
+    implementation 'com.blankj:utilcodex:1.30.5'
 }
