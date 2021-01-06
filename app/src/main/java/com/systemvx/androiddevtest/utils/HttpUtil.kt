@@ -10,7 +10,7 @@ class HttpUtil {
     companion object {
         //安卓AVD虚拟机指定的宿主机回环地址
         const val BASE_URL = "http://10.0.2.2:8080"
-        var useAbsoluteURL = true
+        var useAbsoluteURL = false
     }
 
 

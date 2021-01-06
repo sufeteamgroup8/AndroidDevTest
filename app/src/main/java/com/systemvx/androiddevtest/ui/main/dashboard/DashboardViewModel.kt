@@ -17,7 +17,7 @@ class DashboardViewModel : ViewModel() {
 
 
     fun updateData() {
-        val result = OrderDataSource().searchOrder(null, null, null, null)
+        val result = OrderDataSource().searchOrder(null, null, null, null, null)
         if (result is Result.Success) {
             mData.value = result.data
         }

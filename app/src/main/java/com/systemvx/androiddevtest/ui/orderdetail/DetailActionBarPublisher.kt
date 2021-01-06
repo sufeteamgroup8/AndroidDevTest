@@ -19,8 +19,8 @@ import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.databinding.FragmentDetailActionBarBinding
 import com.systemvx.androiddevtest.ui.chat.ChatActivity
 import com.systemvx.androiddevtest.ui.comment.CommentSendActivity
-import com.systemvx.androiddevtest.ui.complaint.ComplaintActivity
 import com.systemvx.androiddevtest.ui.complaint.ComplaintProgress
+import com.systemvx.androiddevtest.ui.complaint.ComplaintSendActivity
 import java.io.Serializable
 
 class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment() {
@@ -137,8 +137,8 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
                 "edit" -> requireEdit(orderID)
                 "cancel" -> endOrder(orderID)
                 "report" -> {
-                    val intent = Intent(context, ComplaintActivity::class.java)
-                    intent.putExtra(ComplaintActivity.ARG_ORDER_ID, orderID)
+                    val intent = Intent(context, ComplaintSendActivity::class.java)
+                    intent.putExtra(ComplaintSendActivity.ARG_ORDER_ID, orderID)
                     context.startActivity(intent)
                 }
                 "chat" -> {

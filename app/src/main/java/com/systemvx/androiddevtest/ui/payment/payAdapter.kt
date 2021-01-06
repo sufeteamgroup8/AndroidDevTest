@@ -2,30 +2,26 @@ package com.systemvx.androiddevtest.ui.payment
 
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.OrderBriefing
-import com.systemvx.androiddevtest.data.paymentBriefing
-import com.systemvx.androiddevtest.databinding.OrderBriefingItemBinding
+import com.systemvx.androiddevtest.data.PaymentBriefing
 import com.systemvx.androiddevtest.databinding.PaymentItemBinding
-import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity
 
 
 class payAdapter(
         val context: Context,
 
-) :
+        ) :
         RecyclerView.Adapter<payAdapter.Companion.payBriefingViewHolder>() {
 
-    private val items: ArrayList<paymentBriefing> = ArrayList()
+    private val items: ArrayList<PaymentBriefing> = ArrayList()
 
 
-    fun updateData(data: ArrayList<paymentBriefing>) {
+    fun updateData(data: ArrayList<PaymentBriefing>) {
         this.items.clear()
         this.items.addAll(data)
         notifyDataSetChanged()

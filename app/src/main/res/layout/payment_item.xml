@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.systemvx.androiddevtest.data.paymentBriefing" />
+            type="com.systemvx.androiddevtest.data.PaymentBriefing" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/text_margin"
-            android:text="@{model.priceStr}"
+            android:text="@{model.timeStr}"
             android:textColor="@color/colo_red"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/paymentBriefing_briefing"

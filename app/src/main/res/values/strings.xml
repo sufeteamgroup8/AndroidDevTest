@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">AndroidDevTest</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
@@ -83,6 +83,7 @@
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="title_activity_order_m_n">orderMNActivity</string>
     <string name="title_activity_order">orderActivity</string>
+    <string name="hint_comment_message">说说想法</string>
 
 
 </resources>

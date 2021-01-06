@@ -9,13 +9,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.OrderBriefing
-import com.systemvx.androiddevtest.databinding.OrderBriefingItemBinding
+import com.systemvx.androiddevtest.databinding.ItemOrderBriefingBinding
 
 class OrderBrowsingAdapter(private val mType: String, val context: Context, val listener: View.OnClickListener) : RecyclerView.Adapter<OrderBrowsingAdapter.OrderBrowsingVHolder>() {
 
     private val mDataList = ArrayList<OrderBriefing>()
 
-    class OrderBrowsingVHolder(view: View, val viewType: Int, val binding: OrderBriefingItemBinding) : RecyclerView.ViewHolder(view)
+    class OrderBrowsingVHolder(view: View, val viewType: Int, val binding: ItemOrderBriefingBinding) : RecyclerView.ViewHolder(view)
 
     override fun getItemViewType(position: Int): Int {
         return when (mType) {
@@ -57,9 +57,9 @@ class OrderBrowsingAdapter(private val mType: String, val context: Context, val 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBrowsingVHolder {
-        val binding = DataBindingUtil.inflate<OrderBriefingItemBinding>(
+        val binding = DataBindingUtil.inflate<ItemOrderBriefingBinding>(
                 LayoutInflater.from(context),
-                R.layout.order_briefing_item,
+                R.layout.item_order_briefing,
                 parent, false)
         //setupButtons(binding, viewType)
         return OrderBrowsingVHolder(binding.root, viewType, binding)
@@ -71,7 +71,7 @@ class OrderBrowsingAdapter(private val mType: String, val context: Context, val 
 
     }
 
-    private fun setupButtons(binding: OrderBriefingItemBinding, viewType: Int) {
+    private fun setupButtons(binding: ItemOrderBriefingBinding, viewType: Int) {
         when (viewType) {
             TYPE_PUBLISHED -> {
                 binding.actionButtonHolder.addView(addButton("btnEdit", "编辑"))

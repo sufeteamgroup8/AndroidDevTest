@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/style_round_corner_bg"
+        android:backgroundTint="@color/shadow_grey"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
@@ -83,11 +85,11 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/actionButtonHolder"
-            app:layout_constraintTop_toBottomOf="@id/orderBriefing_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:orientation="horizontal"
-            android:gravity="end">
+            app:layout_constraintTop_toBottomOf="@id/orderBriefing_time">
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

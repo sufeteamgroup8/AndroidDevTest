@@ -13,9 +13,9 @@ class CoinManageViewModel : ViewModel() {
 
     fun getCoinTrans(accountID: Int) {
         Thread {
-            when (val result = CoinDataSource().viewCoin(accountID)) {
+            when (val result = CoinDataSource().viewCoinTrans(accountID)) {
                 is Result.Success -> {
-                    coinData = result.data
+                    coinData = result.data as ArrayList<CoinTrans>
                     netResult.postValue(true)
                 }
                 else -> {

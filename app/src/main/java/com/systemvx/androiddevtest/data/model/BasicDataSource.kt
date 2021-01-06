@@ -9,7 +9,7 @@ import java.util.*
 
 open class BasicDataSource {
 
-    protected fun <T> getDataSingle(url: String, params: HashMap<String, String>, clazz: Class<T> =): Result<T> {
+    protected fun <T> getDataSingle(url: String, params: HashMap<String, String>, clazz: Class<T>): Result<T> {
         return try {
             val response = JSON.parseObject(HttpUtil().postRequest("/account/updateInfo", params))
             when (response.getBoolean("success")) {
