@@ -16,9 +16,26 @@ class OrderPublishViewModel(val orderID: Int) : ViewModel() {
     var addressPos = -1
 
     var typePos = -1
+
     lateinit var orderDetail: OrderDetail
 
     lateinit var addressMap: ArrayList<AddressMap>
+
+    fun getListAddress(): List<String> {
+        val listAddress = ArrayList<String>()
+        for (i in addressMap) {
+            listAddress.add(i.text)
+        }
+        return listAddress
+    }
+
+    fun getListType(): ArrayList<String> {
+        val listType = ArrayList<String>()
+        for (i in typeMAp) {
+            listType.add(i.second)
+        }
+        return listType
+    }
 
     lateinit var typeMAp: List<Pair<Int, String>>
 
@@ -29,7 +46,8 @@ class OrderPublishViewModel(val orderID: Int) : ViewModel() {
     val paramResult = MutableLiveData<Boolean>()
 
 
-    fun fetchMapping{
+    //ok
+    fun fetchMapping() {
         Thread {
             try {
                 val address = MappingRepository().fetchAddressMap()
@@ -43,6 +61,7 @@ class OrderPublishViewModel(val orderID: Int) : ViewModel() {
         }.start()
     }
 
+    //ok
     fun publishOrder(title: String, mainText: String, price: Double, deadline: Date) {
         Thread {
             try {
@@ -79,12 +98,50 @@ class OrderPublishViewModel(val orderID: Int) : ViewModel() {
         }.start()
     }
 
-    fun publishDraft() {
-
+    //ok
+    fun publishDraft(title: String, mainText: String, price: Double, deadline: Date) {
+        Thread {
+            try {
+                val result =
+                        when (orderID) {
+                            -1 -> OrderDataSource().newOrder(
+                                    publisherID = LoginRepository.user!!.id,
+                                    title = title,
+                                    mainText = mainText,
+                                    taskType = typeMAp[typePos].first,
+                                    price = price,
+                                    deadline = deadline,
+                                    addressID = addressMap[addressPos].id,
+                                    state = 0
+                            )
+                            else -> OrderDataSource().updateDraft(
+                                    orderID = orderID,
+                                    title = title,
+                                    mainText = mainText,
+                                    taskType = typeMAp[typePos].first,
+                                    price = price,
+                                    deadline = deadline,
+                                    addressID = addressMap[addressPos].id
+                            )
+                        }
+                when (result) {
+                    is Result.Success -> pubResult.postValue(true)
+                    else -> pubResult.postValue(false)
+                }
+            } catch (e: Exception) {
+                pubResult.postValue(null)
+            }
+        }.start()
     }
 
+    //ok
     fun fetchOrderDetail() {
-
+        Thread {
+            when (OrderDataSource().getOrderFullData(orderID)) {
+                is Result.Success -> detailResult.postValue(true)
+                else -> detailResult.postValue(false)
+            }
+        }.start()
     }
 
     class OrderPublishViewModelFactory(val orderID: Int) : ViewModelProvider.Factory {

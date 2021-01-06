@@ -11,8 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.FragmentOrderPublishBinding
 import java.text.DecimalFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import java.text.SimpleDateFormat
 
 class OrderPublishActivity : AppCompatActivity() {
     private lateinit var mBinding: FragmentOrderPublishBinding
@@ -39,18 +38,18 @@ class OrderPublishActivity : AppCompatActivity() {
             pubOrder()
         }
         mBinding.saveDraftBtn.setOnClickListener {
-            viewModel.publishDraft()
+            pubDraft()
         }
 
 
         //异步事件
-        viewModel.pubResult.observe(this, {
+        viewModel.paramResult.observe(this, {
             when (it) {
                 true -> {
+                    initSpinners()
                 }
-                false -> {
-                }
-                null -> {
+                else -> {
+                    TODO()
                 }
             }
         })
@@ -66,9 +65,8 @@ class OrderPublishActivity : AppCompatActivity() {
         viewModel.detailResult.observe(this, {
             when (it) {
                 true -> injectExistingOrder()
-                false -> {
-                }
-                null -> {
+                else -> {
+                    TODO()
                 }
             }
         })
@@ -81,55 +79,67 @@ class OrderPublishActivity : AppCompatActivity() {
         }
     }
 
+
+    //ok
     private fun initSpinners() {
-        val listAddress = ArrayList<String>()
-        for (i in viewModel.addressMap) {
-            listAddress.add(i.text)
-        }
         val addressAdapter = ArrayAdapter<String>(this,
-                R.layout.spinner_item, listAddress)
+                R.layout.spinner_item, viewModel.getListAddress())
         mBinding.spinnerAddress.adapter = addressAdapter
         mBinding.spinnerAddress.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                TODO("Not yet implemented")
+                viewModel.addressPos = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                viewModel.addressPos = -1
             }
 
         }
-        val listType = ArrayList<String>()
-        for (i in viewModel.typeMAp) {
-            listType.add(i.second)
-        }
+
         val typeAdapter = ArrayAdapter<String>(this,
-                R.layout.spinner_item, listAddress)
+                R.layout.spinner_item, viewModel.getListType())
         mBinding.spinnerType.adapter = typeAdapter
         mBinding.spinnerType.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                TODO("Not yet implemented")
+                viewModel.typePos = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
+                viewModel.typePos = -1
             }
 
         }
     }
 
 
+    //ok
     private fun injectExistingOrder() {
-        TODO()
+        mBinding.orderTitle.setText(
+                viewModel.orderDetail.title)
+        mBinding.orderContext.setText(
+                viewModel.orderDetail.mainText)
+        mBinding.priceEdt.setText(
+                DecimalFormat("#.00").format(viewModel.orderDetail.price))
+        mBinding.spinnerAddress.setSelection(viewModel.orderDetail.address)
+        mBinding.spinnerType.setSelection(viewModel.getListType().indexOf(viewModel.orderDetail.missionType.text))
+        //TODO()
     }
 
     private fun pubOrder() {
-
         viewModel.publishOrder(
                 title = mBinding.orderTitle.text.toString(),
                 mainText = mBinding.orderContext.text.toString(),
                 price = DecimalFormat("#.00").format(mBinding.priceEdt.text.toString().toDouble()).toDouble(),
-                deadline = Date(), //TODO()
+                deadline = SimpleDateFormat("yyyyMMddHHmm").parse(mBinding.timeEdt.text.toString()), //TODO()
+        )
+    }
+
+    private fun pubDraft() {
+        viewModel.publishDraft(
+                title = mBinding.orderTitle.text.toString(),
+                mainText = mBinding.orderContext.text.toString(),
+                price = DecimalFormat("#.00").format(mBinding.priceEdt.text.toString().toDouble()).toDouble(),
+                deadline = SimpleDateFormat("yyyyMMddHHmm").parse(mBinding.timeEdt.text.toString()), //TODO()
         )
     }
 

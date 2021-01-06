@@ -9,6 +9,25 @@ import kotlin.collections.HashMap
 
 class OrderDataSource : BasicDataSource() {
 
+    fun updateDraft(
+            orderID: Int,
+            title: String,
+            mainText: String,
+            taskType: Int,
+            price: Double,
+            deadline: Date,
+            addressID: Int,
+    ): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["title"] = title
+        params["mainText"] = mainText
+        params["taskType"] = taskType.toString()
+        params["price"] = price.toString()
+        params["deadline"] = deadline.toString()
+        params["addressID"] = addressID.toString()
+        return getDataSingle("/order/redraft", params, String::class.java)
+    }
 
     fun newOrder(
             publisherID: Int,
