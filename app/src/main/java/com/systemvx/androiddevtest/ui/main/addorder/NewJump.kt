@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.systemvx.androiddevtest.OrderPublishActivity
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.ui.edit.OrderPublishActivity
 
 class NewJump : Fragment() {
 

@@ -16,8 +16,9 @@ class OrderDataSource : BasicDataSource() {
             mainText: String,
             taskType: Int,
             price: Double,
-            deadline: java.sql.Date,
+            deadline: Date,
             addressID: Int,
+            state: Int,
     ): Result<String> {
         val params = HashMap<String, String>()
         params["publisherID"] = publisherID.toString()
@@ -27,6 +28,7 @@ class OrderDataSource : BasicDataSource() {
         params["price"] = price.toString()
         params["deadline"] = deadline.toString()
         params["addressID"] = addressID.toString()
+        params["state"] = state.toString()
         return getDataSingle("/order/neworder", params, String::class.java)
     }
 

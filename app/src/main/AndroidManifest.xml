@@ -20,21 +20,26 @@
         <!--  OK    -->
         <activity android:name=".ui.comment.CommentSendActivity" />
         <!--    OK    -->
-        <activity android:name=".ui.complaint.ComplaintSendActivity">
+        <activity android:name=".ui.complaint.ComplaintSendActivity" />
+        <activity android:name=".ui.complaint.ComplaintProgress" />
+        <!--      OK  -->
+        <activity android:name=".ui.credit.ConfidentialActivity" />
+        <!--      OK  -->
+        <activity android:name=".ui.login.LoginActivity" />
+        <!--        -->
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.complaint.ComplaintProgress" />
-        <activity android:name=".ui.credit.ConfidentialActivity" />
-        <activity android:name=".ui.login.LoginActivity" />
-        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.orderbrowsing.OrderBrowsingActivity" />
         <activity android:name=".ui.orderdetail.OrderDetailActivity" />
+        <activity android:name=".ui.payment.CoinManageActivity" />
         <activity android:name=".ui.search.SearchActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
+        <activity android:name=".ui.edit.OrderPublishActivity" />
     </application>
 
 </manifest>

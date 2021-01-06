@@ -30,7 +30,6 @@ class MappingRepository {
         } catch (e: CustomRestfulError) {
             UtilStaticFunc.netWorkErrorToast(context)
         }
-
     }
 
     private fun initAddressMap() {
@@ -135,6 +134,14 @@ class MappingRepository {
             output = "${temp!!.text}|" + output
         } while (temp != null)
         return output
+    }
+
+    fun fetchAddressMap(): ArrayList<AddressMap> {
+        if (addressMapping == null) initAddressMap();return addressMapping!!
+    }
+
+    fun fetchTypeMap(): HashMap<Int, String> {
+        if (orderTypeMapping == null) initTaskTypeMap();return orderTypeMapping!!
     }
 
     fun getAddressID(addressDescription: String): Int? {

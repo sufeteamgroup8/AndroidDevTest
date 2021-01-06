@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import com.systemvx.androiddevtest.OrderPublishActivity
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
@@ -21,6 +20,7 @@ import com.systemvx.androiddevtest.ui.chat.ChatActivity
 import com.systemvx.androiddevtest.ui.comment.CommentSendActivity
 import com.systemvx.androiddevtest.ui.complaint.ComplaintProgress
 import com.systemvx.androiddevtest.ui.complaint.ComplaintSendActivity
+import com.systemvx.androiddevtest.ui.edit.OrderPublishActivity
 import java.io.Serializable
 
 class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment() {
