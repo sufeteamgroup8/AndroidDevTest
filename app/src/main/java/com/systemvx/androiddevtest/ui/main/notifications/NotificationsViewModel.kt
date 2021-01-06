@@ -18,9 +18,9 @@ class NotificationsViewModel : ViewModel() {
         Thread {
             val result: Result<ArrayList<ChatterInfo>> =
                     if (!ProjectSettings.netWorkDebug) {
-                        ChatDataSource.findChatters(LoginRepository.user!!.id)
+                        ChatDataSource().findChatters(LoginRepository.user!!.id)
                     } else {
-                        ChatDataSource.findChattersFake()
+                        ChatDataSource().findChattersFake()
                     }
             when (result) {
                 is Result.Success -> {

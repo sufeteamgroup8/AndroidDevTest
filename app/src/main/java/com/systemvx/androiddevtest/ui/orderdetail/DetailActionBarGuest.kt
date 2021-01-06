@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.data.model.OrderDetail
@@ -129,8 +130,8 @@ class DetailActionBarGuest(val viewModel: OrderDetailViewModel) : Fragment() {
 
     fun acceptOrder(orderID: Int) {
         Thread {
-            val response = OrderDataSource().acceptOrder(orderID)
-            if (response is Result.Success<*>) {
+            val response = OrderDataSource().acceptOrder(orderID, LoginRepository.user!!.id)
+            if (response is Result.Success) {
                 out.postValue(OutSetting(true, "edit"))
             } else {
                 out.postValue(OutSetting(false, ""))

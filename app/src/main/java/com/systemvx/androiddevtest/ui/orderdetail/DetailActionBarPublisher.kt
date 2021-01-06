@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.systemvx.androiddevtest.OrderPublishActivity
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.databinding.FragmentDetailActionBarBinding
@@ -167,7 +168,7 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
 
     fun completeOrder(orderID: Int) {
         Thread {
-            val response = OrderDataSource().completeOrder(orderID)
+            val response = OrderDataSource().completeOrder(orderID, LoginRepository.user!!.id)
             if (response is Result.Success<*>) {
                 out.postValue(OutSetting(true, "complete"))
             } else {

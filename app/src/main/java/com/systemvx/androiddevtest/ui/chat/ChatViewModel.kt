@@ -37,17 +37,17 @@ class ChatViewModel {
     private fun findChatData(chatterID: Int, lookUpDays: Int) {
         Thread {
             val result = if (ProjectSettings.netWorkDebug) {
-                ChatDataSource.findChatDataRand()
+                ChatDataSource().findChatDataRand()
             } else {
                 if (lookUpDays == 0) {
-                    ChatDataSource.findChatData(chatterID, null)
+                    ChatDataSource().findChatData(chatterID, null)
                 } else {
                     val calendar = Calendar.getInstance()
                     calendar.add(Calendar.DAY_OF_MONTH, -lookUpDays)
                     calendar.set(Calendar.SECOND, 0)
                     calendar.set(Calendar.HOUR_OF_DAY, 0)
                     val timeLeftBound: Date = calendar.time
-                    ChatDataSource.findChatData(chatterID, timeLeftBound)
+                    ChatDataSource().findChatData(chatterID, timeLeftBound)
                 }
             }
             if (result is Result.Success) {
@@ -68,7 +68,7 @@ class ChatViewModel {
 
     fun sendMessage(message: String) {
         Thread {
-            when (ChatDataSource.sendMessage(LoginRepository.user!!.id, chatterID, message)) {
+            when (ChatDataSource().sendMessage(LoginRepository.user!!.id, chatterID, message)) {
                 is Result.Success -> sendResult.postValue(true)
                 is Result.Error -> sendResult.postValue(false)
             }
