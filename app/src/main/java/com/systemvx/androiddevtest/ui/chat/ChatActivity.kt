@@ -55,7 +55,7 @@ class ChatActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        ChatDataSource.setToRead(model.chatHistory)
+        ChatDataSource().setToRead(model.chatHistory)
     }
 
 

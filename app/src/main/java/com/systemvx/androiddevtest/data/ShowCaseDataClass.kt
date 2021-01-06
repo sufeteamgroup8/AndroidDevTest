@@ -14,17 +14,17 @@ data class UserStorage(
         val credit: Int = 0,
         val coin: Double = 0.0,
 )
-data class paymentBriefing(
 
+data class PaymentBriefing(
         val price: Double,
         val type: String,
-        val time:Date,
+        val time: Date,
 ) {
     val priceStr: String
-        get() = "￥${DecimalFormat("0.00").format(price)}"
+        get() = "￥${DecimalFormat("#.00").format(price)}"
     val timeStr: String
         get() = SimpleDateFormat("yy-M-dd HH:mm", Locale.CHINA).format(time).toString()
-    }
+}
 
 
 data class OrderBriefing(
@@ -38,8 +38,7 @@ data class OrderBriefing(
         val state: Int,
 ) {
     val priceStr: String
-        get() = "￥${DecimalFormat("0.00").format(price)}"
-
+        get() = "￥${DecimalFormat("#.00").format(price)}"
     val deadlineStr: String
         get() = SimpleDateFormat("yy-M-dd HH:mm", Locale.CHINA).format(deadline).toString()
 
@@ -82,25 +81,6 @@ data class ChatterInfo(
         val lastMessage: String = "",
 )
 
-data class OrderTypeBean(var text: String, var isCheck: Boolean)
-
-data class FullOrderData(
-        val id: Int,
-        val detailID: Int,
-        val title: String,
-        val price: Double,
-        val mainText: String,
-        val addressID: Int,
-        val deadLine: Date?,
-        val state: Int,
-        val taskState: Int,
-        val publisherID: Int,
-        val receiverID: Int?,
-        val completeTime: Date?,
-        val receivedTime: Date?,
-        val publisherPhone: String?,
-        val receiverPhone: String?,
-)
 
 data class CreditShowCase(
         val orderID: Int?,

@@ -4,7 +4,7 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.systemvx.androiddevtest.data.MappingRepository
-import com.systemvx.androiddevtest.data.OrderDetailDataSource
+import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.data.model.OrderDetail
 import java.text.DecimalFormat
@@ -62,18 +62,18 @@ class OrderDetailViewModel : ViewModel() {
 
     val dataResult = MutableLiveData<Boolean>()
 
-    fun fetchOrderData(orderID: Int): Boolean {
-        return when (val result = OrderDetailDataSource().getOrderFullData(orderID)) {
-            is Result.Success -> {
-                orderdetail.postValue(result.data)
-                dataResult.postValue(true)
-                true
+    fun fetchOrderData(orderID: Int) {
+        Thread {
+            when (val result = OrderDataSource().getOrderFullData(orderID)) {
+                is Result.Success -> {
+                    orderdetail.postValue(result.data)
+                    dataResult.postValue(true)
+                }
+                is Result.Error -> {
+                    dataResult.postValue(false)
+                }
             }
-            is Result.Error -> {
-                dataResult.postValue(false)
-                false
-            }
-        }
+        }.start()
     }
 
 

@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="46dip"
         android:gravity="center_vertical"
-        android:background="@color/colo_blue"
+        android:background="@color/colo_yellow"
         android:padding="0.0px" >
 
         <Button

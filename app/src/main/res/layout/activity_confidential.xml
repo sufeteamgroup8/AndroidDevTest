@@ -1,347 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
 
+        <variable
+            name="model"
+            type="com.systemvx.androiddevtest.ui.credit.CreditViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <View
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            android:layout_height="200dp"
+            android:background="@color/colo_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/inputMobile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:hint="信用值"
-                android:inputType="textAutoCorrect"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="20sp" />
+        <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            android:text="返回"/>
 
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
+        <TextView
+            android:id="@+id/credit_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.credit}"
+            android:textSize="72sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header"
+            app:layout_constraintVertical_bias=".4" />
 
-        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/text_margin"
+            android:layout_marginEnd="@dimen/half_margin"
+            android:text="您的信用分为:"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintEnd_toStartOf="@id/credit_amount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/credit_amount" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/half_margin"
+            android:layout_marginBottom="@dimen/text_margin"
+            android:text="分"
+            android:textSize="@dimen/text_huge"
+            app:layout_constraintBottom_toBottomOf="@id/credit_amount"
+            app:layout_constraintStart_toEndOf="@id/credit_amount" />
+
+        <TextView
+            android:id="@+id/credit_judgement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{model.judgeStr}"
+            android:textSize="@dimen/text_medium"
+            app:layout_constraintBottom_toBottomOf="@id/header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/credit_amount" />
 
 
-        <RelativeLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_credit"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +600"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  -600"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +1600"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +200"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +100"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +50"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +120"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +210"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +410"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +560"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="20dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:text="信用良好  +80"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textColor="#43496A"
-                android:textColorHint="#bbbbbb"
-                android:textSize="14sp" />
-
-            <View
-                android:background = "#f2f2f2"
-                android:layout_height = "0.5dp"
-                android:layout_width = "match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_marginTop="10dp" />
-
-        </RelativeLayout>
+            android:layout_height="0dp"
+            android:paddingStart="@dimen/half_margin"
+            android:paddingEnd="@dimen/half_margin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header" />
 
 
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

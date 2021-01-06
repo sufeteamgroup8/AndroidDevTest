@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.model.OrderDetail
@@ -29,7 +30,7 @@ class CommentSendActivity : AppCompatActivity() {
 
         val progressDialog = RoundProgressDialog(this)
         mBinding.viewModel = this.viewModel
-        viewModel.netResult.observe(this, {
+        viewModel.netResult.observe(this, Observer {
             progressDialog.dismiss()
             if (it) {
                 Toast.makeText(this, "评分成功!", Toast.LENGTH_SHORT).show()
@@ -45,6 +46,7 @@ class CommentSendActivity : AppCompatActivity() {
             }
         }
 
+        mBinding.tvBack.setOnClickListener { finish() }
     }
 
     companion object {

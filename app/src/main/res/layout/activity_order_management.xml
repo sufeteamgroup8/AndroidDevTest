@@ -28,7 +28,8 @@
                 android:layout_below="@+id/iv_person_alllist"
                 android:layout_marginTop="3dp"
                 android:padding="2dp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@color/black"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -50,7 +51,8 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:layout_marginTop="4dp"
-                android:text="待支付"/>
+                android:text="待支付"
+                android:textColor="@color/black"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -73,7 +75,8 @@
                 android:gravity="center"
                 android:padding="2dp"
                 android:layout_marginTop="3dp"
-                android:text="待发货"/>
+                android:text="待发货"
+                android:textColor="@color/black"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/rl_person_wait_get"
@@ -94,7 +97,8 @@
                 android:gravity="center"
                 android:layout_marginTop="3dp"
                 android:padding="2dp"
-                android:text="待收货"/>
+                android:text="待收货"
+                android:textColor="@color/black"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -117,7 +121,9 @@
                 android:padding="2dp"
                 android:layout_below="@+id/iv_person_aftermarket"
                 android:gravity="center"
-                android:text="退款/售后"/>
+                android:text="退款/售后"
+                android:textColor="@color/black"/>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>
+

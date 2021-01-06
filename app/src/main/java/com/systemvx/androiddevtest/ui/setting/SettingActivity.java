@@ -1,6 +1,7 @@
 package com.systemvx.androiddevtest.ui.setting;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,5 +13,7 @@ public class SettingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        findViewById(R.id.tv_back).setOnClickListener(view -> finish());
     }
 }

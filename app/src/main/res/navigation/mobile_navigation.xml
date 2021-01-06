@@ -12,12 +12,6 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.systemvx.androiddevtest.ui.main.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.systemvx.androiddevtest.ui.main.notifications.NotificationsFragment"
         android:label="@string/title_notifications"

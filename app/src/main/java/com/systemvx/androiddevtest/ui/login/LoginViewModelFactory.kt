@@ -2,7 +2,7 @@ package com.systemvx.androiddevtest.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.systemvx.androiddevtest.data.LoginDataSource
+import com.systemvx.androiddevtest.data.AccountDataSource
 import com.systemvx.androiddevtest.data.LoginRepository
 
 /**
@@ -16,7 +16,7 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(
                     loginRepository = LoginRepository(
-                            dataSource = LoginDataSource()
+                            dataSource = AccountDataSource()
                     )
             ) as T
         }

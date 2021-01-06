@@ -1,18 +1,43 @@
 package com.systemvx.androiddevtest.data
 
-import com.alibaba.fastjson.JSON
-import com.alibaba.fastjson.JSONObject
 import com.systemvx.androiddevtest.ProjectSettings
-import com.systemvx.androiddevtest.utils.HttpUtil
-import java.text.SimpleDateFormat
+import com.systemvx.androiddevtest.data.model.BasicDataSource
+import com.systemvx.androiddevtest.data.model.OrderDetail
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
-class OrderDataSource {
+class OrderDataSource : BasicDataSource() {
 
 
-    fun searchOrder(searchStr: String?, priceMin: Double?, priceMax: Double?, timeBefore: Date?, hardMatch: Boolean = true): Result<ArrayList<OrderBriefing>> {
+    fun newOrder(
+            publisherID: Int,
+            title: String,
+            mainText: String,
+            taskType: Int,
+            price: Double,
+            deadline: java.sql.Date,
+            addressID: Int,
+    ): Result<String> {
+        val params = HashMap<String, String>()
+        params["publisherID"] = publisherID.toString()
+        params["title"] = title
+        params["mainText"] = mainText
+        params["taskType"] = taskType.toString()
+        params["price"] = price.toString()
+        params["deadline"] = deadline.toString()
+        params["addressID"] = addressID.toString()
+        return getDataSingle("/order/neworder", params, String::class.java)
+    }
+
+    fun searchOrder(
+            accountID: Int?,
+            searchStr: String?,
+            priceMin: Double?,
+            priceMax: Double?,
+            timeBefore: Date?,
+            hardMatch: Boolean = true,
+    ): Result<ArrayList<OrderBriefing>> {
         when (ProjectSettings.netWorkDebug) {
             true -> {
                 //目前随机生成点占位数据
@@ -24,37 +49,33 @@ class OrderDataSource {
             }
             false -> {
                 val params = HashMap<String, String>()
-                params["title"] = searchStr ?: ""
-                params["minPrice"] = priceMin?.toString() ?: 0.0.toString()
-                params["maxPrice"] = priceMax?.toString() ?: 9999.0.toString()
-                params["endTime"] = when (timeBefore) {
-                    null -> ""
-                    else -> SimpleDateFormat("yyyy-MM-dd", Locale.CHINA).format(timeBefore)
-                }
+                params["accountID"] = accountID.toString()
+                params["searchStr"] = searchStr.toString()
+                params["priceMin"] = priceMin.toString()
+                params["priceMax"] = priceMax.toString()
+                params["timeBefore"] = timeBefore.toString()
+                params["hardMatch"] = hardMatch.toString()
                 try {
-                    val response = JSON.parse(HttpUtil().postRequest("TODO()", params)) as JSONObject
-                    return when (response.getBoolean("success")) {
-                        true -> {
+                    return when (val response = getDataList("/order/search", params, OrderDetail::class.java)) {
+                        is Result.Success -> {
                             val result = ArrayList<OrderBriefing>()
-                            val listJson = response.getJSONArray("payload")
-                            for (order in listJson) {
-                                val temp = order as JSONObject
+                            for (detail in response.data) {
                                 val cl = OrderBriefing(
-                                        id = temp.getIntValue("id"),
-                                        title = temp.getString("title"),
-                                        briefing = temp.getString("maintext").substring(0, 40),
-                                        price = temp.getDoubleValue("price"),
-                                        deadline = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).parse(temp.getString("deadline")),
-                                        address = this.getAddressStr(temp.getIntValue("address")),
-                                        type = this.getTypeStr(temp.getIntValue("type")),
-                                        state = temp.getIntValue("state")
+                                        id = detail.id,
+                                        title = detail.title,
+                                        briefing = detail.mainText.substring(0, 40),
+                                        price = detail.price,
+                                        deadline = detail.deadline,
+                                        address = detail.address.toString(),//TODO
+                                        type = detail.missionType.text,
+                                        state = detail.order.state.id
                                 )
                                 result.add(cl)
                             }
                             Result.Success(result)
                         }
-                        false -> {
-                            Result.Error(Exception(response.getString("error")))
+                        is Result.Error -> {
+                            response
                         }
                     }
                 } catch (e: Exception) {
@@ -63,7 +84,6 @@ class OrderDataSource {
             }
         }
     }
-
 
     fun getOrderByPublisher(accountID: Int): Result<ArrayList<OrderBriefing>> {
         when (ProjectSettings.netWorkDebug) {
@@ -77,31 +97,28 @@ class OrderDataSource {
             }
             false -> {
                 val params = HashMap<String, String>()
-                params["id"] = accountID.toString()
+                params["user"] = accountID.toString()
                 try {
-                    val response = JSON.parse(HttpUtil().postRequest("TODO()", params)) as JSONObject
-                    return when (response.getBoolean("success")) {
-                        true -> {
+                    return when (val response = getDataList("/order/myorder", params, OrderDetail::class.java)) {
+                        is Result.Success -> {
                             val result = ArrayList<OrderBriefing>()
-                            val listJson = response.getJSONArray("payload")
-                            for (order in listJson) {
-                                val temp = order as JSONObject
+                            for (detail in response.data) {
                                 val cl = OrderBriefing(
-                                        id = temp.getIntValue("id"),
-                                        title = temp.getString("title"),
-                                        briefing = temp.getString("maintext").substring(0, 40),
-                                        price = temp.getDoubleValue("price"),
-                                        deadline = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).parse(temp.getString("deadline")),
-                                        address = this.getAddressStr(temp.getIntValue("address")),
-                                        type = this.getTypeStr(temp.getIntValue("type")),
-                                        state = temp.getIntValue("state")
+                                        id = detail.id,
+                                        title = detail.title,
+                                        briefing = detail.mainText.substring(0, 40),
+                                        price = detail.price,
+                                        deadline = detail.deadline,
+                                        address = detail.address.toString(),//TODO
+                                        type = detail.missionType.text,
+                                        state = detail.order.state.id
                                 )
                                 result.add(cl)
                             }
                             Result.Success(result)
                         }
-                        false -> {
-                            Result.Error(Exception(response.getString("error")))
+                        is Result.Error -> {
+                            response
                         }
                     }
                 } catch (e: Exception) {
@@ -110,36 +127,84 @@ class OrderDataSource {
             }
         }
     }
-    private fun getTypeStr(typeCode: Int): String {
-        TODO()
-    }
-     fun getOrderState(id:String):Result<ArrayList<OrderStateBean>>{
+
+    fun changeOrderToState(orderID: Int, state: Int): Result<String> {
         val params = HashMap<String, String>()
-        try {
-            val response = JSON.parse(HttpUtil().postRequest("TODO()", params)) as JSONObject
-            return when (response.getBoolean("success")){
-                true->{
-                    val result = ArrayList<OrderStateBean>()
-                    val listJson = response.getJSONArray("orderState")
-                    for (state in listJson){
-                       val tem = state as JSONObject
-                        val orderStateBean = OrderStateBean()
-                        orderStateBean.id = tem.getString("id")
-                        orderStateBean.orderstate = tem.getString("orderstate")
-                    }
-                    Result.Success(result)
-                }
-                false ->{
-                    Result.Error(Exception(response.getString("error")))
-                }
-            }
-        }catch (e:java.lang.Exception){
-            return Result.Error(Exception("internal error"))
-        }
-
+        params["orderID"] = orderID.toString()
+        params["sta_int"] = state.toString()
+        return getDataSingle("/order/updateOrderState", params, String::class.java)
     }
 
-    private fun getAddressStr(addressCode: Int): String {
-        TODO("Not yet implemented")
+    fun completeOrder(orderID: Int, accountID: Int): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["accountID"] = accountID.toString()
+        return getDataSingle("/order/confirmFinish", params, String::class.java)
+    }
+
+    /**
+     * 更新任务状态
+     */
+    fun pushForwardTask(orderID: Int, accountID: Int): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["receiverID"] = accountID.toString()
+        return getDataSingle("/order/updateTaskState", params, String::class.java)
+    }
+
+    /**
+     * 放弃接单
+     */
+    fun abortOrder(orderID: Int, receiverID: Int): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["receiverID"] = receiverID.toString()
+        return getDataSingle("/order/abort", params, String::class.java)
+    }
+
+    fun acceptOrder(orderID: Int, accountID: Int): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["accountID"] = accountID.toString()
+        return getDataSingle("/order/acceptOrder", params, String::class.java)
+    }
+
+    fun rePubOrder(
+            orderID: Int,
+            title: String,
+            mainText: String,
+            taskType: Int,
+            price: Double,
+            deadline: Date,
+            addressID: Int,
+            requireModify: Boolean,
+    ): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["title"] = title
+        params["mainText"] = mainText
+        params["taskType"] = taskType.toString()
+        params["price"] = price.toString()
+        params["deadline"] = deadline.toString()
+        params["addressID"] = addressID.toString()
+        params["requireModify"] = requireModify.toString()
+        return getDataSingle("/order/repub", params, String::class.java)
+    }
+
+    fun getOrderFullData(orderID: Int): Result<OrderDetail> {
+        val params = HashMap<String, String>()
+        params["OrderID"] = orderID.toString()
+        return getDataSingle("/order/getDetail", params, OrderDetail::class.java)
+    }
+
+    fun requestEditExistingOrder(orderID: Int, publisherID: Int): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["publisherID"] = publisherID.toString()
+        return getDataSingle("/order/reEdit", params, String::class.java)
+    }
+
+    companion object {
+        const val TAG = "OrderDataSource"
     }
 }

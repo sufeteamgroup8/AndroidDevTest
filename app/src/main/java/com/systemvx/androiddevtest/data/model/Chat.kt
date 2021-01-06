@@ -11,5 +11,5 @@ data class Chat(
         val message: String = "",
         var isRead: Boolean = false,
 
-        val sendTime: Date? = null,
+        val sendTime: Date,
 ) : Serializable
