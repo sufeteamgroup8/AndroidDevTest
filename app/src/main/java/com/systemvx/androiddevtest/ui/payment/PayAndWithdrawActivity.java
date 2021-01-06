@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.systemvx.androiddevtest.R;
 import com.systemvx.androiddevtest.ui.setting.SettingActivity;
 
 public class PayAndWithdrawActivity extends AppCompatActivity implements View.OnClickListener {
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
     private ProgressBar pbBar;
 
     @Override
@@ -33,7 +33,7 @@ public class PayAndWithdrawActivity extends AppCompatActivity implements View.On
             case R.id.toLogin1:
                 pbBar.setVisibility(View.VISIBLE);
                 handler.postDelayed(() -> {
-                    ToastUtils.showShort("充值成功");
+                    Toast.makeText(this, "充值成功", Toast.LENGTH_SHORT).show();
                     pbBar.setVisibility(View.GONE);
                 }, 1500);
                 break;
@@ -41,7 +41,7 @@ public class PayAndWithdrawActivity extends AppCompatActivity implements View.On
                 pbBar.setVisibility(View.VISIBLE);
                 handler.postDelayed(() -> {
                     pbBar.setVisibility(View.GONE);
-                    ToastUtils.showShort("提现成功");
+                    Toast.makeText(this, "提现成功", Toast.LENGTH_SHORT).show();
                 }, 1500);
                 break;
             case R.id.setting:

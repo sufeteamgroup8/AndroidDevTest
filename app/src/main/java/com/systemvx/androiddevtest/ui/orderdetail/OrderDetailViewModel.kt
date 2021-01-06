@@ -22,7 +22,8 @@ class OrderDetailViewModel : ViewModel() {
 
     fun getCountDownTime(): String {
         val deadTime = orderdetail.value?.deadline?.time
-        if (deadTime != null) {
+        val state = orderdetail.value?.order?.state?.id
+        if (deadTime != null && state != null && state <= 3) {
             // time difference in minutes
             val gap = (Date().time - deadTime) / (60 * 1000)
             return when {

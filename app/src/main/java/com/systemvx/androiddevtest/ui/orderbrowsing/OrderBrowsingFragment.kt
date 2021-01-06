@@ -12,14 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.FragmentOrderBrowsingBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OrderBrowsingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(), View.OnClickListener {
-    // TODO: Rename and change types of parameters
-    private var fragType: String? = null
+class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment() {
+
+    private lateinit var fragType: String
 
     private lateinit var rv: RecyclerView
 
@@ -28,7 +23,7 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            fragType = it.getString(FRAG_TYPE)
+            fragType = it.getString(FRAG_TYPE) ?: "all"
         }
     }
 
@@ -36,7 +31,7 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?,
     ): View {
-        mAdapter = OrderBrowsingAdapter(fragType!!, this.requireContext(), this)
+        mAdapter = OrderBrowsingAdapter(fragType, this.requireContext())
         val bind = DataBindingUtil.inflate<FragmentOrderBrowsingBinding>(inflater, R.layout.fragment_order_browsing, container, false)
         rv = bind.mainRv
         // Inflate the layout for this fragment
@@ -47,7 +42,9 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
         super.onViewCreated(view, savedInstanceState)
         rv.layoutManager = LinearLayoutManager(context)
         rv.adapter = mAdapter
-        viewModel.fullListData.observe(this.viewLifecycleOwner, Observer { mAdapter.updateData(it) })
+        viewModel.fullListData.observe(this.viewLifecycleOwner, Observer {
+            if (it != null) mAdapter.updateData(it)
+        })
     }
 
     companion object {
@@ -59,7 +56,6 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
          *
          * @return A new instance of fragment OrderBowsingFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(viewModel: OrderBrowsingViewModel, type: String) =
                 OrderBrowsingFragment(viewModel).apply {
@@ -69,9 +65,4 @@ class OrderBrowsingFragment(val viewModel: OrderBrowsingViewModel) : Fragment(),
                 }
     }
 
-    override fun onClick(v: View?) {
-        when (v?.tag) {
-            //TODO
-        }
-    }
 }

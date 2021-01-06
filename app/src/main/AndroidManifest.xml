@@ -34,7 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.orderbrowsing.OrderBrowsingActivity" />
+        <activity android:name=".ui.orderbrowsing.PublishedBrowsingActivity" />
         <activity android:name=".ui.orderdetail.OrderDetailActivity" />
         <activity android:name=".ui.payment.CoinManageActivity" />
         <activity android:name=".ui.search.SearchActivity" />

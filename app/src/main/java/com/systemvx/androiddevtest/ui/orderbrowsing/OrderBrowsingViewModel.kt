@@ -12,9 +12,14 @@ class OrderBrowsingViewModel : ViewModel() {
     val fullListData = MutableLiveData<ArrayList<OrderBriefing>>()
 
     fun updateData() {
-        val result = OrderDataSource().getOrderByPublisher(LoginRepository.user!!.id)
-        if (result is Result.Success) {
-            fullListData.value = result.data
-        }
+        Thread {
+            val result = OrderDataSource().getOrderByPublisher(LoginRepository.user!!.id)
+            if (result is Result.Success) {
+                fullListData.postValue(result.data)
+            } else {
+                fullListData.postValue(null)
+            }
+
+        }.start()
     }
 }

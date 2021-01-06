@@ -12,11 +12,11 @@ import com.systemvx.androiddevtest.data.PaymentBriefing
 import com.systemvx.androiddevtest.databinding.PaymentItemBinding
 
 
-class payAdapter(
+class PayAdapter(
         val context: Context,
 
         ) :
-        RecyclerView.Adapter<payAdapter.Companion.payBriefingViewHolder>() {
+        RecyclerView.Adapter<PayAdapter.Companion.PayBriefingViewHolder>() {
 
     private val items: ArrayList<PaymentBriefing> = ArrayList()
 
@@ -28,19 +28,25 @@ class payAdapter(
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): payBriefingViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PayBriefingViewHolder {
         val binding: PaymentItemBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(context),
                         R.layout.payment_item,
                         parent, false)
-        return payBriefingViewHolder(binding.root, binding)
+        return PayBriefingViewHolder(binding.root, binding)
 
     }
 
-    override fun onBindViewHolder(holder: payBriefingViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PayBriefingViewHolder, position: Int) {
         with(holder.mBinding) {
             model = items[position]
-            root.tag = items[position].price
+            if (items[position].price >= 0) {
+                coinAmount.setTextColor(context.getColor(R.color.green))
+                coinAmount.text = "+ ${items[position].price}"
+            } else {
+                coinAmount.setTextColor(context.getColor(R.color.colo_red))
+                coinAmount.text = "${items[position].price}"
+            }
             executePendingBindings()
         }
     }
@@ -50,11 +56,9 @@ class payAdapter(
     }
 
     companion object {
-        class payBriefingViewHolder(view: View, binding: PaymentItemBinding) : RecyclerView.ViewHolder(view) {
+        class PayBriefingViewHolder(view: View, binding: PaymentItemBinding) : RecyclerView.ViewHolder(view) {
             val mBinding: PaymentItemBinding = binding
         }
-
-
     }
 
 
