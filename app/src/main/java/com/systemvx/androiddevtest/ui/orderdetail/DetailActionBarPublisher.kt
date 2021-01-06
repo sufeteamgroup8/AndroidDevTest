@@ -180,7 +180,7 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
 
     fun requireEdit(orderID: Int) {
         Thread {
-            val response = OrderDataSource().changeOrderToState(orderID, 0)
+            val response = OrderDataSource().requestEditExistingOrder(orderID, 0)
             if (response is Result.Success<*>) {
                 out.postValue(OutSetting(true, "edit"))
             } else {
@@ -191,7 +191,7 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
 
     fun endOrder(orderID: Int) {
         Thread {
-            val response = OrderDataSource().changeOrderToState(orderID, 6)
+            val response = OrderDataSource().changeOrderToState(orderID, 4)
             if (response is Result.Success<*>) {
                 out.postValue(OutSetting(true, "cancel"))
             } else {

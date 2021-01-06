@@ -12,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.databinding.FragmentDetailActionBarBinding
@@ -157,7 +158,7 @@ class DetailActionBarReceiver(val viewModel: OrderDetailViewModel) : Fragment() 
 
     fun pushForwardTask(orderID: Int) {
         Thread {
-            val response = OrderDataSource().pushForwardTask(orderID)
+            val response = OrderDataSource().pushForwardTask(orderID, LoginRepository.user!!.id)
             if (response is Result.Success<*>) {
                 out.postValue(OutSetting(true, "next"))
             } else {
@@ -168,7 +169,7 @@ class DetailActionBarReceiver(val viewModel: OrderDetailViewModel) : Fragment() 
 
     fun abortOrder(orderID: Int) {
         Thread {
-            val response = OrderDataSource().abortOrder(orderID)
+            val response = OrderDataSource().abortOrder(orderID, LoginRepository.user!!.id)
             if (response is Result.Success<*>) {
                 out.postValue(OutSetting(true, "abort"))
             } else {
