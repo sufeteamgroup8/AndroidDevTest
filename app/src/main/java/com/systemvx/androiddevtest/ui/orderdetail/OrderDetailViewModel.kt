@@ -17,6 +17,7 @@ class OrderDetailViewModel : ViewModel() {
 
     fun getPriceStr() = orderdetail.value?.let { return@let "￥ " + DecimalFormat("#.00").format(it.price) }
             ?: ""
+
     fun getAddressFull() = MappingRepository().getAddressChain(orderdetail.value?.address ?: 0)
 
     fun getCountDownTime(): String {
@@ -61,18 +62,18 @@ class OrderDetailViewModel : ViewModel() {
 
     val dataResult = MutableLiveData<Boolean>()
 
-    fun fetchOrderData(orderID: Int): Boolean {
-        return when (val result = OrderDataSource().getOrderFullData(orderID)) {
-            is Result.Success -> {
-                orderdetail.postValue(result.data)
-                dataResult.postValue(true)
-                true
+    fun fetchOrderData(orderID: Int) {
+        Thread {
+            when (val result = OrderDataSource().getOrderFullData(orderID)) {
+                is Result.Success -> {
+                    orderdetail.postValue(result.data)
+                    dataResult.postValue(true)
+                }
+                is Result.Error -> {
+                    dataResult.postValue(false)
+                }
             }
-            is Result.Error -> {
-                dataResult.postValue(false)
-                false
-            }
-        }
+        }.start()
     }
 
 
