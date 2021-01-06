@@ -130,7 +130,7 @@ class DetailActionBarReceiver(val viewModel: OrderDetailViewModel) : Fragment() 
                 "abort" -> abortOrder(orderID)
                 "report" -> {
                     val intent = Intent(context, ComplaintSendActivity::class.java)
-                    intent.putExtra(ComplaintSendActivity.ARG_ORDER_ID, orderID)
+                    intent.putExtra(ComplaintSendActivity.ARG_ORDER_DETAIL, viewModel.orderdetail as Serializable)
                     context.startActivity(intent)
                 }
                 "chat" -> {

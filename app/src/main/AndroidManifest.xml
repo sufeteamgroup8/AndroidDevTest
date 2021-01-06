@@ -19,7 +19,7 @@
 
         <!--  OK    -->
         <activity android:name=".ui.comment.CommentSendActivity" />
-        <!--        -->
+        <!--    OK    -->
         <activity android:name=".ui.complaint.ComplaintSendActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
