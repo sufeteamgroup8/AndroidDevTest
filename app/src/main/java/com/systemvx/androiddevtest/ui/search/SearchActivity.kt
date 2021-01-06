@@ -29,6 +29,7 @@ class SearchActivity : AppCompatActivity() {
 
         mBinding.searchBar.setOnEditorActionListener(SearchListener(::showSearchResult))
 
+        mBinding.txtCancel.setOnClickListener { finish() }
         optionViewModel.searchResult.observe(this, Observer {
             if (!it) {
                 showFailFragment()

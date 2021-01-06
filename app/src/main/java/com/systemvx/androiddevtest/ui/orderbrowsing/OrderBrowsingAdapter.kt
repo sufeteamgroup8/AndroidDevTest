@@ -62,13 +62,15 @@ class OrderBrowsingAdapter(private val mType: String, val context: Context, val 
                 R.layout.item_order_briefing,
                 parent, false)
         //setupButtons(binding, viewType)
+        binding.root.setOnClickListener {
+            context.startActivity(Intent(context, OrderDetailActivity::class.java))
+        }
         return OrderBrowsingVHolder(binding.root, viewType, binding)
 
     }
 
     override fun onBindViewHolder(holder: OrderBrowsingVHolder, position: Int) {
         holder.binding.model = mDataList[position]
-
     }
 
     private fun setupButtons(binding: ItemOrderBriefingBinding, viewType: Int) {

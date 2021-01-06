@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.ui.main.notifications
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.FragmentNotificationsBinding
+import com.systemvx.androiddevtest.ui.chat.ChatActivity
 
 class NotificationsFragment : Fragment() {
     private lateinit var notificationsViewModel: NotificationsViewModel
@@ -31,7 +33,9 @@ class NotificationsFragment : Fragment() {
         notificationsViewModel.natResult.observe(viewLifecycleOwner, {
             mAdapter.updateWithNewData(notificationsViewModel.data)
         })
-
+        mBinding.chatBriefing.setOnClickListener {
+            startActivity(Intent(activity, ChatActivity::class.java))
+        }
         if (LoginRepository.isLoggedIn) {
             mBinding.hintRequireLogin.visibility = View.GONE
             mBinding.chatBriefing.visibility = View.VISIBLE

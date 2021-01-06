@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.databinding.FragmentDashboardBinding
+import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity
 import com.systemvx.androiddevtest.ui.search.SearchActivity
 
 class DashboardFragment : Fragment() {
@@ -41,7 +42,9 @@ class DashboardFragment : Fragment() {
             mAdapter.updateData(it)
         })
         dashboardViewModel.updateData()
-
+        mBinding.dashboardOrderContainer.setOnClickListener {
+            startActivity(Intent(context, OrderDetailActivity::class.java))
+        }
         mBinding.btnSearch.setOnClickListener {
             requireContext().startActivity(Intent(this.requireContext(), SearchActivity::class.java))
         }

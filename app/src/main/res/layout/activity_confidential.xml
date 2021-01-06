@@ -22,6 +22,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/tv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/white"
+            android:text="返回"/>
+
+        <TextView
             android:id="@+id/credit_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

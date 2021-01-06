@@ -23,7 +23,7 @@ class ConfidentialActivity : AppCompatActivity() {
 
         mBinding.model = viewModel
 
-
+        mBinding.tvBack.setOnClickListener { finish() }
         mAdapter = CreditInfoAdapter(context = this)
         mBinding.rvCredit.layoutManager = LinearLayoutManager(this)
         mBinding.rvCredit.adapter = mAdapter
