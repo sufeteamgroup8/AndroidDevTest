@@ -1,8 +1,5 @@
 package com.systemvx.androiddevtest.data
 
-import com.systemvx.androiddevtest.ProjectSettings
-import com.systemvx.androiddevtest.ui.util.DummyDataSet
-
 /**
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
@@ -17,7 +14,6 @@ class LoginRepository(val dataSource: AccountDataSource) {
         //对外部只读,不可修改
         var user: UserStorage? = null
             private set
-            get() = if (ProjectSettings.fakeData) DummyDataSet.fakeUser else user
 
         val isLoggedIn: Boolean
             get() = user != null

@@ -52,6 +52,6 @@ class PublishedBrowsingActivity : AppCompatActivity() {
             }
         }.attach()
 
-        viewModel.updateData()
+        viewModel.updatePubData()
     }
 }

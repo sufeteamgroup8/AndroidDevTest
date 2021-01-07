@@ -9,7 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.ActivityCoinManageBinding
+import java.text.DecimalFormat
 
 class CoinManageActivity : AppCompatActivity() {
 
@@ -47,6 +49,8 @@ class CoinManageActivity : AppCompatActivity() {
             addItemDecoration(DividerItemDecoration(act, DividerItemDecoration.VERTICAL))
             adapter = mAdapter
         }
+
+        mBinding.deposit.text = DecimalFormat("#.##").format(LoginRepository.user?.coin) ?: ""
 
         mViewModel.getCoinTrans()
         mViewModel.netResult.observe(this, {

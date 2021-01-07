@@ -11,11 +11,17 @@ class CoinDataSource : BasicDataSource() {
     }
 
     fun makePayment(accountID: Int, amount: Double): Result<String> {
-        TODO()
+        val params = HashMap<String, String>()
+        params["accountID"] = accountID.toString()
+        params["amount"] = amount.toString()
+        return getDataSingle("/payment/pay", params, String::class.java)
     }
 
     fun makeWithdraw(accountID: Int, amount: Double): Result<String> {
-        TODO()
+        val params = HashMap<String, String>()
+        params["accountID"] = accountID.toString()
+        params["amount"] = amount.toString()
+        return getDataSingle("/payment/withdraw", params, String::class.java)
     }
 
 }

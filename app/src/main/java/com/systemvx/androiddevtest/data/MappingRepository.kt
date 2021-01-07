@@ -33,16 +33,16 @@ class MappingRepository {
     }
 
     private fun initAddressMap() {
-        if (addressMapping == null) {
+        if (addressMapping.isNullOrEmpty()) {
             try {
                 val result = JSON.parseObject(HttpUtil().postRequest("/mapping/address", HashMap()))
-                addressMapping = ArrayList()
+                val Mapping = ArrayList<AddressMap>()
                 if (result.getBoolean("success")) {
-                    val list = result.getJSONArray("payload")
+                    val list = JSON.parseArray(result.get("payload").toString(), AddressMap::class.java)
                     for (i in list) {
-                        val temp = JSON.parseObject(i as String, AddressMap::class.java)
-                        addressMapping!![temp.id] = temp
+                        Mapping.add(i)
                     }
+                    addressMapping = Mapping
                 } else {
                     throw CustomRestfulError()
                 }
@@ -53,7 +53,7 @@ class MappingRepository {
     }
 
     private fun initTaskStateMap() {
-        if (taskStateMapping == null) {
+        if (taskStateMapping.isNullOrEmpty()) {
             try {
                 val result = JSON.parseObject(HttpUtil().postRequest("/mapping/taskstate", HashMap()))
                 taskStateMapping = HashMap()
@@ -76,7 +76,7 @@ class MappingRepository {
     }
 
     private fun initOrderStateMap() {
-        if (orderStateMapping == null) {
+        if (orderStateMapping.isNullOrEmpty()) {
             try {
                 val result = JSON.parseObject(HttpUtil().postRequest("/mapping/orderstate", HashMap()))
                 orderStateMapping = HashMap<Int, String>()
@@ -96,7 +96,7 @@ class MappingRepository {
     }
 
     private fun initTaskTypeMap() {
-        if (orderTypeMapping == null) {
+        if (orderTypeMapping.isNullOrEmpty()) {
             try {
                 val result = JSON.parseObject(HttpUtil().postRequest("/mapping/tasktype", HashMap()))
                 orderTypeMapping = HashMap<Int, String>()

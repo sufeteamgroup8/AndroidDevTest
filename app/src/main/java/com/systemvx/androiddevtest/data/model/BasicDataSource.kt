@@ -14,7 +14,7 @@ open class BasicDataSource {
             val data = HttpUtil().postRequest(url, params)
             val response = JSON.parseObject(data)
             when (response.getBoolean("success")) {
-                true -> Result.Success(JSON.parseObject(response["payload"].toString(), clazz))
+                true -> Result.Success(JSON.parseObject(JSON.toJSONString(response["payload"]), clazz))
                 false -> Result.Error(Exception(response.getString("error")))
             }
         } catch (e: Exception) {
@@ -25,9 +25,10 @@ open class BasicDataSource {
 
     protected fun <T> getDataList(url: String, params: HashMap<String, String>, clazz: Class<T>): Result<List<T>> {
         return try {
-            val response = JSON.parseObject(HttpUtil().postRequest(url, params))
+            val data = HttpUtil().postRequest(url, params)
+            val response = JSON.parseObject(data)
             when (response.getBoolean("success")) {
-                true -> Result.Success(JSON.parseArray(response["payload"].toString(), clazz))
+                true -> Result.Success(JSON.parseArray(JSON.toJSONString(response["payload"]), clazz))
                 false -> Result.Error(Exception(response.getString("error")))
             }
         } catch (e: Exception) {

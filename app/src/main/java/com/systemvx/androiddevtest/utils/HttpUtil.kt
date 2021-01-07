@@ -67,7 +67,9 @@ class HttpUtil {
             val call = okHttpClient.newCall(request)
             val response = call.execute()
             if (response.isSuccessful && response.body != null) {
+                Log.d("AHHHHHHHHH", "postRequest: $response")
                 return@Callable response.body!!.string().trim { it <= ' ' }
+
             } else {
                 Log.d("AHHHHHHHHH", "postRequest: $response")
                 return@Callable ""

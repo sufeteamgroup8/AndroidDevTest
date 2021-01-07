@@ -13,8 +13,9 @@ import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.FragmentPersonalCenterBinding
 import com.systemvx.androiddevtest.ui.credit.ConfidentialActivity
 import com.systemvx.androiddevtest.ui.login.LoginActivity
+import com.systemvx.androiddevtest.ui.orderbrowsing.PublishedBrowsingActivity
+import com.systemvx.androiddevtest.ui.orderbrowsing.ReceivedBrowsingActivity
 import com.systemvx.androiddevtest.ui.payment.CoinManageActivity
-import com.systemvx.androiddevtest.ui.payment.PayAndWithdrawActivity
 
 class PersonalCenterFragment : Fragment() {
 
@@ -43,10 +44,10 @@ class PersonalCenterFragment : Fragment() {
             if (checkLogin()) startActivity(Intent(context, ConfidentialActivity::class.java))
         }
         mBinding.txtBtnCharge.setOnClickListener {
-            if (checkLogin()) startActivity(Intent(context, PayAndWithdrawActivity::class.java))
+            if (checkLogin()) startActivity(Intent(context, PublishedBrowsingActivity::class.java))
         }
         mBinding.txtBtnDischarge.setOnClickListener {
-            if (checkLogin()) startActivity(Intent(context, PayAndWithdrawActivity::class.java))
+            if (checkLogin()) startActivity(Intent(context, ReceivedBrowsingActivity::class.java))
         }
         mBinding.txtBtnSettings.setOnClickListener {
             Toast.makeText(requireContext(), "施工中", Toast.LENGTH_LONG).show()

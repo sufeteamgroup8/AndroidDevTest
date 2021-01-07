@@ -51,6 +51,6 @@ class ReceivedBrowsingActivity : AppCompatActivity() {
         }.attach()
 
         LoginRepository(AccountDataSource()).login(",", "")
-        viewModel.updateData()
+        viewModel.updateRecvData()
     }
 }

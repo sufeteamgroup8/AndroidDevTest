@@ -118,7 +118,7 @@ class OrderDataSource : BasicDataSource() {
             }
             false -> {
                 val params = HashMap<String, String>()
-                params["user"] = accountID.toString()
+                params["userID"] = accountID.toString()
                 try {
                     return when (val response = getDataList("/order/myorder", params, OrderDetail::class.java)) {
                         is Result.Success -> {
@@ -127,7 +127,7 @@ class OrderDataSource : BasicDataSource() {
                                 val cl = OrderBriefing(
                                         id = detail.id,
                                         title = detail.title,
-                                        briefing = detail.mainText.substring(0, 40),
+                                        briefing = detail.mainText.take(40),
                                         price = detail.price,
                                         deadline = detail.deadline,
                                         address = detail.address.toString(),//TODO
@@ -223,6 +223,37 @@ class OrderDataSource : BasicDataSource() {
         params["orderID"] = orderID.toString()
         params["publisherID"] = publisherID.toString()
         return getDataSingle("/order/reEdit", params, String::class.java)
+    }
+
+    fun getOrderByReceiver(userID: Int): Result<ArrayList<OrderBriefing>> {
+        val params = HashMap<String, String>()
+        params["accountID"] = userID.toString()
+        try {
+            return when (val response = getDataList("/order/myReceivedOrders", params, OrderDetail::class.java)) {
+                is Result.Success -> {
+                    val result = ArrayList<OrderBriefing>()
+                    for (detail in response.data) {
+                        val cl = OrderBriefing(
+                                id = detail.id,
+                                title = detail.title,
+                                briefing = detail.mainText.take(40),
+                                price = detail.price,
+                                deadline = detail.deadline,
+                                address = detail.address.toString(),//TODO
+                                type = detail.missionType.text,
+                                state = detail.order.state.id
+                        )
+                        result.add(cl)
+                    }
+                    Result.Success(result)
+                }
+                is Result.Error -> {
+                    response
+                }
+            }
+        } catch (e: Exception) {
+            return Result.Error(Exception("internal error"))
+        }
     }
 
     companion object {
