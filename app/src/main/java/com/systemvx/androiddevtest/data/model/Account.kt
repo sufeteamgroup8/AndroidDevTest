@@ -1,5 +1,7 @@
 package com.systemvx.androiddevtest.data.model
 
+import java.io.Serializable
+
 data class Account(
         val id: Int,
 
@@ -11,4 +13,4 @@ data class Account(
         var coin: Double? = 0.0,
         var credit: Int? = 700,
         var signature: String? = "",
-)
+) : Serializable

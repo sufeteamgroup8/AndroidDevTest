@@ -3,10 +3,12 @@ package com.systemvx.androiddevtest.ui.orderdetail
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.systemvx.androiddevtest.ProjectSettings
 import com.systemvx.androiddevtest.data.MappingRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.data.model.OrderDetail
+import com.systemvx.androiddevtest.ui.util.DummyDataSet
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -71,15 +73,17 @@ class OrderDetailViewModel : ViewModel() {
 
     fun fetchOrderData(orderID: Int) {
         Thread {
-            when (val result = OrderDataSource().getOrderFullData(orderID)) {
-                is Result.Success -> {
-                    orderdetail.postValue(result.data)
-                    dataResult.postValue(true)
+            if (ProjectSettings.fakeData) {
+                orderdetail.postValue(DummyDataSet.dummyDetail)
+            } else
+                when (val result = OrderDataSource().getOrderFullData(orderID)) {
+                    is Result.Success -> {
+                        orderdetail.postValue(result.data)
+                    }
+                    is Result.Error -> {
+                        dataResult.postValue(false)
+                    }
                 }
-                is Result.Error -> {
-                    dataResult.postValue(false)
-                }
-            }
         }.start()
     }
 

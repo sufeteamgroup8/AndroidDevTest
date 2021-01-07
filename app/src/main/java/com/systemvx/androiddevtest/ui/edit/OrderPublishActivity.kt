@@ -56,10 +56,15 @@ class OrderPublishActivity : AppCompatActivity() {
         })
         viewModel.pubResult.observe(this, {
             when (it) {
-                true -> initSpinners()
+                true -> {
+                    Toast.makeText(this, "发布cg", Toast.LENGTH_LONG).show()
+                    this.finish()
+                }
                 false -> {
+                    Toast.makeText(this, "发布失败", Toast.LENGTH_LONG).show()
                 }
                 null -> {
+                    Toast.makeText(this, "数据不全", Toast.LENGTH_LONG).show()
                 }
             }
         })

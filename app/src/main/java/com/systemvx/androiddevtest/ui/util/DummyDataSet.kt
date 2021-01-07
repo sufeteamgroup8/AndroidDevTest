@@ -16,13 +16,13 @@ object DummyDataSet {
             "  \"order\": {\n" +
             "    \"id\": 1000,\n" +
             "    \"state\": {\n" +
-            "      \"id\": 1,\n" +
+            "      \"id\": 3,\n" +
             "      \"text\": \"已发布\"\n" +
             "    },\n" +
             "    \"taskState\": 0,\n" +
             "    \"receiveTime\": null,\n" +
             "    \"publisher\": {\n" +
-            "      \"id\": 1000,\n" +
+            "      \"id\": 9999,\n" +
             "      \"name\": \"alyce\",\n" +
             "      \"password\": \"12345678\",\n" +
             "      \"phoneNo\": null,\n" +
