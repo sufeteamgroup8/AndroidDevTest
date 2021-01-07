@@ -16,7 +16,7 @@ class OrderDataSource : BasicDataSource() {
             taskType: Int,
             price: Double,
             deadline: Date,
-            addressID: Int,
+            addressID: Int
     ): Result<String> {
         val params = HashMap<String, String>()
         params["orderID"] = orderID.toString()
@@ -37,7 +37,7 @@ class OrderDataSource : BasicDataSource() {
             price: Double,
             deadline: Date,
             addressID: Int,
-            state: Int,
+            state: Int
     ): Result<String> {
         val params = HashMap<String, String>()
         params["publisherID"] = publisherID.toString()
@@ -57,7 +57,7 @@ class OrderDataSource : BasicDataSource() {
             priceMin: Double?,
             priceMax: Double?,
             timeBefore: Date?,
-            hardMatch: Boolean = true,
+            hardMatch: Boolean = true
     ): Result<ArrayList<OrderBriefing>> {
         when (ProjectSettings.netWorkDebug) {
             true -> {
@@ -158,8 +158,8 @@ class OrderDataSource : BasicDataSource() {
 
     fun completeOrder(orderID: Int, accountID: Int): Result<String> {
         val params = HashMap<String, String>()
-        params["orderID"] = orderID.toString()
-        params["accountID"] = accountID.toString()
+        params["OrderID"] = orderID.toString()
+        params["publisherID"] = accountID.toString()
         return getDataSingle("/order/confirmFinish", params, String::class.java)
     }
 
@@ -183,10 +183,14 @@ class OrderDataSource : BasicDataSource() {
         return getDataSingle("/order/abort", params, String::class.java)
     }
 
+    /**
+     * 接单
+     */
+
     fun acceptOrder(orderID: Int, accountID: Int): Result<String> {
         val params = HashMap<String, String>()
         params["orderID"] = orderID.toString()
-        params["accountID"] = accountID.toString()
+        params["receiverID"] = accountID.toString()
         return getDataSingle("/order/acceptOrder", params, String::class.java)
     }
 
@@ -198,7 +202,7 @@ class OrderDataSource : BasicDataSource() {
             price: Double,
             deadline: Date,
             addressID: Int,
-            requireModify: Boolean,
+            requireModify: Boolean
     ): Result<String> {
         val params = HashMap<String, String>()
         params["orderID"] = orderID.toString()
