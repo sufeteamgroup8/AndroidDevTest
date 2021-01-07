@@ -8,8 +8,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.AccountDataSource
-import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.ActivityOrderBrowsingBinding
 
 class ReceivedBrowsingActivity : AppCompatActivity() {
@@ -50,7 +48,6 @@ class ReceivedBrowsingActivity : AppCompatActivity() {
             }
         }.attach()
 
-        LoginRepository(AccountDataSource()).login(",", "")
-        viewModel.updateRecvData()
+         viewModel.updateRecvData()
     }
 }

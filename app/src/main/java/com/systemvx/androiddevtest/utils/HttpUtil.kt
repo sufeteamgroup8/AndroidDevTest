@@ -10,7 +10,7 @@ import java.util.concurrent.FutureTask
 class HttpUtil {
     companion object {
         //安卓AVD虚拟机指定的宿主机回环地址
-        const val BASE_URL = "http://10.0.2.2:8080"
+        const val BASE_URL = "http://10.0.2.2"
         var useAbsoluteURL = false
         private val cookieStore: MutableMap<String, List<Cookie>> = HashMap()
         private val threadPool = Executors.newFixedThreadPool(30)

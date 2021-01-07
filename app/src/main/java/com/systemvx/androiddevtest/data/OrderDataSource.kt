@@ -84,7 +84,7 @@ class OrderDataSource : BasicDataSource() {
                                 val cl = OrderBriefing(
                                         id = detail.id,
                                         title = detail.title,
-                                        briefing = detail.mainText.substring(0, 40),
+                                        briefing = detail.mainText.take(40),
                                         price = detail.price,
                                         deadline = detail.deadline,
                                         address = detail.address.toString(),//TODO

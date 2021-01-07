@@ -1,6 +1,5 @@
 package com.systemvx.androiddevtest.ui.chat
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -8,12 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.AccountDataSource
 import com.systemvx.androiddevtest.data.ChatDataSource
 import com.systemvx.androiddevtest.data.ChatShowCase
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.ActivityChatBinding
-import com.systemvx.androiddevtest.ui.login.LoginActivity
 import java.util.*
 
 class ChatActivity : AppCompatActivity() {
@@ -31,13 +28,6 @@ class ChatActivity : AppCompatActivity() {
         model.chatterID = intent.getIntExtra(ARG_CHATTER_ID, -1)
 
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
-
-        LoginRepository(AccountDataSource()).login("", "")
-        if (!LoginRepository.isLoggedIn) {
-            startActivity(Intent(this, LoginActivity::class.java))
-            this.finish()
-        }
-
 
         model.dataResult.observe(this, Observer {
             when (it) {

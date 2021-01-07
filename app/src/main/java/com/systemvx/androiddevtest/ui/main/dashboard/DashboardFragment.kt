@@ -37,7 +37,7 @@ class DashboardFragment : Fragment() {
         //观测data的变动,data改变时执行:
 
         mAdapter = OrderListAdapter(requireContext())
-        dashboardViewModel.data.observe(this.requireActivity(), Observer {
+        dashboardViewModel.mData.observe(this.requireActivity(), Observer {
             // 新的data注入
             mAdapter.updateData(it)
         })

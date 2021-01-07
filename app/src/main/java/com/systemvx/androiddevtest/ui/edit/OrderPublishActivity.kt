@@ -57,7 +57,7 @@ class OrderPublishActivity : AppCompatActivity() {
         viewModel.pubResult.observe(this, {
             when (it) {
                 true -> {
-                    Toast.makeText(this, "发布cg", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "发布成功", Toast.LENGTH_LONG).show()
                     this.finish()
                 }
                 false -> {

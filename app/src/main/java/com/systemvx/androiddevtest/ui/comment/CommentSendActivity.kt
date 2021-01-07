@@ -8,8 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.systemvx.androiddevtest.ProjectSettings
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.AccountDataSource
-import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.model.OrderDetail
 import com.systemvx.androiddevtest.databinding.ActivityCommentSendBinding
 import com.systemvx.androiddevtest.ui.util.DummyDataSet
@@ -29,8 +27,6 @@ class CommentSendActivity : AppCompatActivity() {
         } else {
             DummyDataSet.dummyDetail
         }
-
-        LoginRepository(AccountDataSource()).login("", "")
 
         mBinding = DataBindingUtil
                 .setContentView(this, R.layout.activity_comment_send)
