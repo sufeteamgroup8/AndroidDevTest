@@ -14,7 +14,8 @@ import java.util.*
 class CommentSendViewModel(
         val orderData: OrderDetail,
 ) : ViewModel() {
-    var stars: Int = 3
+    var stars: Float = 3.toFloat()
+
     var commentText = ""
 
     val message = MutableLiveData<Toast>()
@@ -30,34 +31,39 @@ class CommentSendViewModel(
 
     fun getContact(): String {
         return if (LoginRepository.user!!.id == orderData.order.publisher.id) {
-            orderData.order.receiverPhone!!
+            orderData.order.receiverPhone
         } else {
-            orderData.order.publisherPhone!!
-        }
+            orderData.order.publisherPhone
+        } ?: "暂无联系方式"
     }
 
     fun sendComment(): Boolean {
+        val stars = stars.toInt()
         if (stars < 1 || stars > 5)
             return false
         else {
             Thread(Runnable {
-                val sender: Int
-                val receiver: Int
-                if (LoginRepository.user!!.id == orderData.order.publisher.id) {
-                    sender = orderData.order.publisher.id
-                    receiver = orderData.order.receiver!!.id
-                } else {
-                    receiver = orderData.order.publisher.id
-                    sender = orderData.order.receiver!!.id
-                }
+                try {
+                    val sender: Int
+                    val receiver: Int
+                    if (LoginRepository.user!!.id == orderData.order.publisher.id) {
+                        sender = orderData.order.publisher.id
+                        receiver = orderData.order.receiver!!.id
+                    } else {
+                        receiver = orderData.order.publisher.id
+                        sender = orderData.order.receiver!!.id
+                    }
 
-                when (CommentDataSource().sendComment(sender, receiver, orderData.order.id, commentText, stars)) {
-                    is Result.Success -> {
-                        netResult.postValue(true)
+                    when (CommentDataSource().sendComment(sender, receiver, orderData.order.id, commentText, stars)) {
+                        is Result.Success -> {
+                            netResult.postValue(true)
+                        }
+                        else -> {
+                            netResult.postValue(false)
+                        }
                     }
-                    else -> {
-                        netResult.postValue(false)
-                    }
+                } catch (e: NullPointerException) {
+                    netResult.postValue(false)
                 }
             }).start()
             return true

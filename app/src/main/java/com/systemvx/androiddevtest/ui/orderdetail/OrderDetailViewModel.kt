@@ -3,10 +3,12 @@ package com.systemvx.androiddevtest.ui.orderdetail
 import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.systemvx.androiddevtest.ProjectSettings
 import com.systemvx.androiddevtest.data.MappingRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.data.model.OrderDetail
+import com.systemvx.androiddevtest.ui.util.DummyDataSet
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -15,14 +17,21 @@ class OrderDetailViewModel : ViewModel() {
 
     val orderdetail = MutableLiveData<OrderDetail>()
 
-    fun getPriceStr() = orderdetail.value?.let { return@let "￥ " + DecimalFormat("#.00").format(it.price) }
+    fun getPriceStr(): String = orderdetail.value?.let { return@let "￥ " + DecimalFormat("#.00").format(it.price) }
             ?: ""
 
-    fun getAddressFull() = MappingRepository().getAddressChain(orderdetail.value?.address ?: 0)
+    fun getAddressFull(): String {
+        if (MappingRepository.addressMapping != null) {
+            return MappingRepository().getAddressChain(orderdetail.value?.address ?: -1)
+        } else {
+            return "暂无地点"
+        }
+    }
 
     fun getCountDownTime(): String {
         val deadTime = orderdetail.value?.deadline?.time
-        if (deadTime != null) {
+        val state = orderdetail.value?.order?.state?.id
+        if (deadTime != null && state != null && state <= 3) {
             // time difference in minutes
             val gap = (Date().time - deadTime) / (60 * 1000)
             return when {
@@ -64,15 +73,17 @@ class OrderDetailViewModel : ViewModel() {
 
     fun fetchOrderData(orderID: Int) {
         Thread {
-            when (val result = OrderDataSource().getOrderFullData(orderID)) {
-                is Result.Success -> {
-                    orderdetail.postValue(result.data)
-                    dataResult.postValue(true)
+            if (ProjectSettings.fakeData) {
+                orderdetail.postValue(DummyDataSet.dummyDetail)
+            } else
+                when (val result = OrderDataSource().getOrderFullData(orderID)) {
+                    is Result.Success -> {
+                        orderdetail.postValue(result.data)
+                    }
+                    is Result.Error -> {
+                        dataResult.postValue(false)
+                    }
                 }
-                is Result.Error -> {
-                    dataResult.postValue(false)
-                }
-            }
         }.start()
     }
 

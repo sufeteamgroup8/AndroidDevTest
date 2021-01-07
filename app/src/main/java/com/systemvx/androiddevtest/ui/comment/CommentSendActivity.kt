@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.systemvx.androiddevtest.ProjectSettings
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.model.OrderDetail
 import com.systemvx.androiddevtest.databinding.ActivityCommentSendBinding
+import com.systemvx.androiddevtest.ui.util.DummyDataSet
 import com.systemvx.androiddevtest.ui.util.RoundProgressDialog
 
 class CommentSendActivity : AppCompatActivity() {
@@ -19,8 +21,12 @@ class CommentSendActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val orderData: OrderDetail = intent.getSerializableExtra(ARG_ORDER_DATA) as OrderDetail
 
+        val orderData: OrderDetail = if (!ProjectSettings.fakeData) {
+            intent.getSerializableExtra(ARG_ORDER_DATA) as OrderDetail
+        } else {
+            DummyDataSet.dummyDetail
+        }
 
         mBinding = DataBindingUtil
                 .setContentView(this, R.layout.activity_comment_send)
@@ -28,7 +34,7 @@ class CommentSendActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this, CommentSendViewModelFactory(data = orderData))
                 .get(CommentSendViewModel::class.java)
 
-        val progressDialog = RoundProgressDialog(this)
+        val progressDialog = RoundProgressDialog.getInstance(context = this)
         mBinding.viewModel = this.viewModel
         viewModel.netResult.observe(this, Observer {
             progressDialog.dismiss()
@@ -44,6 +50,9 @@ class CommentSendActivity : AppCompatActivity() {
             if (!viewModel.sendComment()) {
                 progressDialog.dismiss()
             }
+        }
+        mBinding.tvBack.setOnClickListener {
+            this.finish()
         }
 
         mBinding.tvBack.setOnClickListener { finish() }

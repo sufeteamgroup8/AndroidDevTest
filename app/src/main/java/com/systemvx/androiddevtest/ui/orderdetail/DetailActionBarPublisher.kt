@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import com.systemvx.androiddevtest.OrderPublishActivity
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.OrderDataSource
@@ -19,8 +18,9 @@ import com.systemvx.androiddevtest.data.Result
 import com.systemvx.androiddevtest.databinding.FragmentDetailActionBarBinding
 import com.systemvx.androiddevtest.ui.chat.ChatActivity
 import com.systemvx.androiddevtest.ui.comment.CommentSendActivity
-import com.systemvx.androiddevtest.ui.complaint.ComplaintActivity
 import com.systemvx.androiddevtest.ui.complaint.ComplaintProgress
+import com.systemvx.androiddevtest.ui.complaint.ComplaintSendActivity
+import com.systemvx.androiddevtest.ui.edit.OrderPublishActivity
 import java.io.Serializable
 
 class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment() {
@@ -137,8 +137,8 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
                 "edit" -> requireEdit(orderID)
                 "cancel" -> endOrder(orderID)
                 "report" -> {
-                    val intent = Intent(context, ComplaintActivity::class.java)
-                    intent.putExtra(ComplaintActivity.ARG_ORDER_ID, orderID)
+                    val intent = Intent(context, ComplaintSendActivity::class.java)
+                    intent.putExtra(ComplaintSendActivity.ARG_ORDER_DETAIL, viewModel.orderdetail.value as Serializable)
                     context.startActivity(intent)
                 }
                 "chat" -> {
@@ -151,7 +151,7 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
                 }
                 "comment" -> {
                     val intent = Intent(context, CommentSendActivity::class.java)
-                    intent.putExtra(CommentSendActivity.ARG_ORDER_DATA, viewModel.orderdetail as Serializable)
+                    intent.putExtra(CommentSendActivity.ARG_ORDER_DATA, viewModel.orderdetail.value as Serializable)
                     context.startActivity(intent)
                 }
                 "review" -> {
@@ -159,7 +159,7 @@ class DetailActionBarPublisher(val viewModel: OrderDetailViewModel) : Fragment()
                 }
                 "R_state" -> {
                     val intent = Intent(context, ComplaintProgress::class.java)
-                    intent.putExtra(CommentSendActivity.ARG_ORDER_DATA, viewModel.orderdetail as Serializable)
+                    intent.putExtra(CommentSendActivity.ARG_ORDER_DATA, viewModel.orderdetail.value as Serializable)
                     context.startActivity(intent)//TODO
                 }
             }

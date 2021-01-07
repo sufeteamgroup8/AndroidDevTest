@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.data
 
+import android.util.Log
 import com.systemvx.androiddevtest.data.model.Account
 import com.systemvx.androiddevtest.data.model.BasicDataSource
 import com.systemvx.androiddevtest.data.model.Chat
@@ -70,7 +71,7 @@ class ChatDataSource : BasicDataSource() {
         messages.add(ChatShowCase.Message(null, sender, UtilStaticFunc.randomString(40), calendar.time, false))
         for (i in 2..10) {
             //随机过去n分钟 (0-6小时内)
-            calendar.add(-Calendar.MINUTE, rand.nextInt(360) - 1)
+            calendar.add(Calendar.MINUTE, -rand.nextInt(360) - 1)
             //决定是谁发的信息
             if (rand.nextBoolean()) {
                 //发来的信息
@@ -115,6 +116,7 @@ class ChatDataSource : BasicDataSource() {
                             ""
                     ))
                 }
+                Log.d(this.javaClass.name, "findChatters: $list")
                 return Result.Success(list)
             }
             is Result.Error -> {
@@ -153,6 +155,5 @@ class ChatDataSource : BasicDataSource() {
             }
         }
     }
-
 
 }

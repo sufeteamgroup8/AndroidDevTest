@@ -3,19 +3,29 @@ package com.systemvx.androiddevtest.ui.payment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.systemvx.androiddevtest.data.CoinDataSource
+import com.systemvx.androiddevtest.data.LoginRepository
+import com.systemvx.androiddevtest.data.PaymentBriefing
 import com.systemvx.androiddevtest.data.Result
-import com.systemvx.androiddevtest.data.model.CoinTrans
 
 class CoinManageViewModel : ViewModel() {
     val netResult = MutableLiveData<Boolean>()
 
-    var coinData = ArrayList<CoinTrans>()
+    var coinData = ArrayList<PaymentBriefing>()
 
-    fun getCoinTrans(accountID: Int) {
+    fun getCoinTrans() {
         Thread {
-            when (val result = CoinDataSource().viewCoin(accountID)) {
+            when (val result = CoinDataSource().viewCoinTrans(LoginRepository.user!!.id)) {
                 is Result.Success -> {
-                    coinData = result.data
+                    val output = ArrayList<PaymentBriefing>()
+                    for (i in result.data) {
+                        output.add(PaymentBriefing(
+                                if (i.in_out) -i.amount else i.amount,
+                                type = i.relatedOrders?.let { return@let "订单号" + it.id.toString() }
+                                        ?: "",
+                                i.transTime
+                        ))
+                    }
+                    coinData = output
                     netResult.postValue(true)
                 }
                 else -> {

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.systemvx.androiddevtest.ui.complaint.ComplaintSendViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.complaint.ComplaintSendActivity">
+
+        <RelativeLayout
+            android:id="@+id/pathselect_title"
+            android:layout_width="fill_parent"
+            android:layout_height="46dip"
+            android:background="@color/colo_yellow"
+            android:gravity="center_vertical"
+            android:padding="0.0px">
+
+            <Button
+                android:id="@+id/complaintCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/cancel"
+                android:textColor="@color/colo_white"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toStartOf="@id/page_title"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/page_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="5dp"
+                android:text="@string/complaint"
+                android:textColor="@color/text_main"
+
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/complaintCancel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/complaint_kind"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:paddingLeft="96.0dip"
+            android:paddingRight="96.0dip"
+            android:singleLine="true"
+            android:text="@string/complaint_reason_kind"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:checkedButton="@id/radiobutton1"
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_margin"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radiobutton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/overrun" />
+
+            <RadioButton
+                android:id="@+id/radiobutton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/object_damage" />
+
+            <RadioButton
+                android:id="@+id/radiobutton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unpaid" />
+
+            <RadioButton
+                android:id="@+id/radiobutton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/other" />
+
+        </RadioGroup>
+
+        <ScrollView
+            android:id="@+id/scrollview"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginTop="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:layout_weight="1"
+            android:background="@drawable/shape_bg"
+            android:fillViewport="true">
+
+            <EditText
+                android:id="@+id/feed_back_edit"
+                android:layout_width="match_parent"
+                android:layout_height="200dip"
+                android:background="@null"
+                android:gravity="left|top"
+                android:hint="@string/say_sth"
+                android:inputType="textMultiLine"
+                android:paddingLeft="4.0dip"
+                android:paddingTop="4.0dip"
+                android:paddingRight="4.0dip"
+                android:paddingBottom="4.0dip"
+                android:text="@={viewModel.message}"
+                android:textSize="16.0sp"
+                tools:ignore="RtlHardcoded" />
+        </ScrollView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@drawable/shape_line" />
+
+        <Button
+            android:id="@+id/feed_back_btn"
+            style="@style/RedGreen"
+            android:layout_width="wrap_content"
+            android:layout_height="40.0dip"
+            android:layout_gravity="right|bottom"
+            android:layout_marginTop="5.0dip"
+            android:layout_marginRight="10dip"
+            android:layout_marginBottom="5.0dip"
+            android:background="@color/colo_blue"
+            android:paddingLeft="15.0dip"
+            android:paddingRight="15.0dip"
+            android:text="@string/commit"
+            tools:ignore="RtlHardcoded" />
+
+    </LinearLayout>
+</layout>

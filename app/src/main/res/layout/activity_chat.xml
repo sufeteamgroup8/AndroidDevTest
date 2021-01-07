@@ -102,13 +102,15 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <EditText
+                android:padding="8dp"
                 android:id="@+id/text_send"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_weight="1"
-                android:background="@drawable/style_round_corner_bg"
+                android:background="@drawable/style_round_small_roundcorner"
                 android:backgroundTint="@color/white"
+                android:gravity="center_vertical"
                 android:hint="@string/hint_talk_something"
                 android:minHeight="40dp"
                 android:paddingStart="@dimen/half_margin"

@@ -9,23 +9,26 @@ import java.util.*
 
 open class BasicDataSource {
 
-    protected fun <T> getDataSingle(url: String, params: HashMap<String, String>, clazz: Class<T> =): Result<T> {
+    protected fun <T> getDataSingle(url: String, params: HashMap<String, String>, clazz: Class<T>): Result<T> {
         return try {
-            val response = JSON.parseObject(HttpUtil().postRequest("/account/updateInfo", params))
+            val data = HttpUtil().postRequest(url, params)
+            val response = JSON.parseObject(data)
             when (response.getBoolean("success")) {
-                true -> Result.Success(JSON.parseObject(response["payload"].toString(), clazz))
+                true -> Result.Success(JSON.parseObject(JSON.toJSONString(response["payload"]), clazz))
                 false -> Result.Error(Exception(response.getString("error")))
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             Result.Error(CustomRestfulError())
         }
     }
 
     protected fun <T> getDataList(url: String, params: HashMap<String, String>, clazz: Class<T>): Result<List<T>> {
         return try {
-            val response = JSON.parseObject(HttpUtil().postRequest("/account/updateInfo", params))
+            val data = HttpUtil().postRequest(url, params)
+            val response = JSON.parseObject(data)
             when (response.getBoolean("success")) {
-                true -> Result.Success(JSON.parseArray(response["payload"].toString(), clazz))
+                true -> Result.Success(JSON.parseArray(JSON.toJSONString(response["payload"]), clazz))
                 false -> Result.Error(Exception(response.getString("error")))
             }
         } catch (e: Exception) {

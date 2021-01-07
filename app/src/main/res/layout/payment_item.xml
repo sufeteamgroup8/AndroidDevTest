@@ -6,73 +6,43 @@
 
         <variable
             name="model"
-            type="com.systemvx.androiddevtest.data.paymentBriefing" />
+            type="com.systemvx.androiddevtest.data.PaymentBriefing" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp">
-
+        android:minHeight="70dp">
 
         <TextView
-            android:id="@+id/payBriefing_bounty"
+            android:id="@+id/coin_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/text_margin"
-            android:text="@{model.priceStr}"
-            android:textColor="@color/colo_red"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@id/paymentBriefing_briefing"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="@{model.timeStr}"
+            app:layout_constraintBottom_toTopOf="@id/coin_reason"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="spread" />
 
         <TextView
-            android:id="@+id/paymentBriefing_briefing"
-            android:layout_width="match_parent"
+            android:id="@+id/coin_reason"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:text="@{model.type}"
-            android:textSize="@dimen/text_medium"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/payBriefing_bounty" />
+            app:layout_constraintTop_toBottomOf="@id/coin_time" />
 
-        <View
-            android:id="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/paymentBriefing_briefing" />
         <TextView
-            android:id="@+id/payBriefing_time"
+            android:id="@+id/coin_amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/text_margin"
-            android:text="@{model.timeStr}"
-            android:textSize="@dimen/text_medium"
+            android:text=""
+            android:textSize="@dimen/text_huge"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/payBriefing_bounty"
-            app:layout_constraintTop_toBottomOf="@id/line" />
-
-
-
-
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/actionButtonHolder"
-            app:layout_constraintTop_toBottomOf="@id/payBriefing_bounty"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end">
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

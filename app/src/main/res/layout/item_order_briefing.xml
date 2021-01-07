@@ -10,10 +10,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:id="@+id/item_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:layout_margin="@dimen/half_margin"
+        android:background="@drawable/style_round_corner_bg"
+        android:backgroundTint="@color/shadow_grey"
+        android:paddingStart="@dimen/text_margin"
+        android:paddingEnd="@dimen/text_margin"
         android:paddingBottom="10dp">
 
         <TextView
@@ -84,11 +88,11 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/actionButtonHolder"
-            app:layout_constraintTop_toBottomOf="@id/orderBriefing_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="end"
             android:orientation="horizontal"
-            android:gravity="end">
+            app:layout_constraintTop_toBottomOf="@id/orderBriefing_time">
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

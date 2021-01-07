@@ -8,16 +8,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.systemvx.androiddevtest.R
-import com.systemvx.androiddevtest.data.AccountDataSource
-import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.databinding.ActivityOrderBrowsingBinding
 
-class OrderBrowsingActivity : AppCompatActivity() {
+class ReceivedBrowsingActivity : AppCompatActivity() {
     private lateinit var mBinding: ActivityOrderBrowsingBinding
 
     private lateinit var viewModel: OrderBrowsingViewModel
 
-    private val tabCounts = 5
+    private val tabCounts = 4
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +30,9 @@ class OrderBrowsingActivity : AppCompatActivity() {
             override fun createFragment(position: Int): Fragment {
                 return when (position) {
                     0 -> OrderBrowsingFragment.newInstance(viewModel, "all")
-                    1 -> OrderBrowsingFragment.newInstance(viewModel, "published")
-                    2 -> OrderBrowsingFragment.newInstance(viewModel, "received")
-                    3 -> OrderBrowsingFragment.newInstance(viewModel, "active")
-                    else -> OrderBrowsingFragment.newInstance(viewModel, "ended")
+                    1 -> OrderBrowsingFragment.newInstance(viewModel, "received")
+                    2 -> OrderBrowsingFragment.newInstance(viewModel, "ended")
+                    else -> OrderBrowsingFragment.newInstance(viewModel, "debate")
                 }
             }
 
@@ -45,14 +42,12 @@ class OrderBrowsingActivity : AppCompatActivity() {
         ) { tab, position ->
             tab.text = when (position) {
                 0 -> "全部"
-                1 -> "已发布"
-                2 -> "已接受"
-                3 -> "执行中"
-                else -> "已结束"
+                1 -> "进行中"
+                2 -> "已结束"
+                else -> "申诉中"
             }
         }.attach()
 
-        LoginRepository(AccountDataSource()).login(",", "")
-        viewModel.updateData()
+         viewModel.updateRecvData()
     }
 }

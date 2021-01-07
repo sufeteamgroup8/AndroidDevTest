@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.OrderBriefing
-import com.systemvx.androiddevtest.databinding.OrderBriefingItemBinding
+import com.systemvx.androiddevtest.databinding.ItemOrderBriefingBinding
 import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity
 
 
@@ -30,9 +30,9 @@ class OrderListAdapter(
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBriefingViewHolder {
-        val binding: OrderBriefingItemBinding =
+        val binding: ItemOrderBriefingBinding =
                 DataBindingUtil.inflate(LayoutInflater.from(context),
-                        R.layout.order_briefing_item,
+                        R.layout.item_order_briefing,
                         parent, false)
         return OrderBriefingViewHolder(binding.root, binding)
 
@@ -52,8 +52,8 @@ class OrderListAdapter(
     }
 
     companion object {
-        class OrderBriefingViewHolder(view: View, binding: OrderBriefingItemBinding) : RecyclerView.ViewHolder(view) {
-            val mBinding: OrderBriefingItemBinding = binding
+        class OrderBriefingViewHolder(view: View, binding: ItemOrderBriefingBinding) : RecyclerView.ViewHolder(view) {
+            val mBinding: ItemOrderBriefingBinding = binding
         }
 
         class OrderBriefingListener : View.OnClickListener {

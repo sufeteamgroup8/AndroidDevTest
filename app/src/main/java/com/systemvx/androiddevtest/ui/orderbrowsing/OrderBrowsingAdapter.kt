@@ -5,38 +5,31 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.OrderBriefing
-import com.systemvx.androiddevtest.databinding.OrderBriefingItemBinding
+import com.systemvx.androiddevtest.databinding.ItemOrderBriefingBinding
 import com.systemvx.androiddevtest.ui.orderdetail.OrderDetailActivity
 
-class OrderBrowsingAdapter(private val mType: String, val context: Context, val listener: View.OnClickListener) : RecyclerView.Adapter<OrderBrowsingAdapter.OrderBrowsingVHolder>() {
+class OrderBrowsingAdapter(private val mType: String, val context: Context) : RecyclerView.Adapter<OrderBrowsingAdapter.OrderBrowsingVHolder>() {
 
     private val mDataList = ArrayList<OrderBriefing>()
 
-    class OrderBrowsingVHolder(view: View, val viewType: Int, val binding: OrderBriefingItemBinding) : RecyclerView.ViewHolder(view)
-
-    override fun getItemViewType(position: Int): Int {
-        return when (mType) {
-            "all" -> TYPE_ALL
-            "published" -> TYPE_PUBLISHED
-            "received" -> TYPE_RECEIVED
-            "active" -> TYPE_ACTIVE
-            else -> TYPE_ENDED
-        }
-    }
-
+    class OrderBrowsingVHolder(view: View, val viewType: Int, val binding: ItemOrderBriefingBinding) : RecyclerView.ViewHolder(view)
 
     private fun checkData(order: OrderBriefing): Boolean {
         return when (mType) {
             "all" -> true
+            "debate" -> order.state == 5
+            "ended" -> order.state in setOf(3, 4, 6)
+
+            "draft" -> order.state == 0
             "published" -> order.state == 1
-            "received" -> order.state == 2
-            "active" -> order.state == 3
-            else -> order.state == 4
+            "active" -> order.state == 2
+
+            "received" -> order.state <= 2
+            else -> true
         }
     }
 
@@ -49,52 +42,22 @@ class OrderBrowsingAdapter(private val mType: String, val context: Context, val 
         notifyDataSetChanged()
     }
 
-
-    companion object {
-        const val TYPE_ALL = 0
-        const val TYPE_PUBLISHED = 1
-        const val TYPE_RECEIVED = 2
-        const val TYPE_ACTIVE = 3
-        const val TYPE_ENDED = 4
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderBrowsingVHolder {
-        val binding = DataBindingUtil.inflate<OrderBriefingItemBinding>(
+        val binding = DataBindingUtil.inflate<ItemOrderBriefingBinding>(
                 LayoutInflater.from(context),
-                R.layout.order_briefing_item,
+                R.layout.item_order_briefing,
                 parent, false)
-        //setupButtons(binding, viewType)
-        binding.root.setOnClickListener {
-            context.startActivity(Intent(context, OrderDetailActivity::class.java))
-        }
         return OrderBrowsingVHolder(binding.root, viewType, binding)
 
     }
 
     override fun onBindViewHolder(holder: OrderBrowsingVHolder, position: Int) {
         holder.binding.model = mDataList[position]
-    }
-
-    private fun setupButtons(binding: OrderBriefingItemBinding, viewType: Int) {
-        when (viewType) {
-            TYPE_PUBLISHED -> {
-                binding.actionButtonHolder.addView(addButton("btnEdit", "编辑"))
-                binding.actionButtonHolder.addView(addButton("btnCancel", "撤回"))
-            }
-            TYPE_RECEIVED ->
-                binding.actionButtonHolder.addView(addButton("btnConfirm", "确认完成"))
-            TYPE_ENDED ->
-                binding.actionButtonHolder.addView(addButton("btnComment", "评价对方"))
+        holder.binding.root.setOnClickListener {
+            val intent = Intent(context, OrderDetailActivity::class.java)
+                    .putExtra(OrderDetailActivity.ARG_ORDER_ID, mDataList[position].id)
+            context.startActivity(intent)
         }
-    }
-
-    private fun addButton(tag: String, text: String): Button {
-        val btn = Button(context)
-        btn.tag = tag
-        btn.text = text
-        btn.id
-        btn.setOnClickListener(listener)
-        return btn
     }
 
     override fun getItemCount(): Int {

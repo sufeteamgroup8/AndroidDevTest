@@ -1,7 +1,6 @@
 package com.systemvx.androiddevtest
 
-class ProjectSettings {
-    companion object {
-        var netWorkDebug = true
-    }
+object ProjectSettings {
+    var fakeData: Boolean = false
+    var netWorkDebug = false
 }

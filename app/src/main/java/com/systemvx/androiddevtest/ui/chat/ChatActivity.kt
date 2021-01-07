@@ -25,14 +25,16 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        model.chatterID = intent.getIntExtra(ARG_CHATTER_ID, 0)
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
+        model.chatterID = intent.getIntExtra(ARG_CHATTER_ID, -1)
 
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
 
         model.dataResult.observe(this, Observer {
             when (it) {
                 true -> {
-                    mBinding.chatShowBox.layoutManager = LinearLayoutManager(this)
+                    mBinding.chatShowBox.layoutManager =
+                            LinearLayoutManager(this)
+                                    .apply { stackFromEnd = true;reverseLayout = true }
                     mBinding.chatShowBox.adapter = ChatMessageAdapter(this, model.chatHistory)
 
                 }
@@ -71,6 +73,7 @@ class ChatActivity : AppCompatActivity() {
             (mBinding.chatShowBox.adapter as ChatMessageAdapter).addMessage(message)
             mBinding.chatShowBox.smoothScrollToPosition(0)
             model.sendMessage(mBinding.textSend.text.toString())
+            mBinding.textSend.text.clear()
         }
     }
 }

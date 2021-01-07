@@ -45,9 +45,9 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/credit_show"
+            android:layout_width="0dp"
+            android:layout_height="12dp"
             android:layout_margin="@dimen/text_margin"
             android:layout_marginEnd="16dp"
             android:text="@{viewModel.userCreditStr}"
@@ -153,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:text="充值"
+                    android:text="我的委托"
                     android:textSize="@dimen/text_medium"
                     app:drawableTopCompat="@drawable/ic_zhanghao"
                     app:layout_constraintBottom_toTopOf="@id/bar_choose"
@@ -169,7 +169,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:gravity="center"
-                    android:text="提现"
+                    android:text="我承接的"
                     android:textSize="@dimen/text_medium"
                     app:drawableTopCompat="@drawable/ic_zhanghao"
                     app:layout_constraintBottom_toTopOf="@id/bar_choose"

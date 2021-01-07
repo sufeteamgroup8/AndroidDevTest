@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ToggleButton
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.data.OrderBriefing
 import com.systemvx.androiddevtest.data.OrderDataSource
 import com.systemvx.androiddevtest.data.Result
@@ -18,6 +19,7 @@ class SOptionViewModel : ViewModel() {
             }
         }
         val result = OrderDataSource().searchOrder(
+                LoginRepository.user?.id,
                 searchStr,
                 priceMin,
                 null,

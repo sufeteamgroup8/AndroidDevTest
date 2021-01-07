@@ -9,6 +9,25 @@ import kotlin.collections.HashMap
 
 class OrderDataSource : BasicDataSource() {
 
+    fun updateDraft(
+            orderID: Int,
+            title: String,
+            mainText: String,
+            taskType: Int,
+            price: Double,
+            deadline: Date,
+            addressID: Int,
+    ): Result<String> {
+        val params = HashMap<String, String>()
+        params["orderID"] = orderID.toString()
+        params["title"] = title
+        params["mainText"] = mainText
+        params["taskType"] = taskType.toString()
+        params["price"] = price.toString()
+        params["deadline"] = deadline.toString()
+        params["addressID"] = addressID.toString()
+        return getDataSingle("/order/redraft", params, String::class.java)
+    }
 
     fun newOrder(
             publisherID: Int,
@@ -16,8 +35,9 @@ class OrderDataSource : BasicDataSource() {
             mainText: String,
             taskType: Int,
             price: Double,
-            deadline: java.sql.Date,
+            deadline: Date,
             addressID: Int,
+            state: Int,
     ): Result<String> {
         val params = HashMap<String, String>()
         params["publisherID"] = publisherID.toString()
@@ -27,6 +47,7 @@ class OrderDataSource : BasicDataSource() {
         params["price"] = price.toString()
         params["deadline"] = deadline.toString()
         params["addressID"] = addressID.toString()
+        params["state"] = state.toString()
         return getDataSingle("/order/neworder", params, String::class.java)
     }
 
@@ -63,7 +84,7 @@ class OrderDataSource : BasicDataSource() {
                                 val cl = OrderBriefing(
                                         id = detail.id,
                                         title = detail.title,
-                                        briefing = detail.mainText.substring(0, 40),
+                                        briefing = detail.mainText.take(40),
                                         price = detail.price,
                                         deadline = detail.deadline,
                                         address = detail.address.toString(),//TODO
@@ -97,7 +118,7 @@ class OrderDataSource : BasicDataSource() {
             }
             false -> {
                 val params = HashMap<String, String>()
-                params["user"] = accountID.toString()
+                params["userID"] = accountID.toString()
                 try {
                     return when (val response = getDataList("/order/myorder", params, OrderDetail::class.java)) {
                         is Result.Success -> {
@@ -106,7 +127,7 @@ class OrderDataSource : BasicDataSource() {
                                 val cl = OrderBriefing(
                                         id = detail.id,
                                         title = detail.title,
-                                        briefing = detail.mainText.substring(0, 40),
+                                        briefing = detail.mainText.take(40),
                                         price = detail.price,
                                         deadline = detail.deadline,
                                         address = detail.address.toString(),//TODO
@@ -193,8 +214,8 @@ class OrderDataSource : BasicDataSource() {
 
     fun getOrderFullData(orderID: Int): Result<OrderDetail> {
         val params = HashMap<String, String>()
-        params["OrderID"] = orderID.toString()
-        return getDataSingle("/order/getDetail", params, OrderDetail::class.java)
+        params["orderID"] = orderID.toString()
+        return getDataSingle("/order/getdetail", params, OrderDetail::class.java)
     }
 
     fun requestEditExistingOrder(orderID: Int, publisherID: Int): Result<String> {
@@ -202,6 +223,37 @@ class OrderDataSource : BasicDataSource() {
         params["orderID"] = orderID.toString()
         params["publisherID"] = publisherID.toString()
         return getDataSingle("/order/reEdit", params, String::class.java)
+    }
+
+    fun getOrderByReceiver(userID: Int): Result<ArrayList<OrderBriefing>> {
+        val params = HashMap<String, String>()
+        params["accountID"] = userID.toString()
+        try {
+            return when (val response = getDataList("/order/myReceivedOrders", params, OrderDetail::class.java)) {
+                is Result.Success -> {
+                    val result = ArrayList<OrderBriefing>()
+                    for (detail in response.data) {
+                        val cl = OrderBriefing(
+                                id = detail.id,
+                                title = detail.title,
+                                briefing = detail.mainText.take(40),
+                                price = detail.price,
+                                deadline = detail.deadline,
+                                address = detail.address.toString(),//TODO
+                                type = detail.missionType.text,
+                                state = detail.order.state.id
+                        )
+                        result.add(cl)
+                    }
+                    Result.Success(result)
+                }
+                is Result.Error -> {
+                    response
+                }
+            }
+        } catch (e: Exception) {
+            return Result.Error(Exception("internal error"))
+        }
     }
 
     companion object {

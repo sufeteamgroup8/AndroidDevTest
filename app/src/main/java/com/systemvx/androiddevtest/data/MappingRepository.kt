@@ -12,13 +12,13 @@ import com.systemvx.androiddevtest.utils.UtilStaticFunc
 
 class MappingRepository {
     companion object {
-        private var addressMapping: ArrayList<AddressMap>? = null
+        var addressMapping: ArrayList<AddressMap>? = null
 
-        private var orderTypeMapping: HashMap<Int, String>? = null
+        var orderTypeMapping: HashMap<Int, String>? = null
 
-        private var orderStateMapping: HashMap<Int, String>? = null
+        var orderStateMapping: HashMap<Int, String>? = null
 
-        private var taskStateMapping: HashMap<Int, HashMap<Int, String>>? = null
+        var taskStateMapping: HashMap<Int, HashMap<Int, String>>? = null
     }
 
     fun initAll(context: Context) {
@@ -30,20 +30,19 @@ class MappingRepository {
         } catch (e: CustomRestfulError) {
             UtilStaticFunc.netWorkErrorToast(context)
         }
-
     }
 
     private fun initAddressMap() {
-        if (addressMapping == null) {
+        if (addressMapping.isNullOrEmpty()) {
             try {
                 val result = JSON.parseObject(HttpUtil().postRequest("/mapping/address", HashMap()))
-                addressMapping = ArrayList()
+                val Mapping = ArrayList<AddressMap>()
                 if (result.getBoolean("success")) {
-                    val list = result.getJSONArray("payload")
+                    val list = JSON.parseArray(result.get("payload").toString(), AddressMap::class.java)
                     for (i in list) {
-                        val temp = JSON.parseObject(i as String, AddressMap::class.java)
-                        addressMapping!![temp.id] = temp
+                        Mapping.add(i)
                     }
+                    addressMapping = Mapping
                 } else {
                     throw CustomRestfulError()
                 }
@@ -54,9 +53,9 @@ class MappingRepository {
     }
 
     private fun initTaskStateMap() {
-        if (taskStateMapping == null) {
+        if (taskStateMapping.isNullOrEmpty()) {
             try {
-                val result = JSON.parseObject(HttpUtil().postRequest("/mapping/taskState", HashMap()))
+                val result = JSON.parseObject(HttpUtil().postRequest("/mapping/taskstate", HashMap()))
                 taskStateMapping = HashMap()
                 if (result.getBoolean("success")) {
                     val list = result.getJSONArray("payload")
@@ -77,9 +76,9 @@ class MappingRepository {
     }
 
     private fun initOrderStateMap() {
-        if (orderStateMapping == null) {
+        if (orderStateMapping.isNullOrEmpty()) {
             try {
-                val result = JSON.parseObject(HttpUtil().postRequest("/mapping/taskState", HashMap()))
+                val result = JSON.parseObject(HttpUtil().postRequest("/mapping/orderstate", HashMap()))
                 orderStateMapping = HashMap<Int, String>()
                 if (result.getBoolean("success")) {
                     val list = result.getJSONArray("payload")
@@ -97,9 +96,9 @@ class MappingRepository {
     }
 
     private fun initTaskTypeMap() {
-        if (orderTypeMapping == null) {
+        if (orderTypeMapping.isNullOrEmpty()) {
             try {
-                val result = JSON.parseObject(HttpUtil().postRequest("/mapping/taskState", HashMap()))
+                val result = JSON.parseObject(HttpUtil().postRequest("/mapping/tasktype", HashMap()))
                 orderTypeMapping = HashMap<Int, String>()
                 if (result.getBoolean("success")) {
                     val list = result.getJSONArray("payload")
@@ -128,13 +127,21 @@ class MappingRepository {
             initAddressMap()
         }
 
-        var temp: AddressMap? = addressMapping!![addressID]
-        var output = temp!!.text
+        var temp: AddressMap? = addressMapping?.get(addressID)
+        var output = temp?.text
         do {
             temp = temp?.rootAddress
-            output = "${temp!!.text}|" + output
+            output = "${temp?.text}|" + output
         } while (temp != null)
-        return output
+        return output ?: ""
+    }
+
+    fun fetchAddressMap(): ArrayList<AddressMap> {
+        if (addressMapping == null) initAddressMap();return addressMapping!!
+    }
+
+    fun fetchTypeMap(): HashMap<Int, String> {
+        if (orderTypeMapping == null) initTaskTypeMap();return orderTypeMapping!!
     }
 
     fun getAddressID(addressDescription: String): Int? {
