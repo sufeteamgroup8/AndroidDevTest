@@ -27,6 +27,7 @@
         <!--      OK  -->
         <activity android:name=".ui.login.LoginActivity" />
         <!--        -->
+        <activity android:name=".ui.edit.OrderPublishActivity" />
         <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,11 +36,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.orderbrowsing.PublishedBrowsingActivity" />
+        <activity android:name=".ui.orderbrowsing.ReceivedBrowsingActivity" />
         <activity android:name=".ui.orderdetail.OrderDetailActivity" />
         <activity android:name=".ui.payment.CoinManageActivity" />
         <activity android:name=".ui.search.SearchActivity" />
         <activity android:name=".ui.setting.SettingActivity" />
-        <activity android:name=".ui.edit.OrderPublishActivity" />
+
+        <activity android:name=".ui.payment.PayAndWithdrawActivity" />
+
     </application>
 
 </manifest>

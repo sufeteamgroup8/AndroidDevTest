@@ -28,7 +28,8 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        model.chatterID = intent.getIntExtra(ARG_CHATTER_ID, 0)
+        model.chatterID = intent.getIntExtra(ARG_CHATTER_ID, -1)
+
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_chat)
 
         LoginRepository(AccountDataSource()).login("", "")

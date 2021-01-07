@@ -24,6 +24,7 @@ class CoinManageActivity : AppCompatActivity() {
         mViewModel = ViewModelProvider(this).get(CoinManageViewModel::class.java)
 
 
+        mAdapter = PayAdapter(this)
 
         mBinding.btnPay.setOnClickListener {
             val intent = Intent(this@CoinManageActivity, PayAndWithdrawActivity::class.java)

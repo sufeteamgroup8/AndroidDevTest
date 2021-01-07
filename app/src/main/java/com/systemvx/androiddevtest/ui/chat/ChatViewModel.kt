@@ -11,7 +11,7 @@ import kotlin.collections.ArrayList
 
 class ChatViewModel {
 
-    var chatterID = 0
+    var chatterID = -1
 
     var chatterNickname: MutableLiveData<String> = MutableLiveData("")
 

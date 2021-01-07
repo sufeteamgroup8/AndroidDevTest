@@ -214,8 +214,8 @@ class OrderDataSource : BasicDataSource() {
 
     fun getOrderFullData(orderID: Int): Result<OrderDetail> {
         val params = HashMap<String, String>()
-        params["OrderID"] = orderID.toString()
-        return getDataSingle("/order/getDetail", params, OrderDetail::class.java)
+        params["orderID"] = orderID.toString()
+        return getDataSingle("/order/getdetail", params, OrderDetail::class.java)
     }
 
     fun requestEditExistingOrder(orderID: Int, publisherID: Int): Result<String> {

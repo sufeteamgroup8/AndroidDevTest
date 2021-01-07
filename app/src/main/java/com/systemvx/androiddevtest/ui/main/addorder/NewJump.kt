@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.systemvx.androiddevtest.R
+import com.systemvx.androiddevtest.data.LoginRepository
 import com.systemvx.androiddevtest.ui.edit.OrderPublishActivity
+import com.systemvx.androiddevtest.ui.login.LoginActivity
 
 class NewJump : Fragment() {
 
@@ -17,14 +19,18 @@ class NewJump : Fragment() {
             savedInstanceState: Bundle?,
     ): View {
         // Inflate the layout for this fragment tv_start
-        val inflate: View = inflater.inflate(R.layout.fragment_new_jump, null, false)
+        val inflate: View = inflater.inflate(R.layout.fragment_new_jump, container, false)
         initView(inflate)
         return inflate
     }
 
     private fun initView(view: View?) {
         val tvStart = view?.findViewById<TextView>(R.id.tv_start)
-
-        tvStart?.setOnClickListener { startActivity(Intent(activity, OrderPublishActivity::class.java)) }
+        tvStart?.setOnClickListener {
+            if (LoginRepository.isLoggedIn)
+                startActivity(Intent(requireContext(), OrderPublishActivity::class.java))
+            else
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+        }
     }
 }

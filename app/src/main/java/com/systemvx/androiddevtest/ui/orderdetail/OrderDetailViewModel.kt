@@ -15,10 +15,16 @@ class OrderDetailViewModel : ViewModel() {
 
     val orderdetail = MutableLiveData<OrderDetail>()
 
-    fun getPriceStr() = orderdetail.value?.let { return@let "￥ " + DecimalFormat("#.00").format(it.price) }
+    fun getPriceStr(): String = orderdetail.value?.let { return@let "￥ " + DecimalFormat("#.00").format(it.price) }
             ?: ""
 
-    fun getAddressFull() = MappingRepository().getAddressChain(orderdetail.value?.address ?: 0)
+    fun getAddressFull(): String {
+        if (MappingRepository.addressMapping != null) {
+            return MappingRepository().getAddressChain(orderdetail.value?.address ?: -1)
+        } else {
+            return "暂无地点"
+        }
+    }
 
     fun getCountDownTime(): String {
         val deadTime = orderdetail.value?.deadline?.time

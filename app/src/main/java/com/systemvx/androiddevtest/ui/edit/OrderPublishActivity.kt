@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -49,7 +50,7 @@ class OrderPublishActivity : AppCompatActivity() {
                     initSpinners()
                 }
                 else -> {
-                    TODO()
+                    Toast.makeText(this, "请检查网络连接", Toast.LENGTH_SHORT).show()
                 }
             }
         })
@@ -66,7 +67,7 @@ class OrderPublishActivity : AppCompatActivity() {
             when (it) {
                 true -> injectExistingOrder()
                 else -> {
-                    TODO()
+
                 }
             }
         })

@@ -10,12 +10,14 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:id="@+id/item_view"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_margin"
         android:background="@drawable/style_round_corner_bg"
         android:backgroundTint="@color/shadow_grey"
-        android:paddingTop="10dp"
+        android:paddingStart="@dimen/text_margin"
+        android:paddingEnd="@dimen/text_margin"
         android:paddingBottom="10dp">
 
         <TextView

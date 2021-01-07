@@ -1,5 +1,6 @@
 package com.systemvx.androiddevtest.utils
 
+import android.util.Log
 import okhttp3.*
 import java.util.*
 import java.util.concurrent.Callable
@@ -11,11 +12,13 @@ class HttpUtil {
         //安卓AVD虚拟机指定的宿主机回环地址
         const val BASE_URL = "http://10.0.2.2:8080"
         var useAbsoluteURL = false
+        private val cookieStore: MutableMap<String, List<Cookie>> = HashMap()
+        private val threadPool = Executors.newFixedThreadPool(30)
+
     }
 
 
-    private val cookieStore: MutableMap<String, List<Cookie>> = HashMap()
-    private val threadPool = Executors.newFixedThreadPool(30)
+
     private val okHttpClient: OkHttpClient = OkHttpClient.Builder().cookieJar(object : CookieJar {
         override fun saveFromResponse(
                 url: HttpUrl,
@@ -66,7 +69,8 @@ class HttpUtil {
             if (response.isSuccessful && response.body != null) {
                 return@Callable response.body!!.string().trim { it <= ' ' }
             } else {
-                return@Callable null
+                Log.d("AHHHHHHHHH", "postRequest: $response")
+                return@Callable ""
             }
         })
         threadPool.submit(task)

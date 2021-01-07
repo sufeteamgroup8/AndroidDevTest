@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.systemvx.androiddevtest.R
 import com.systemvx.androiddevtest.data.LoginRepository
@@ -29,6 +30,7 @@ class NotificationsFragment : Fragment() {
         val mAdapter = ChatBriefingAdapter(this.requireContext())
         mBinding.chatBriefing.layoutManager = LinearLayoutManager(this.context)
         mBinding.chatBriefing.adapter = mAdapter
+        mBinding.chatBriefing.addItemDecoration(DividerItemDecoration(this.context, DividerItemDecoration.VERTICAL))
 
         notificationsViewModel.natResult.observe(viewLifecycleOwner, {
             mAdapter.updateWithNewData(notificationsViewModel.data)

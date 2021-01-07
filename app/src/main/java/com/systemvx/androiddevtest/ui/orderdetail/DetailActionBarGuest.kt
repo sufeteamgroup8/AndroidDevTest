@@ -60,7 +60,7 @@ class DetailActionBarGuest(val viewModel: OrderDetailViewModel) : Fragment() {
 
     private fun setUpButtons() {
         val listener = DetailActionListener(requireContext())
-        val buttonType: Int = when (viewModel.orderdetail.value!!.order.state.id) {
+        val buttonType: Int = when (viewModel.orderdetail.value?.order?.state?.id) {
             0 -> 0 //未发布
             1 -> 1 //已发布
             2 -> 2 //已接单

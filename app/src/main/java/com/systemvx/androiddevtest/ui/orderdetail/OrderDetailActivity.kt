@@ -36,6 +36,7 @@ class OrderDetailActivity : AppCompatActivity() {
         //get the ID of the Showing order
         val id = intent.getIntExtra(ARG_ORDER_ID, -1)
 
+        netLoadProgress = RoundProgressDialog.getInstance(this)
 
         //requestOrderData
         if (id != -1) {
@@ -43,6 +44,8 @@ class OrderDetailActivity : AppCompatActivity() {
             netLoadProgress.show()
             viewModel.fetchOrderData(id)
         }
+
+
         viewModel.dataResult.observe(this, Observer {
             //cancelProgressBar
             netLoadProgress.dismiss()
